@@ -1,4 +1,4 @@
-@extends('user.template')
+@extends('layouts.templateCRUD')
 
 @section('content')
      <div class="row align-items-center my-5">
@@ -33,8 +33,8 @@
                          <label for="level_id" class="form-label">Level ID</label>
                          <select id="level_id" name="level_id" class="form-control">
                          <option value="">Pilih Level</option>
-                         @foreach ($userData as $user)
-                              <option value="{{ $user->level->level_id }}">{{ $user->level->level_id }}</option>
+                         @foreach ($levelData as $level)
+                              <option value="{{ $level->level_id }}">{{ $level->level_id }}</option>
                          @endforeach
                          </select>
                     </div>

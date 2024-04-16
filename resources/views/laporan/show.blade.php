@@ -6,45 +6,51 @@
                <h2>Detail Data</h2>
           </div>
           <div class="col-2">
-               <a class="btn btn-sm btn-success" href="{{ route('user.index') }}">Kembali</a>
+               <a class="btn btn-sm btn-success" href="{{ route('laporan.index') }}">Kembali</a>
           </div>
      </div>
      
      <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12">
                <div class="form-group">
-                    <strong>ID user:</strong>
-                    {{ $userData->user_id }}
+                    <strong>ID laporan:</strong>
+                    {{ $laporanData->laporan_id }}
                </div>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-12">
                <div class="form-group">
-                    <strong>ID level:</strong>
-                    {{ $userData->level->level_id }}
+                    <strong>Nama Pelapor:</strong>
+                    {{ $laporanData->user->user_nama }}
                </div>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-12">
                <div class="form-group">
-                    <strong>NIK:</strong>
-                    {{ $userData->user_nik }}
+                    <strong>Nama Infrastruktur</strong>
+                    {{ $laporanData->infrastruktur->infrastruktur_nama }}
                </div>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-12">
                <div class="form-group">
-                    <strong>Nama:</strong>
-                    {{ $userData->user_nama }}
+                    <strong>Bukti Laporan:</strong>
+                    {{ $laporanData->bukti_laporan }}
                </div>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-12">
                <div class="form-group">
-                    <strong>Password:</strong>
-                    {{ $userData->user_password }}
+                    <strong>Tanggal Laporan:</strong>
+                    {{ $laporanData->tgl_laporan }}
                </div>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-12">
                <div class="form-group">
-                    <strong>Foto :</strong>
-                    <img src="" alt="{{ $userData->user_foto }}">      
+                    <strong>Deskripsi Laporan :</strong>
+                    <img src="" alt="{{ $laporanData->deskripsi_laporan }}">      
+               </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12">
+               <div class="form-group">
+                    <strong>Status Laporan :</strong>
+                    {{ $laporanData->status->status_nama }}     
                </div>
           </div>
      </div>

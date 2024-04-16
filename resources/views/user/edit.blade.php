@@ -1,4 +1,4 @@
-@extends('user.template')
+@extends('layouts.templateCRUD')
 
 @section('content')
      <div class="row align-items-center my-5">

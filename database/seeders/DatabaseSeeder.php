@@ -4,8 +4,13 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\InfrastrukturModel;
+use App\Models\KategoriModel;
+use App\Models\LaporanModel;
 use App\Models\UserModel;
 use App\Models\LevelModel;
+use App\Models\StatusLaporanModel;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Hash;
@@ -55,6 +60,27 @@ class DatabaseSeeder extends Seeder
             'user_nik' => '3234623421234523',
             'user_password' => Hash::make('12345'),
             'user_nama' => 'Anthono',
+        ]);
+
+
+        InfrastrukturModel::create([
+            'infrastruktur_kode' => 'JRNGLSTRK',
+            'infrastruktur_nama' => 'Jaringan Listrik',
+        ]);
+
+
+        StatusLaporanModel::create([
+            'status_kode' => 'STS01',
+            'status_nama' => 'Status DiLaporkan',
+        ]);
+
+
+        LaporanModel::create([
+            'user_id' => 3,
+            'infrastruktur_id' => 1,
+            'status_id' => 1,
+            'tgl_laporan' => '2024-01-01',
+            'deskripsi_laporan' => 'lorem lorem',
         ]);
     }
 }
