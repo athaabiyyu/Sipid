@@ -7,26 +7,20 @@ use Illuminate\Http\Request;
 
 class InfrastrukturController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    /*** Display a listing of the resource.*/
     public function index()
     {
         $infrastrukturData = InfrastrukturModel::all();
         return view('infrastruktur.index', compact('infrastrukturData'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    /*** Show the form for creating a new resource.*/
     public function create()
     {
         return view('infrastruktur.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    /*** Store a newly created resource in storage.*/
     public function store(Request $request)
     {
         $request->validate([
@@ -38,8 +32,7 @@ class InfrastrukturController extends Controller
         return redirect()->route('infrastruktur.index')->with('success', 'Data Berhasil Ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
+    /*** Display the specified resource.
      */
     public function show(string $id)
     {
@@ -47,18 +40,14 @@ class InfrastrukturController extends Controller
         return view('infrastruktur.show', compact('infrastrukturData'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    /*** Show the form for editing the specified resource.*/
     public function edit(string $id)
     {
         $infrastrukturData = InfrastrukturModel::find($id);
         return view('infrastruktur.edit', compact('infrastrukturData'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    /*** Update the specified resource in storage.*/
     public function update(Request $request, string $id)
     {
         $request->validate([
@@ -70,9 +59,7 @@ class InfrastrukturController extends Controller
         return redirect()->route('infrastruktur.index')->with('success', 'Data Berhasil Diperbarui');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    /*** Remove the specified resource from storage.*/
     public function destroy(string $id)
     {
         InfrastrukturModel::find($id)->delete();

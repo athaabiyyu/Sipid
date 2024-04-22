@@ -6,10 +6,6 @@
      </div>
 @endsection
 
-@section('sucess')
-     <h3>{{ $success }}</h3>
-@endsection
-
 @section('head-table')
      <th scope="col">User ID</th>
      <th scope="col">Level ID</th>

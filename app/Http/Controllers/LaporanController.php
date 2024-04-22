@@ -10,18 +10,14 @@ use Illuminate\Http\Request;
 
 class LaporanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    /*** Display a listing of the resource */
     public function index()
     {
         $laporanData = LaporanModel::all();
         return view('laporan.index', compact('laporanData'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    /*** Show the form for creating a new resource.*/
     public function create()
     {
         $userData = UserModel::all();
@@ -30,9 +26,7 @@ class LaporanController extends Controller
         return view('laporan.create', compact('userData', 'infrastrukturData', 'statusData'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    /*** Store a newly created resource in storage.*/
     public function store(Request $request)
     {
         $request->validate([
@@ -48,18 +42,14 @@ class LaporanController extends Controller
         return redirect()->route('laporan.index')->with('success', 'Laporan Berhasil Diunggah');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    /*** Display the specified resource.*/
     public function show(string $id)
     {
         $laporanData = LaporanModel::find($id);
         return view('laporan.show', compact('laporanData'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    /*** Show the form for editing the specified resource.*/
     public function edit(string $id)
     {
         $userData = UserModel::all();
@@ -69,9 +59,7 @@ class LaporanController extends Controller
         return view('laporan.edit', compact('laporanData', 'userData', 'infrastrukturData', 'statusData'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    /*** Update the specified resource in storage.*/
     public function update(Request $request, string $id)
     {
         $request->validate([
@@ -87,9 +75,7 @@ class LaporanController extends Controller
         return redirect()->route('laporan.index')->with('success', 'Laporan Berhasil DiPerbarui');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    /*** Remove the specified resource from storage.*/
     public function destroy(string $id)
     {
         LaporanModel::find($id)->delete();
