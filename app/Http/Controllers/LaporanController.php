@@ -4,81 +4,61 @@ namespace App\Http\Controllers;
 
 use App\Models\InfrastrukturModel;
 use App\Models\LaporanModel;
-use App\Models\StatusLaporanModel;
-use App\Models\UserModel;
+use Carbon\Carbon;
+use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class LaporanController extends Controller
 {
     /*** Display a listing of the resource */
     public function index()
     {
-        $laporanData = LaporanModel::all();
-        return view('laporan.index', compact('laporanData'));
+        
+        // Ambil data laporan yang terkait dengan pengguna yang login
+        $dataLaporan = LaporanModel::where('user_id', auth()->user()->user_id)->get();
+
+        return view('laporan.index', [
+
+            // kirim data ke view laporan->index
+            'title' => 'Laporan | Sipid',
+            'breadcrumb' => 'Halaman Riwayat Laporan',
+            'dataLaporan' => $dataLaporan,
+        ]);
     }
 
-    /*** Show the form for creating a new resource.*/
-    public function create()
-    {
-        $userData = UserModel::all();
+    public function create() {
         $infrastrukturData = InfrastrukturModel::all();
-        $statusData = StatusLaporanModel::all();
-        return view('laporan.create', compact('userData', 'infrastrukturData', 'statusData'));
+
+        return view('laporan.create', [
+            'title' => 'Buat Laporan | Sipid', 
+            'breadcrumb' => 'Halaman Membuat Laporan',
+            'dataInfrastruktur' => $infrastrukturData
+        ]);
     }
 
-    /*** Store a newly created resource in storage.*/
-    public function store(Request $request)
-    {
-        $request->validate([
-            'user_id' => 'required',
+    public function store(Request $request) {
+
+        $validatedData = $request->validate([
             'infrastruktur_id' => 'required',
-            'bukti_laporan' => 'required',
-            'tgl_laporan' => 'required',
-            'deskripsi_laporan' => 'required',
-            'status_id' => 'required',
+            'bukti_laporan' => 'required|file|mimes:jpg,bmp,png',
+            'deskripsi_laporan' => 'required|max:255'
         ]);
 
-        LaporanModel::create($request->all());
-        return redirect()->route('laporan.index')->with('success', 'Laporan Berhasil Diunggah');
+        // set nilai default tanggal secara otomatis ketika laporan dibuat
+        $validatedData['tgl_laporan'] = Carbon::now();
+        // set nilai default status secara otomatis ketika laporan dibuat
+        $validatedData['status_id'] = 1;
+        // set nilai default id user secara otomatis ektika laporan dibuat
+        $validatedData['user_id'] = auth()->user()->user_id;
+
+        // add data
+        LaporanModel::create($validatedData);
+        return redirect('/laporan')->with('success', 'l Berhasil Ditambahkan');
     }
 
-    /*** Display the specified resource.*/
-    public function show(string $id)
-    {
-        $laporanData = LaporanModel::find($id);
-        return view('laporan.show', compact('laporanData'));
-    }
-
-    /*** Show the form for editing the specified resource.*/
-    public function edit(string $id)
-    {
-        $userData = UserModel::all();
-        $infrastrukturData = InfrastrukturModel::all();
-        $statusData = StatusLaporanModel::all();
-        $laporanData = LaporanModel::find($id);
-        return view('laporan.edit', compact('laporanData', 'userData', 'infrastrukturData', 'statusData'));
-    }
-
-    /*** Update the specified resource in storage.*/
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'user_id' => 'required',
-            'infrastruktur_id' => 'required',
-            'bukti_laporan' => 'required',
-            'tgl_laporan' => 'required',
-            'deskripsi_laporan' => 'required',
-            'status_id' => 'required',
-        ]);
-
-        LaporanModel::find($id)->update($request->all());
-        return redirect()->route('laporan.index')->with('success', 'Laporan Berhasil DiPerbarui');
-    }
-
-    /*** Remove the specified resource from storage.*/
-    public function destroy(string $id)
-    {
-        LaporanModel::find($id)->delete();
-        return redirect()->route('laporan.index')->with('success', 'Laporan Berhasil DiHapus');
-    }
 }

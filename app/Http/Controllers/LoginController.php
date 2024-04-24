@@ -30,9 +30,21 @@ class LoginController extends Controller
 
         if (Auth::attempt(['user_nik' => $credentials['user_nik'], 'password' => $credentials['user_password']])) {
             $request->session()->regenerate();
-            return redirect()->intended('laporan.index');
+            return redirect()->intended('/laporan');
         }
 
         return back()->with('loginGagal', 'NIK atau Password Salah');
+    }
+
+    // logout
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
