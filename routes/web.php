@@ -18,6 +18,7 @@ Route::group(['prefix' => 'laporan', 'middleware' => 'auth'], function () {
      Route::get('/', [LaporanController::class, 'index']);
      Route::get('/tambah', [LaporanController::class, 'create']);
      Route::post ('/', [LaporanController::class, 'store']);
+     Route::get('/detail/{id}', [LaporanController::class, 'detail']);
 });
 
 

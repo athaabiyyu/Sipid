@@ -25,7 +25,7 @@ class LaporanController extends Controller
         return view('laporan.index', [
 
             // kirim data ke view laporan->index
-            'title' => 'Laporan | Sipid',
+            'title' => 'Riwayat Laporan | Sipid',
             'breadcrumb' => 'Halaman Riwayat Laporan',
             'dataLaporan' => $dataLaporan,
         ]);
@@ -58,7 +58,16 @@ class LaporanController extends Controller
 
         // add data
         LaporanModel::create($validatedData);
-        return redirect('/laporan')->with('success', 'l Berhasil Ditambahkan');
+        return redirect('/laporan')->with('success', 'Laporan Berhasil di Kirimkan');
+    }
+
+    public function detail($id) {
+        $detailLaporan = LaporanModel::find($id);
+        return view('laporan.detail', [
+            'title' => 'Detail Laporan | Sipid',
+            'breadcrumb' => 'Halaman Detail Laporan',
+            'detailLaporan' => $detailLaporan
+        ]);
     }
 
 }
