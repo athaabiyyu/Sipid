@@ -34,7 +34,7 @@
                          <span class="d-inline-block">:</span>
                     </div>
                     <div class="col-md-9 col-sm-8">
-                         <small>{{ $detailLaporan->tgl_laporan }}</small>
+                         <small>{{ \Carbon\Carbon::parse($detailLaporan->tgl_laporan)->format('d-m-Y') }}</small>
                     </div>
                </div>
                <hr>
@@ -46,7 +46,7 @@
                          <span class="d-inline-block">:</span>
                     </div>
                     <div class="col-md-9 col-sm-8">
-                         <img src="" alt="{{ $detailLaporan->infrastruktur->infrastruktur_nama }}">
+                         <img src="{{ asset('storage/' . $detailLaporan->bukti_laporan) }}" alt="Bukti Laporan" class="img-fluid rounded" style="width: 200px; height: auto;">
                     </div>
                </div>
                <hr>

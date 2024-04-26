@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,6 +17,7 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('sbAdmin_Template/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+    @stack('css')
 </head>
 
 <body id="page-top">
@@ -90,6 +90,7 @@
      <script src="{{ asset('sbAdmin_Template/js/sb-admin-2.min.js') }}"></script>
 
      @stack('scripts')
+     
 </body>
 
 </html>

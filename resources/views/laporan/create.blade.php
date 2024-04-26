@@ -25,7 +25,7 @@
                                         @enderror
                                         <!-- Pesan Erorr -->   
 
-                                        </select>
+                                   </select>
                                    <div class="mb-3 mt-3">
                                         <label for="bukti_laporan" class="form-label">Bukti Laporan</label>
                                         <input type="file" id="bukti_laporan" name="bukti_laporan" class="form-control @error('bukti_laporan') is-invalid @enderror">
@@ -35,8 +35,8 @@
                                              <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                         <!-- Pesan Erorr -->  
-
                                    </div>
+
                                    <div class="mb-3">
                                         <label for="deskripsi_laporan" class="form-label">Deskripsi Laporan</label>
                                         <textarea id="deskripsi_laporan" name="deskripsi_laporan" class="form-control @error('deskripsi_laporan') is-invalid @enderror">{{ old('deskripsi_laporan') }}</textarea>
@@ -45,8 +45,7 @@
                                         @error('deskripsi_laporan')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
-                                        <!-- Pesan Error -->
-                                    
+                                        <!-- Pesan Error -->                        
                                     </div>
                                    <button type="submit" class="btn btn-primary">Kirim</button>
                               </div>

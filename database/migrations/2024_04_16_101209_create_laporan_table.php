@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->index();
             $table->unsignedBigInteger('status_id')->index();
             $table->date('tgl_laporan')->nullable();
-            $table->binary('bukti_laporan')->nullable();
+            $table->string('bukti_laporan')->nullable();
             $table->string('deskripsi_laporan', 100)->nullable();
             $table->timestamps();
 

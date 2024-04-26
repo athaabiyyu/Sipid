@@ -96,4 +96,5 @@ class UserController extends Controller
         UserModel::find($id)->delete();
         return redirect()->route('user.index')->with('success', 'Data Berhasil Dihapus');
     }
+
 }

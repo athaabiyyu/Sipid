@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\InfrastrukturModel;
-use App\Models\LaporanModel;
 use Carbon\Carbon;
-use Illuminate\Routing\Controller;
+use App\Models\UserModel;
+use App\Models\LaporanModel;
 use Illuminate\Http\Request;
+use App\Models\InfrastrukturModel;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 
 
@@ -18,7 +19,6 @@ class LaporanController extends Controller
     /*** Display a listing of the resource */
     public function index()
     {
-        
         // Ambil data laporan yang terkait dengan pengguna yang login
         $dataLaporan = LaporanModel::where('user_id', auth()->user()->user_id)->get();
 
@@ -45,9 +45,14 @@ class LaporanController extends Controller
 
         $validatedData = $request->validate([
             'infrastruktur_id' => 'required',
-            'bukti_laporan' => 'required|file|mimes:jpg,bmp,png',
+            'bukti_laporan' => 'required|image|file|max:1024',
             'deskripsi_laporan' => 'required|max:255'
         ]);
+
+        // simpan bukti laporan di storage lokal
+        if($request->file('bukti_laporan')) {
+            $validatedData['bukti_laporan'] = $request->file('bukti_laporan')->store('img-bukti_laporan');
+        }
 
         // set nilai default tanggal secara otomatis ketika laporan dibuat
         $validatedData['tgl_laporan'] = Carbon::now();
@@ -70,4 +75,35 @@ class LaporanController extends Controller
         ]);
     }
 
+    public function profile() {
+        // Ambil data pengguna yang login
+        $dataUser = UserModel::findOrFail(auth()->user()->user_id);
+    
+        return view('laporan.profile',[
+            'title' => 'Profile | Sipid',
+            'breadcrumb' => 'Halaman Profile',
+            'dataUser' => $dataUser
+        ]);
+    }
+
+    public function editProfile(Request $request) {
+        $user = auth()->user();
+
+        $dataProfile = $request->validate([
+            'user_nama' => 'min:10',
+            'user_nomor' => 'min:10|max:12',
+            'user_foto' => 'image|file|max:1024'
+        ]);
+    
+        // simpan bukti laporan di storage lokal
+        if ($request->file('user_foto')) {
+            $dataProfile['user_foto'] = $request->file('user_foto')->store('img-profile_user');
+        }
+    
+        // edit data
+        $user->update($dataProfile);
+    
+        return redirect('/laporan/profile')->with('success', 'Profil Berhasil di Perbarui');
+    }
+    
 }

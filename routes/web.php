@@ -12,14 +12,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LoginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::group(['prefix' => 'laporan', 'middleware' => 'auth'], function () {
      Route::get('/', [LaporanController::class, 'index']);
      Route::get('/tambah', [LaporanController::class, 'create']);
-     Route::post ('/', [LaporanController::class, 'store']);
+     Route::post('/', [LaporanController::class, 'store']);
      Route::get('/detail/{id}', [LaporanController::class, 'detail']);
+     Route::get('/profile', [LaporanController::class, 'profile']);
+     Route::post('/edit_profile', [LaporanController::class, 'editProfile']); // corrected route definition
 });
+
 
 
 Route::get('/registration', [RegisterController::class, 'index'])->middleware('guest');

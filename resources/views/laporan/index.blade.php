@@ -27,7 +27,7 @@
                                    <td>{{ $loop->iteration }}</td>
                                    <td>{{ $laporan->infrastruktur->infrastruktur_nama }}</td>
                                    <td>{{ \Carbon\Carbon::parse($laporan->tgl_laporan)->format('d-m-Y') }}</td>
-                                   <td>{{ substr($laporan->deskripsi_laporan, 0, 20) }}...</td>
+                                   <td>{{ substr($laporan->deskripsi_laporan, 0, 30) }}...</td>
                                    <td class="text-center">
                                         <a href="#" class="btn btn-sm btn-warning btn-icon-split">
                                              <span class="icon text-white-50">
