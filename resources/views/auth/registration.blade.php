@@ -25,7 +25,7 @@
 
                                    <div class="form-group row">
                                         <div class="col mb-3 mb-sm-0">
-                                             <input type="text" id="user_nama" placeholder="Nama" name="user_nama" class="form-control form-control-user @error ('user_nama') is-invalid @enderror" value="{{ old('user_nama') }}">
+                                             <input type="text" id="user_nama" placeholder="Nama Lengkap" name="user_nama" class="form-control form-control-user @error ('user_nama') is-invalid @enderror" value="{{ old('user_nama') }}">
                                              @error('user_nama')
                                                   <div class="invalid-feedback">{{ $message }}</div>
                                              @enderror

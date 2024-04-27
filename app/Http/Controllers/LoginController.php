@@ -30,7 +30,16 @@ class LoginController extends Controller
 
         if (Auth::attempt(['user_nik' => $credentials['user_nik'], 'password' => $credentials['user_password']])) {
             $request->session()->regenerate();
-            return redirect()->intended('/laporan');
+
+            // cek level id user yang login
+            if(auth()->user()->level_id == 1) {
+                return redirect()->intended('/admin');
+            } elseif(auth()->user()->level_id == 2) {
+                return redirect()->intended('/tes');
+            } else {
+                return redirect()->intended('/laporan');
+            }
+            
         }
 
         return back()->with('loginGagal', 'NIK atau Password Salah');

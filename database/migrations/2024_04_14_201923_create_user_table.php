@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('user_password');
             $table->string('user_nama', 50);
             $table->string('user_nomor', 12)->nullable();
+            $table->string('user_alamat', 100)->nullable();
             $table->string('user_foto')->nullable();
             $table->timestamps();
 

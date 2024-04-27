@@ -12,13 +12,19 @@ class LevelController extends Controller
     public function index()
     {
         $levelData = LevelModel::all();
-        return view('level.index', compact('levelData'));
+        return view('admin.level.index', compact('levelData'), [
+            'title' => 'Data Level | Sipid',
+            'breadcrumb' => 'Manage Data Level'
+        ]);
     }
 
     /*** Show the form for creating a new resource. */
     public function create()
     {
-        return view('level.create');
+        return view('admin.level.create', [
+            'title' => 'Tambah Data Level | Sipid',
+            'breadcrumb' => 'Tambah Data Level'
+        ]);
     }
 
     /*** Store a newly created resource in storage. */
@@ -26,28 +32,24 @@ class LevelController extends Controller
     {
         $request->validate(
             [
-                'level_kode' => 'required',
-                'level_nama' => 'required',
+                'level_kode' => 'required|min:3|max:10',
+                'level_nama' => 'required|min:3|max:50',
             ]
         );
 
         // add data
         LevelModel::create($request->all());
-        return redirect()->route('level.index')->with('success', 'Data Berhasil Ditambahkan');
-    }
-
-    /*** Display the specified resource. */
-    public function show(string $id, LevelModel $levelData)
-    {
-        $levelData = LevelModel::findOrFail($id);
-        return view('level.show', compact('levelData'));
+        return redirect()->route('admin.level.index')->with('success', 'Data Berhasil Ditambahkan');
     }
 
     /*** Show the form for editing the specified resource. */
     public function edit(string $id)
     {
         $levelData = LevelModel::find($id);
-        return view('level.edit', compact('levelData'));
+        return view('admin.level.edit', compact('levelData'), [
+            'title' => 'Edit Data Level | Sipid',
+            'breadcrumb' => 'Edit Data Level'
+        ]);
     }
 
     /*** Update the specified resource in storage. */
@@ -55,20 +57,20 @@ class LevelController extends Controller
     {
         $request->validate(
             [
-                'level_kode' => 'required',
-                'level_nama' => 'required',
+                'level_kode' => 'required|min:3|max:10',
+                'level_nama' => 'required|min:3|max:50',
             ]
         );
 
         // update
-        $levelData = LevelModel::find($id)->update($request->all());
-        return redirect()->route('level.index')->with('success', 'Data Berhasil Diupdate');
+        LevelModel::find($id)->update($request->all());
+        return redirect()->route('admin.level.index')->with('success', 'Data Berhasil Diupdate');
     }
 
     /*** Remove the specified resource from storage.*/
     public function destroy(string $id)
     {
         LevelModel::find($id)->delete();
-        return redirect()->route('level.index')->with('success', 'Data Berhasil Dihapus');
+        return redirect()->route('admin.level.index')->with('success', 'Data Berhasil Dihapus');
     }
 }

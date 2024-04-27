@@ -10,13 +10,15 @@ use App\Models\InfrastrukturModel;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
-
+use function Laravel\Prompts\alert;
 
 class LaporanController extends Controller
 {
     /*** Display a listing of the resource */
+    // index WARGA
     public function index()
     {
         // Ambil data laporan yang terkait dengan pengguna yang login
@@ -31,17 +33,19 @@ class LaporanController extends Controller
         ]);
     }
 
-    public function create() {
+    public function create()
+    {
         $infrastrukturData = InfrastrukturModel::all();
 
         return view('laporan.create', [
-            'title' => 'Buat Laporan | Sipid', 
+            'title' => 'Buat Laporan | Sipid',
             'breadcrumb' => 'Halaman Membuat Laporan',
             'dataInfrastruktur' => $infrastrukturData
         ]);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
         $validatedData = $request->validate([
             'infrastruktur_id' => 'required',
@@ -50,7 +54,7 @@ class LaporanController extends Controller
         ]);
 
         // simpan bukti laporan di storage lokal
-        if($request->file('bukti_laporan')) {
+        if ($request->file('bukti_laporan')) {
             $validatedData['bukti_laporan'] = $request->file('bukti_laporan')->store('img-bukti_laporan');
         }
 
@@ -66,7 +70,9 @@ class LaporanController extends Controller
         return redirect('/laporan')->with('success', 'Laporan Berhasil di Kirimkan');
     }
 
-    public function detail($id) {
+    // detail laporan pada warga
+    public function detail($id)
+    {
         $detailLaporan = LaporanModel::find($id);
         return view('laporan.detail', [
             'title' => 'Detail Laporan | Sipid',
@@ -75,35 +81,113 @@ class LaporanController extends Controller
         ]);
     }
 
-    public function profile() {
+    public function profile()
+    {
         // Ambil data pengguna yang login
         $dataUser = UserModel::findOrFail(auth()->user()->user_id);
-    
-        return view('laporan.profile',[
+
+        return view('laporan.profile', [
             'title' => 'Profile | Sipid',
             'breadcrumb' => 'Halaman Profile',
             'dataUser' => $dataUser
         ]);
     }
 
-    public function editProfile(Request $request) {
+    public function editProfile(Request $request)
+    {
         $user = auth()->user();
 
         $dataProfile = $request->validate([
-            'user_nama' => 'min:10',
-            'user_nomor' => 'min:10|max:12',
-            'user_foto' => 'image|file|max:1024'
+            'user_nama' => 'nullable|max:100',
+            'user_nomor' => 'min:10|max:12|nullable',
+            'user_foto' => 'image|file|max:1024|nullable',
+            'user_alamat' => 'min:10|max:100|nullable',
         ]);
-    
+
         // simpan bukti laporan di storage lokal
         if ($request->file('user_foto')) {
             $dataProfile['user_foto'] = $request->file('user_foto')->store('img-profile_user');
         }
-    
+
         // edit data
         $user->update($dataProfile);
-    
+
         return redirect('/laporan/profile')->with('success', 'Profil Berhasil di Perbarui');
     }
+
+    public function sandi()
+    {
+
+        // Ambil data pengguna yang login
+        $dataUser = UserModel::findOrFail(auth()->user()->user_id);
+
+        return view('laporan.sandi', [
+            'title' => 'Ubah Kata Sandi | Sipid',
+            'breadcrumb' => 'Halaman Ubah Kata Sandi',
+            'dataUser' => $dataUser,
+        ]);
+    }
+
+    public function editSandi(Request $request)
+    {
+        $user = auth()->user();
+
+        // Ambil password lama dari input
+        $passwordLama = $request->input('password_lama');
+
+        // Bandingkan password lama yang dimasukkan dengan password yang disimpan
+        if (Hash::check($passwordLama, $user->user_password)) {
+            // Jika password lama cocok, lanjutkan dengan validasi dan pembaruan password baru
+            $dataProfile = $request->validate([
+                'user_password' => 'required|min:5'
+            ]);
+
+            // Enkripsi password baru
+            $dataProfile['user_password'] = Hash::make($dataProfile['user_password']);
+
+            // Perbarui password
+            $user->update($dataProfile);
+
+            return redirect('/laporan/sandi')->with('success', 'Kata Sandi Berhasil di Perbarui');
+        } else {
+            // Jika password lama tidak cocok, kembalikan dengan pesan kesalahan
+            return redirect('/laporan/sandi')->with('error', 'Kata Sandi Lama Salah');
+        }
+    }
+
+    // index Admin
+    public function indexAdmin() {
+
+        return view('admin.index', [
+            'title' => 'Index | Sipid', 
+            'breadcrumb' => 'Index',
+        ]);
+    }
     
+    // rekap laporan
+    public function rekapLaporan() {
+
+        // ambil data laporan
+        $dataLaporan = LaporanModel::all();
+
+        return view('admin.laporan.rekap_laporan', [
+            'title' => 'Rekap Laporan | Sipid', 
+            'breadcrumb' => 'Data Infrastruktur',
+            'dataLaporan' => $dataLaporan
+        ]);
+    }
+
+    // detial laporan pada admin
+    public function detailAdmin($id) {
+
+        // ambil data sesuai id
+        $detailLaporan = LaporanModel::find($id);
+
+        return view('admin.laporan.detail_rekap_laporan', [
+            
+            'breadcrumb' => 'Detail Laporan',
+            'title' => 'Detail Laporan | Sipid',
+            'detailLaporan' => $detailLaporan
+        ]);
+    }
 }

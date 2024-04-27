@@ -39,7 +39,7 @@
 
                                    <div class="mb-3">
                                         <label for="deskripsi_laporan" class="form-label">Deskripsi Laporan</label>
-                                        <textarea id="deskripsi_laporan" name="deskripsi_laporan" class="form-control @error('deskripsi_laporan') is-invalid @enderror">{{ old('deskripsi_laporan') }}</textarea>
+                                        <textarea id="deskripsi_laporan" name="deskripsi_laporan" class="form-control @error('deskripsi_laporan') is-invalid @enderror" placeholder="Masukkan lokasi dan detail kerusakan">{{ old('deskripsi_laporan') }}</textarea>
                                     
                                         <!-- Pesan Error -->
                                         @error('deskripsi_laporan')

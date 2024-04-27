@@ -9,47 +9,56 @@
 
      <!-- Divider -->
      <hr class="sidebar-divider my-0">
-
      <!-- Nav Item - Tentang -->
      <li class="nav-item">
-          <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-book"></i>
-          <span>Tutorial</span></a>
+          <a class="nav-link" href="{{ url('admin') }}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
      </li>
 
      <!-- Divider -->
      <hr class="sidebar-divider">
-
-     <!-- Heading -->
      <div class="sidebar-heading">
-          Menu
+          Laporan
      </div>
-
-     <!-- Nav Buat laporan -->
      <li class="nav-item">
-          <a class="nav-link" href="{{ url('laporan/tambah') }}">
-              <i class="fas fa-fw fa-plus"></i>
-              <span>Buat Laporan</span>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+              aria-expanded="true" aria-controls="collapseUtilities">
+              <i class="fas fa-fw fa-book"></i>
+              <span>Manage Laporan</span>
           </a>
+          <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+              data-parent="#accordionSidebar">
+               <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Data Laporan:</h6>
+                    <a class="collapse-item" href="{{ url('admin/rekap_laporan') }}">Rekap Laporan</a>
+               </div>
+          </div>
      </li>
 
-     <!-- Nav History laporan -->
+     <!-- Divider -->
+     <hr class="sidebar-divider">
+     <div class="sidebar-heading">
+          Edit Data
+     </div>
      <li class="nav-item">
-          <a class="nav-link" href="{{ url('laporan') }}">
-               <i class="fas fa-fw fa-chart-line"></i>
-               <span>Riwayat Laporan</span>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseData"
+              aria-expanded="true" aria-controls="collapseData">
+              <i class="fas fa-fw fa-book"></i>
+              <span>Manage Data</span>
           </a>
-     </li>
-
-     <!-- Nav Trend laporan -->
-     <li class="nav-item">
-          <a class="nav-link" href="#">
-               <i class="fas fa-fw fa-chart-line"></i>
-               <span>Trend Laporan</span></a>
+          <div id="collapseData" class="collapse" aria-labelledby="headingData"
+              data-parent="#accordionSidebar">
+               <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Data Laporan:</h6>
+                    <a class="collapse-item" href="{{ url('admin/infrastruktur') }}">Data Infrastruktur</a>
+                    <a class="collapse-item" href="{{ route('admin.level.index') }}">Data Level User</a>
+                    <a class="collapse-item" href="{{ route('admin.status_laporan.index') }}">Data Status Laporan</a>
+               </div>
+          </div>
      </li>
 
      <hr class="sidebar-divider">
-
      <!-- Heading -->
      <div class="sidebar-heading">
           Akun
@@ -57,7 +66,7 @@
      <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
               aria-expanded="true" aria-controls="collapsePages">
-              <i class="fas fa-fw fa-user""></i>
+              <i class="fas fa-fw fa-user"></i>
               <span>Profile</span>
           </a>
           <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
