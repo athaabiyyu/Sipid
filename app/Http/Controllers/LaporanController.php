@@ -7,6 +7,7 @@ use App\Models\UserModel;
 use App\Models\LaporanModel;
 use Illuminate\Http\Request;
 use App\Models\InfrastrukturModel;
+use App\Models\LokasiPelaporanModel;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
@@ -36,11 +37,13 @@ class LaporanController extends Controller
     public function create()
     {
         $infrastrukturData = InfrastrukturModel::all();
+        $lokasiData = LokasiPelaporanModel::all();
 
         return view('laporan.create', [
             'title' => 'Buat Laporan | Sipid',
             'breadcrumb' => 'Halaman Membuat Laporan',
-            'dataInfrastruktur' => $infrastrukturData
+            'dataInfrastruktur' => $infrastrukturData,
+            'dataLokasi' => $lokasiData
         ]);
     }
 
@@ -49,8 +52,18 @@ class LaporanController extends Controller
 
         $validatedData = $request->validate([
             'infrastruktur_id' => 'required',
+            'lokasi_laporan_id' => 'required',
             'bukti_laporan' => 'required|image|file|max:1024',
-            'deskripsi_laporan' => 'required|max:255'
+            'deskripsi_laporan' => 'required|max:255',
+        ],[
+            'infrastruktur_id.required' => 'Kolom infrastruktur id diperlukan.',
+            'lokasi_laporan_id.required' => 'Kolom lokasi laporan id diperlukan.',
+            'bukti_laporan.required' => 'Kolom bukti laporan diperlukan.',
+            'bukti_laporan.image' => 'Kolom bukti laporan harus berupa gambar.',
+            'bukti_laporan.file' => 'Kolom bukti laporan harus berupa file.',
+            'bukti_laporan.max' => 'Ukuran file bukti laporan tidak boleh lebih dari 1024 kilobit.',
+            'deskripsi_laporan.required' => 'Kolom deskripsi laporan diperlukan.',
+            'deskripsi_laporan.max' => 'Deskripsi laporan tidak boleh lebih dari 255 karakter.',
         ]);
 
         // simpan bukti laporan di storage lokal

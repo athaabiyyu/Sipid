@@ -13,7 +13,7 @@ class LaporanModel extends Model
     protected $table = 's_laporan';
     protected $primaryKey = 'laporan_id';
 
-    protected $fillable = ['user_id', 'infrastruktur_id', 'status_id', 'tgl_laporan', 'bukti_laporan', 'deskripsi_laporan'];
+    protected $fillable = ['user_id', 'infrastruktur_id', 'status_id', 'tgl_laporan', 'bukti_laporan', 'deskripsi_laporan', 'lokasi_laporan_id'];
 
     public function user(): BelongsTo {
         return $this->belongsTo(UserModel::class, 'user_id', 'user_id');
@@ -23,5 +23,9 @@ class LaporanModel extends Model
     }
     public function status(): BelongsTo {
         return $this->belongsTo(StatusLaporanModel::class, 'status_id', 'status_id');
+    }
+
+    public function lokasi(): BelongsTo {
+        return $this->belongsTo(LokasiPelaporanModel::class, 'lokasi_laporan_id', 'lokasi_laporan_id');
     }
 }

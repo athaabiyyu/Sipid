@@ -20,7 +20,25 @@ class RegisterController extends Controller
         $validatedData = $request->validate([
             'user_nik' => 'required|min:16|max:16|unique:s_user',
             'user_nama' => 'required|min:5|max:100',
+            'user_alamat' => 'required|min:5|max:100',
+            'user_nomor' => 'required|min:10|max:12',
             'user_password' => 'required|min:5'
+        ], [
+            'user_nik.required' => 'NIK wajib diisi.',
+            'user_nik.min' => 'NIK harus terdiri dari 16 karakter.',
+            'user_nik.max' => 'NIK harus terdiri dari 16 karakter.',
+            'user_nik.unique' => 'NIK sudah digunakan.',
+            'user_nama.required' => 'Nama wajib diisi.',
+            'user_nama.min' => 'Nama harus terdiri dari minimal 5 karakter.',
+            'user_nama.max' => 'Nama maksimal terdiri dari 100 karakter.',
+            'user_alamat.required' => 'Alamat wajib diisi.',
+            'user_alamat.min' => 'Alamat harus terdiri dari minimal 5 karakter.',
+            'user_alamat.max' => 'Alamat maksimal terdiri dari 100 karakter.',
+            'user_nomor.required' => 'Nomor telepon wajib diisi.',
+            'user_nomor.min' => 'Nomor telepon harus terdiri dari minimal 10 karakter.',
+            'user_nomor.max' => 'Nomor telepon maksimal terdiri dari 12 karakter.',
+            'user_password.required' => 'Password wajib diisi.',
+            'user_password.min' => 'Password minimal terdiri dari 5 karakter.'
         ]);
     
         // Enkripsi password

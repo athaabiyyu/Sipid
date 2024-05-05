@@ -75,6 +75,17 @@
                          <small>{{ $detailLaporan->deskripsi_laporan }}</small>
                     </div>
                </div>
+               <div class="row">
+                    <div class="col-md-2 col-sm-3">
+                         <h6 class="d-inline-block mb-0">Lokasi</h6>
+                    </div>
+                    <div class="col-md-1 col-sm-1">
+                         <span class="d-inline-block">:</span>
+                    </div>
+                    <div class="col-md-9 col-sm-8">
+                         <small>{{ $detailLaporan->lokasi->lokasi_laporan }}</small>
+                    </div>
+               </div>
                <hr>
                <div class="row">
                     <div class="col-md-2 col-sm-3">
@@ -95,7 +106,7 @@
                     </div>
                </div>
                <hr>
-               <a class="btn btn-info ml-auto" href="{{ url('admin') }}">Kembali</a>
+               <a class="btn btn-info ml-auto" href="{{ url('admin/rekap_laporan') }}">Kembali</a>
           </div>
      </div>
 @endsection

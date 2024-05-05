@@ -35,7 +35,7 @@
 
      <!-- Nav History laporan -->
      <li class="nav-item">
-          <a class="nav-link" href="{{ url('laporan') }}">
+          <a class="nav-link" href="{{ url('laporan/') }}">
                <i class="fas fa-fw fa-chart-line"></i>
                <span>Riwayat Laporan</span>
           </a>

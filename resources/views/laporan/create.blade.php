@@ -10,45 +10,68 @@
                     </div>
                     <div class="card-body">
                          <form method="POST" action="{{ url('laporan') }}" enctype="multipart/form-data">
-                              @csrf
-                              <div class="mb-3">
-                                   <label for="infrastruktur_id" class="form-label">Nama Infrastruktur</label>
-                                   <select id="infrastruktur_id" name="infrastruktur_id" class="form-control @error('infrastruktur_id') is-invalid @enderror">
+                         @csrf
+                         <div class="mb-3">
+                              <label for="infrastruktur_id" class="form-label">Nama Infrastruktur</label>
+                              <select id="infrastruktur_id" name="infrastruktur_id"
+                                   class="form-control @error('infrastruktur_id') is-invalid @enderror">
                                    <option value="">Pilih Nama Infrastruktur</option>
-                                        @foreach ($dataInfrastruktur as $infrastruktur)
-                                             <option value="{{ $infrastruktur->infrastruktur_id }}">{{ $infrastruktur->infrastruktur_nama }}</option>
-                                        @endforeach
+                                   @foreach ($dataInfrastruktur as $infrastruktur)
+                                        <option value="{{ $infrastruktur->infrastruktur_id }}">
+                                             {{ $infrastruktur->infrastruktur_nama }}</option>
+                                   @endforeach
 
-                                        <!-- Pesan Erorr -->  
-                                        @error('infrastruktur_id')
-                                             <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                        <!-- Pesan Erorr -->   
+                                   <!-- Pesan Erorr -->
+                                   @error('infrastruktur_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                   @enderror
+                                   <!-- Pesan Erorr -->
 
-                                   </select>
-                                   <div class="mb-3 mt-3">
-                                        <label for="bukti_laporan" class="form-label">Bukti Laporan</label>
-                                        <input type="file" id="bukti_laporan" name="bukti_laporan" class="form-control @error('bukti_laporan') is-invalid @enderror">
+                              </select>
+                              <div class="mb-3 mt-3">
+                                   <label for="bukti_laporan" class="form-label">Bukti Laporan</label>
+                                   <input type="file" id="bukti_laporan" name="bukti_laporan"
+                                        class="form-control @error('bukti_laporan') is-invalid @enderror">
 
-                                        <!-- Pesan Erorr -->  
-                                        @error('bukti_laporan')
-                                             <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                        <!-- Pesan Erorr -->  
-                                   </div>
-
-                                   <div class="mb-3">
-                                        <label for="deskripsi_laporan" class="form-label">Deskripsi Laporan</label>
-                                        <textarea id="deskripsi_laporan" name="deskripsi_laporan" class="form-control @error('deskripsi_laporan') is-invalid @enderror" placeholder="Masukkan lokasi dan detail kerusakan">{{ old('deskripsi_laporan') }}</textarea>
-                                    
-                                        <!-- Pesan Error -->
-                                        @error('deskripsi_laporan')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                        <!-- Pesan Error -->                        
-                                    </div>
-                                   <button type="submit" class="btn btn-primary">Kirim</button>
+                                   <!-- Pesan Erorr -->
+                                   @error('bukti_laporan')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                   @enderror
+                                   <!-- Pesan Erorr -->
                               </div>
+
+                              <div class="mb-3">
+                                   <label for="deskripsi_laporan" class="form-label">Isi Laporan</label>
+                                   <textarea id="deskripsi_laporan" name="deskripsi_laporan"
+                                        class="form-control @error('deskripsi_laporan') is-invalid @enderror" placeholder="Masukkan detail kerusakan">{{ old('deskripsi_laporan') }}</textarea>
+
+                                   <!-- Pesan Error -->
+                                   @error('deskripsi_laporan')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                   @enderror
+                                   <!-- Pesan Error -->
+                              </div>
+
+                              <div class="mb-3">
+                                   <label for="lokasi_laporan_id" class="form-label">Lokasi</label>
+                                   <select id="lokasi_laporan_id" name="lokasi_laporan_id"
+                                        class="form-control @error('lokasi_laporan_id') is-invalid @enderror">
+                                        <option value="">Pilih lokasi kerusakan</option>
+                                        @foreach ($dataLokasi as $lokasi)
+                                             <option value="{{ $lokasi->lokasi_laporan_id }}">
+                                             {{ $lokasi->lokasi_laporan }}</option>
+                                        @endforeach
+                                   </select>
+
+                                   <!-- Pesan Error -->
+                                   @error('lokasi_laporan_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                   @enderror
+                                   <!-- Pesan Error -->
+                              </div>
+
+                              <button type="submit" class="btn btn-primary">Kirim</button>
+                         </div>
                          </form>
                     </div>
                </div>

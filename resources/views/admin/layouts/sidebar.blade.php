@@ -19,19 +19,63 @@
      <!-- Divider -->
      <hr class="sidebar-divider">
      <div class="sidebar-heading">
-          Laporan
+          Edit Data
+     </div>
+     <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseData"
+              aria-expanded="true" aria-controls="collapseData">
+              <i class="fas fa-fw fa-book"></i>
+              <span>Manage Data</span>
+          </a>
+          <div id="collapseData" class="collapse" aria-labelledby="headingData"
+              data-parent="#accordionSidebar">
+               <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Data Laporan:</h6>
+                    <a class="collapse-item" href="{{ url('admin/infrastruktur') }}">Data Infrastruktur</a>
+                    <a class="collapse-item" href="{{ route('admin.level.index') }}">Data Level User</a>
+                    <a class="collapse-item" href="{{ route('admin.status_laporan.index') }}">Data Status Laporan</a>
+               </div>
+          </div>
+     </li>
+
+     <!-- Divider -->
+     <hr class="sidebar-divider">
+     <div class="sidebar-heading">
+          Perhitungan
      </div>
      <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
               aria-expanded="true" aria-controls="collapseUtilities">
-              <i class="fas fa-fw fa-book"></i>
-              <span>Manage Laporan</span>
+              <i class="fas fa-fw fa-calculator"></i>
+              <span>Pengambilan Keputusan</span>
           </a>
           <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
               data-parent="#accordionSidebar">
                <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data Laporan:</h6>
                     <a class="collapse-item" href="{{ url('admin/rekap_laporan') }}">Rekap Laporan</a>
+                    <a class="collapse-item" href="{{ url('admin/ubahStatusLaporan') }}">Ubah Status Laporan</a>
+               </div>
+          </div>
+     </li>
+
+     <!-- Divider -->
+     <hr class="sidebar-divider">
+     <div class="sidebar-heading">
+          Laporan
+     </div>
+     <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLaporan"
+              aria-expanded="true" aria-controls="collapseLaporan">
+              <i class="fas fa-fw fa-book"></i>
+              <span>Manage Laporan</span>
+          </a>
+          <div id="collapseLaporan" class="collapse" aria-labelledby="headingLaporan"
+              data-parent="#accordionSidebar">
+               <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Data Laporan:</h6>
+                    <a class="collapse-item" href="{{ url('admin/rekap_laporan') }}">Rekap Laporan</a>
+                    <a class="collapse-item" href="{{ url('admin/ubahStatusLaporan') }}">Ubah Status Laporan</a>
                </div>
           </div>
      </li>

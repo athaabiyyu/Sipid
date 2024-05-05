@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('infrastruktur_id')->index();
             $table->unsignedBigInteger('user_id')->index();
             $table->unsignedBigInteger('status_id')->index();
+            $table->unsignedBigInteger('lokasi_laporan_id')->index();
             $table->date('tgl_laporan')->nullable();
             $table->string('bukti_laporan')->nullable();
             $table->string('deskripsi_laporan', 100)->nullable();
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->foreign('infrastruktur_id')->references('infrastruktur_id')->on('s_infrastruktur');
             $table->foreign('user_id')->references('user_id')->on('s_user');
             $table->foreign('status_id')->references('status_id')->on('s_status_laporan');
+            $table->foreign('lokasi_laporan_id')->references('lokasi_laporan_id')->on('s_lokasi_pelaporan');
         });
     }
 

@@ -9,6 +9,7 @@ use App\Models\KategoriModel;
 use App\Models\LaporanModel;
 use App\Models\UserModel;
 use App\Models\LevelModel;
+use App\Models\LokasiPelaporanModel;
 use App\Models\StatusLaporanModel;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Database\Seeder;
@@ -63,11 +64,37 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+        LokasiPelaporanModel::create([
+            'lokasi_laporan_id' => 1,
+            'lokasi_laporan' => 'Jl. MT HARYONO Gg.17',
+        ]);
+        LokasiPelaporanModel::create([
+            'lokasi_laporan_id' => 2,
+            'lokasi_laporan' => 'Jl. MT HARYONO Gg.19',
+        ]);
+        LokasiPelaporanModel::create([
+            'lokasi_laporan_id' => 3,
+            'lokasi_laporan' => 'Jl. MT HARYONO Gg.21',
+        ]);
+        LokasiPelaporanModel::create([
+            'lokasi_laporan_id' => 4,
+            'lokasi_laporan' => 'Jl. Dinoyo Permai',
+        ]);
+        LokasiPelaporanModel::create([
+            'lokasi_laporan_id' => 5,
+            'lokasi_laporan' => 'Jl. Dinoyo Permai Timur',
+        ]);
+        LokasiPelaporanModel::create([
+            'lokasi_laporan_id' => 6,
+            'lokasi_laporan' => 'Jl. Pasar Dinoyo',
+        ]);
+
         InfrastrukturModel::create([
+            'lokasi_laporan_id' => 1,
             'infrastruktur_kode' => 'JRNGLSTRK',
             'infrastruktur_nama' => 'Jaringan Listrik',
         ]);
-
+        
 
         StatusLaporanModel::create([
             'status_kode' => 'STS01',
@@ -77,6 +104,7 @@ class DatabaseSeeder extends Seeder
 
         LaporanModel::create([
             'user_id' => 3,
+            'lokasi_laporan_id' => 1,
             'infrastruktur_id' => 1,
             'status_id' => 1,
             'tgl_laporan' => '2024-01-01',

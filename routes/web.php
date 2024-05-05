@@ -57,6 +57,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'cekLevel:1']], func
           'edit' => 'admin.status_laporan.edit',
           'update' => 'admin.status_laporan.update',
           'destroy' => 'admin.status_laporan.destroy',
+          'ubahStatusLaporan' => 'admin.status_laporan.ubahStatusLaporan',
      ]);
 });
 

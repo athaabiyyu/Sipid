@@ -41,7 +41,7 @@
                                    <td>{{ $infrastruktur->infrastruktur_nama }}</td>
                                    <td>
                                         <form action="{{ url('admin/infrastruktur/hapus', $infrastruktur->infrastruktur_id) }}" method="POST">
-                                             <a class="btn btn-warning btn-sm" href="{{ route('infrastruktur.edit', $infrastruktur->infrastruktur_id) }}">Edit</a>
+                                             <a class="btn btn-warning btn-sm" href="{{ url('admin/infrastruktur/edit', $infrastruktur->infrastruktur_id) }}">Edit</a>
                                              @csrf
                                              @method('DELETE')
                                              <button type="submit" class="btn btn-danger btn-sm"
