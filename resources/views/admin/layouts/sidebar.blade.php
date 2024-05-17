@@ -54,7 +54,7 @@
                <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data Laporan:</h6>
                     <a class="collapse-item" href="{{ url('admin/rekap_laporan') }}">Rekap Laporan</a>
-                    <a class="collapse-item" href="{{ url('admin/ubahStatusLaporan') }}">Ubah Status Laporan</a>
+                    <a class="collapse-item" href="{{ url('admin/kriteria') }}">Hitung SPK</a>
                </div>
           </div>
      </li>

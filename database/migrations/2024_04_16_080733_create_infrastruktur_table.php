@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('s_infrastruktur', function (Blueprint $table) {
             $table->id('infrastruktur_id');
-            $table->unsignedBigInteger('lokasi_laporan_id')->index();
+            // $table->unsignedBigInteger('lokasi_laporan_id')->index();
             $table->string('infrastruktur_kode', 10)->unique();
             $table->string('infrastruktur_nama', 50);
             $table->timestamps();
 
-            // Pada definisi tabel s_infrastruktur
-            $table->foreign('lokasi_laporan_id')->references('lokasi_laporan_id')->on('s_lokasi_pelaporan');
+            // // Pada definisi tabel s_infrastruktur
+            // $table->foreign('lokasi_laporan_id')->references('lokasi_laporan_id')->on('s_lokasi_pelaporan');
         });
     }
 

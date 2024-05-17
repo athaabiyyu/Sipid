@@ -29,17 +29,18 @@
                                    height="90" style="object-fit: cover;">
                          @endif
                          </div>
+                         
                          <div class="mt-5">
-                         <span class="text-black-50">NIK : {{ $dataUser->user_nik }}</span>
+                              <span class="text-black-50">NIK : {{ $dataUser->user_nik }}</span>
                          </div>
                          <div class="mt-1">
-                         <span class="text-black-50">Nama : {{ $dataUser->user_nama }}</span>
+                              <span class="text-black-50">Nama : {{ $dataUser->user_nama }}</span>
                          </div>
                          <div class="mt-1">
-                         <span class="text-black-50">Nomor Hp : {{ $dataUser->user_nomor }}</span>
+                              <span class="text-black-50">Nomor Hp : {{ $dataUser->user_nomor }}</span>
                          </div>
                          <div class="mt-1">
-                         <span class="text-black-50">Alamat : {{ $dataUser->user_alamat }}</span>
+                              <span class="text-black-50">Alamat : {{ $dataUser->user_alamat }}</span>
                          </div>
                     </div>
                </div>

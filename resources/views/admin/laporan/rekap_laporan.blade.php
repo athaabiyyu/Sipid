@@ -18,7 +18,7 @@
      <div class="card shadow mb-4">
 
           <div class="card-header py-3 d-flex justify-content-between align-items-center">
-               <h6 class="m-0 font-weight-bold text-primary">Rekap Laporan</h6>
+               <h6 class="m-0 font-weight-bold text-light">Rekap Laporan</h6>
                <form class="form-inline">
                     <div class="input-group">
                          <input type="text" class="form-control" placeholder="Search..." aria-label="Search" aria-describedby="search-addon">
@@ -40,6 +40,7 @@
                               <th>Nama Pelapor</th>
                               <th>Nama Infrastruktur</th>
                               <th>Tanggal</th>
+                              <th>Lokasi Kerusakan</th>
                               <th>Status</th>
                               <th>Aksi</th>
                          </tr>
@@ -50,31 +51,63 @@
                                    <td>{{ $laporan->user->user_nama }}</td>
                                    <td>{{ $laporan->infrastruktur->infrastruktur_nama }}</td>
                                    <td>{{ \Carbon\Carbon::parse($laporan->tgl_laporan)->format('d-m-Y') }}</td>
+                                   <td>{{ $laporan->alamat_laporan }}</td>
                                    <td class="text-center">
+                                        @if($laporan->status->status_id == 1) 
+                                             <a href="#" class="btn btn-sm btn-primary btn-icon-split">
+                                                  <span class="icon text-white-50">
+                                                  <i class="fas fa-check-circle"></i>
+                                                  </span>
+                                                  <span class="text">{{ $laporan->status->status_nama }}</span>
+                                             </a>
+                                        
+                                             @elseif($laporan->status->status_id == 2) 
+                                             <a href="#" class="btn btn-sm btn-warning btn-icon-split">
+                                                  <span class="icon text-white-50">
+                                                      <i class="fas fa-cogs"></i>
+                                                  </span>
+                                                  <span class="text">{{ $laporan->status->status_nama }}</span>
+                                             </a>
+                                              
 
-                                   @if($laporan->status->status_id == 1)
-                                        <a href="#" class="btn btn-sm btn-warning btn-icon-split">
-                                             <span class="icon text-white-50">
-                                             <i class="fas fa-exclamation-triangle"></i>
-                                             </span>
-                                             <span class="text">{{ $laporan->status->status_nama }}</span>
-                                        </a>
-                                   @elseif($laporan->status->status_id == 2)
-                                        <a href="#" class="btn btn-sm btn-warning btn-icon-split">
-                                             <span class="icon text-white-50">
-                                             <i class="fas fa-exclamation-triangle"></i>
-                                             </span>
-                                             <span class="text">{{ $laporan->status->status_nama }}</span>
-                                        </a>
-                                   @endif
+                                             @elseif($laporan->status->status_id == 3) 
+                                             <a href="#" class="btn btn-sm btn-info btn-icon-split">
+                                                  <span class="icon text-white-50">
+                                                       <i class="fas fa-hammer"></i>
+                                                  </span>
+                                                  <span class="text">{{ $laporan->status->status_nama }}</span>
+                                             </a>
 
+                                             @elseif($laporan->status->status_id == 4) 
+                                             <a href="#" class="btn btn-sm btn-success btn-icon-split">
+                                                  <span class="icon text-white-50">
+                                                       <i class="fas fa-hammer"></i>
+                                                  </span>
+                                                  <span class="text">{{ $laporan->status->status_nama }}</span>
+                                             </a>
+                                             
+                                             @elseif($laporan->status->status_id == 5) 
+                                             <a href="#" class="btn btn-sm btn-success btn-icon-split">
+                                                  <span class="icon text-white-50">
+                                                       <i class="fas fa-check"></i>
+                                                  </span>
+                                                  <span class="text">{{ $laporan->status->status_nama }}</span>
+                                             </a>
+
+                                             @else 
+                                                  <a href="#" class="btn btn-sm btn-danger btn-icon-split">
+                                                       <span class="icon text-white-50">
+                                                            <i class="fas fa-times"></i>
+                                                       </span>
+                                                       <span class="text">{{ $laporan->status->status_nama }}</span>
+                                                  </a> 
+                                        @endif
                                    </td>
-                                   <td class="">
+                                   <td class="text-center" >
                                         <form action="{{ url('laporan/detail', $laporan->laporan_id) }}" method="POST">
                                              <a class="btn btn-info btn-sm mb-2"href="{{ url('admin/detail', $laporan->laporan_id) }}">
                                                   Detail
                                              </a>
-                                             <a class="btn btn-primary btn-sm  mb-2" href="{{ route('admin.status_laporan.edit', $laporan->laporan_id) }}">Ubah Status Laporan</a>
                                              @csrf
                                              @method('DELETE')
                                              <button type="submit" class="btn btn-danger btn-sm  mb-2"
@@ -86,6 +119,7 @@
                          </tbody>
                     </table>
                </div>
+               
           </div>
      </div>
 @endsection

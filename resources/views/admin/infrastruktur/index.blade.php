@@ -17,8 +17,8 @@
      
      <div class="card shadow mb-4">
 
-          <div class="card-header py-3 d-flex justify-content-between align-items-center">
-               <h6 class="m-0 font-weight-bold text-primary">Data Infrastruktur</h6>
+          <div class="card-header py-3 d-flex justify-content-between align-items-center bg-primary">
+               <h6 class="m-0 font-weight-bold text-light">Data Infrastruktur</h6>
                <a class="btn btn-sm btn-success ml-auto" href="{{ url('admin/infrastruktur/tambah') }}">+ Tambah Infrastruktur</a>
           </div>
 

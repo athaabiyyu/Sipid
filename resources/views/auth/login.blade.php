@@ -5,7 +5,15 @@
         <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-                <div class="col-lg-5 d-none d-lg-block bg-light"></div>
+
+                <div class="col-lg-5 d-none d-lg-block position-relative">
+                    <div class="position-absolute top-50 start-50 translate-middle" style="width: 100%; height: 100%;">
+                        <div class="w-100 h-100" style="background-image: url('{{ asset('img/sipid putih.png') }}'); background-size: contain; background-position: center center; background-repeat: no-repeat;"></div>
+                    </div>
+                </div>
+                
+                
+
                 <div class="col-lg-7">
                     <div class="p-5">
                         <div class="text-center">
@@ -58,6 +66,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

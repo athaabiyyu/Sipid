@@ -2,9 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\UserModel;
+use App\Models\MatrikModel;
+use App\Models\InfrastrukturModel;
+use App\Models\StatusLaporanModel;
+use App\Models\LokasiPelaporanModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class LaporanModel extends Model
 {
@@ -13,7 +19,7 @@ class LaporanModel extends Model
     protected $table = 's_laporan';
     protected $primaryKey = 'laporan_id';
 
-    protected $fillable = ['user_id', 'infrastruktur_id', 'status_id', 'tgl_laporan', 'bukti_laporan', 'deskripsi_laporan', 'lokasi_laporan_id'];
+    protected $guarded = ['laporan_id'];
 
     public function user(): BelongsTo {
         return $this->belongsTo(UserModel::class, 'user_id', 'user_id');
@@ -24,8 +30,7 @@ class LaporanModel extends Model
     public function status(): BelongsTo {
         return $this->belongsTo(StatusLaporanModel::class, 'status_id', 'status_id');
     }
-
-    public function lokasi(): BelongsTo {
-        return $this->belongsTo(LokasiPelaporanModel::class, 'lokasi_laporan_id', 'lokasi_laporan_id');
+    public function matrik():HasMany {
+        return $this->hasMany(MatrikModel::class, 'laporan_id', 'laporan_id');
     }
 }

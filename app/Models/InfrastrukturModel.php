@@ -20,7 +20,7 @@ class InfrastrukturModel extends Model
         return $this->hasMany(LaporanModel::class, 'infrastruktur_id', 'infrastruktur_id');
     }
 
-    public function lokasi(): BelongsTo {
-        return $this->belongsTo(LokasiPelaporanModel::class, 'lokasi_laporan_id', 'lokasi_laporan_id');
-    }    
+    // public function lokasi(): BelongsTo {
+    //     return $this->belongsTo(LokasiPelaporanModel::class, 'lokasi_laporan_id', 'lokasi_laporan_id');
+    // }    
 }

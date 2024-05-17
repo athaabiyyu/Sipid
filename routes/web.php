@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\InfrastrukturController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MatrikController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\StatusLaporanController;
 use App\Http\Controllers\UserController;
@@ -14,15 +17,26 @@ Route::get('/', [LoginController::class, 'index'])->middleware('guest')->name('l
 Route::post('/', [LoginController::class, 'authenticate']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
+// Hak Akses
 Route::get('/hak_akses', function () {
      return view('hak_akses');
- });
+});
+
+// Dashboard Warga
+Route::get('/dashboard', function () {
+     return view('laporan.dashboard', [
+          'title' => 'Dashboard | Sipid',
+          'breadcrumb' => 'Halaman Dashboard'
+     ]);
+});
 
 Route::group(['prefix' => 'laporan', 'middleware' => ['auth', 'cekLevel:3']], function () {
      Route::get('/', [LaporanController::class, 'index']);
      Route::get('/tambah', [LaporanController::class, 'create']);
      Route::post('/', [LaporanController::class, 'store']);
-     Route::get('/detail/{id}', [LaporanController::class, 'detail']);
+     Route::get('/editLaporan/{id}', [LaporanController::class, 'editLaporan'])->name('laporan.editLaporan');
+     Route::post('/update/{id}', [LaporanController::class, 'updateLaporan'])->name('laporan.updateLaporan');
+     Route::get('/detail/{id}', [LaporanController::class, 'detail'])->name('laporan.detailLaporan');
      Route::get('/profile', [LaporanController::class, 'profile']);
      Route::post('/edit_profile', [LaporanController::class, 'editProfile']); 
      Route::get('/sandi', [LaporanController::class, 'sandi']);
@@ -31,8 +45,9 @@ Route::group(['prefix' => 'laporan', 'middleware' => ['auth', 'cekLevel:3']], fu
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'cekLevel:1']], function () {
      Route::get('/', [LaporanController::class, 'indexAdmin']);
-     Route::get('/rekap_laporan', [LaporanController::class, 'rekaplaporan']);
-     Route::get('/detail/{id}', [LaporanController::class, 'detailAdmin']);
+     Route::get('/rekap_laporan', [LaporanController::class, 'rekaplaporan'])->name('admin.rekap_laporan');
+     Route::post('/ubah_status/{id}', [LaporanController::class, 'editStatus'])->name('admin.ubah_status');
+     Route::get('/detail/{id}', [LaporanController::class, 'detailAdmin'])->name('admin.detail');
 
      Route::get('/infrastruktur', [InfrastrukturController::class, 'index']);
      Route::get('/infrastruktur/tambah', [InfrastrukturController::class, 'create']);
@@ -57,7 +72,22 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'cekLevel:1']], func
           'edit' => 'admin.status_laporan.edit',
           'update' => 'admin.status_laporan.update',
           'destroy' => 'admin.status_laporan.destroy',
-          'ubahStatusLaporan' => 'admin.status_laporan.ubahStatusLaporan',
+     ]);
+
+     Route::resource('kriteria', KriteriaController::class)->names([
+          'index' => 'admin.kriteria.index',
+          'edit' => 'admin.kriteria.edit',
+          'update' => 'admin.kriteria.update',
+     ]);
+
+     Route::post('/kriteria/updateNilai/{id}', [KriteriaController::class, 'updateNilai'])->name('admin.kriteria.updateNilai');
+
+     Route::resource('alternatif', AlternatifController::class)->names([
+          'index' => 'admin.alternatif.index',
+     ]);
+
+     Route::resource('matrik', MatrikController::class)->names([
+          'index' => 'admin.matrik.index',
      ]);
 });
 
