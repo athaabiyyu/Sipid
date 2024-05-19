@@ -43,54 +43,55 @@
                                    <td>{{ \Carbon\Carbon::parse($laporan->tgl_laporan)->format('d-m-Y') }}</td>
                                    <td>{{ substr($laporan->deskripsi_laporan, 0, 30) }}...</td>
                                    <td class="text-center">
-                                        @if($laporan->status->status_id == 1) 
+                                        @if ($laporan->status->status_id == 1)
                                              <a href="#" class="btn btn-sm btn-primary btn-icon-split">
                                                   <span class="icon text-white-50">
-                                                  <i class="fas fa-check-circle"></i>
+                                                       <i class="fas fa-check-circle"></i>
                                                   </span>
                                                   <span class="text">{{ $laporan->status->status_nama }}</span>
                                              </a>
-                                        
-                                             @elseif($laporan->status->status_id == 2) 
+                                        @elseif($laporan->status->status_id == 2)
                                              <a href="#" class="btn btn-sm btn-warning btn-icon-split">
                                                   <span class="icon text-white-50">
-                                                      <i class="fas fa-cogs"></i>
+                                                       <i class="fas fa-eye"></i>
                                                   </span>
                                                   <span class="text">{{ $laporan->status->status_nama }}</span>
                                              </a>
-                                              
-
-                                             @elseif($laporan->status->status_id == 3) 
+                                        @elseif($laporan->status->status_id == 3)
                                              <a href="#" class="btn btn-sm btn-info btn-icon-split">
                                                   <span class="icon text-white-50">
-                                                       <i class="fas fa-hammer"></i>
+                                                       <i class="fas fa-check"></i>
                                                   </span>
                                                   <span class="text">{{ $laporan->status->status_nama }}</span>
                                              </a>
-
-                                             @elseif($laporan->status->status_id == 4) 
+                                        @elseif($laporan->status->status_id == 4)
+                                             <a href="#" class="btn btn-sm btn-success btn-icon-split">
+                                                  <span class="icon text-white-50">
+                                                       <i class="fas fa-calculator"></i>
+                                                  </span>
+                                                  <span class="text">{{ $laporan->status->status_nama }}</span>
+                                             </a>
+                                        @elseif($laporan->status->status_id == 5)
                                              <a href="#" class="btn btn-sm btn-success btn-icon-split">
                                                   <span class="icon text-white-50">
                                                        <i class="fas fa-hammer"></i>
                                                   </span>
                                                   <span class="text">{{ $laporan->status->status_nama }}</span>
                                              </a>
-                                             
-                                             @elseif($laporan->status->status_id == 5) 
+                                        @elseif($laporan->status->status_id == 6)
                                              <a href="#" class="btn btn-sm btn-success btn-icon-split">
                                                   <span class="icon text-white-50">
                                                        <i class="fas fa-check"></i>
                                                   </span>
                                                   <span class="text">{{ $laporan->status->status_nama }}</span>
                                              </a>
-
-                                             @else 
-                                                  <a href="#" class="btn btn-sm btn-danger btn-icon-split">
-                                                       <span class="icon text-white-50">
-                                                            <i class="fas fa-times"></i>
-                                                       </span>
-                                                       <span class="text">{{ $laporan->status->status_nama }}</span>
-                                                  </a> 
+                                        @else
+                                             <a href="#" class="btn btn-sm btn-danger btn-icon-split">
+                                                  <span class="icon text-white-50">
+                                                       <i class="fas fa-times"></i>
+                                                  </span>
+                                                  <span class="text">{{ $laporan->status->status_nama }}</span>
+                                             </a>
                                         @endif
                                    </td>
                                    <td class="text-center">

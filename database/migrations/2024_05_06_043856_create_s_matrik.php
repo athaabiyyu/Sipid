@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('matrik_id');
             $table->unsignedBigInteger('laporan_id')->index();
             $table->unsignedBigInteger('kriteria_id')->nullable()->index();
-            $table->float('matrik_nilai');
+            $table->float('matrik_nilai')->nullable();
             $table->timestamps();
             
             $table->foreign('laporan_id')->references('laporan_id')->on('s_laporan');

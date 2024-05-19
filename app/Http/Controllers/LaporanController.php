@@ -261,6 +261,27 @@ class LaporanController extends Controller
         ]);
     }
 
+    // detial laporan pada admin
+    public function detailAdmin($id)
+    {
+        // ambil data sesuai id
+        $detailLaporan = LaporanModel::find($id);
+
+            // Check if the current status is not 'Dilihat' (assuming 'Dilihat' status_id is 2)
+        // Update the status to 'Dilihat' if the current status is 1
+    if ($detailLaporan->status_id == 1) {
+        $detailLaporan->status_id = 2; // Assuming 'Dilihat' status_id is 2
+        $detailLaporan->save();
+    }
+
+        return view('admin.laporan.detail_rekap_laporan', [
+
+            'breadcrumb' => 'Detail Laporan',
+            'title' => 'Detail Laporan | Sipid',
+            'detailLaporan' => $detailLaporan
+        ]);
+    }
+
     // ubah status
     public function editStatus(Request $request, $id)
     {
@@ -268,7 +289,7 @@ class LaporanController extends Controller
 
         // Validasi input
         $validatedData = $request->validate([
-            'status' => 'required|int|in:1,2,3,4,5',
+            'status' => 'required|int|in:1,2,3,4,5,6,7',
         ]);
 
         // Temukan laporan berdasarkan ID
@@ -279,27 +300,15 @@ class LaporanController extends Controller
         $laporan->save();
 
         // Redirect dengan pesan sukses
-        return redirect()->route('admin.detail', ['id' => $detailLaporan->laporan_id])
+        return redirect()->route('admin.rekap_laporan')
             ->with([
                 'success' => 'Status berhasil diubah',
                 'detailLaporan' => $detailLaporan,
-                'title' => 'Detail Laporan | Sipid',
-                'breadcrumb' => 'Halaman Detail Laporan'
+                'title' => 'Rekap Laporan | Sipid',
+                'breadcrumb' => 'Halaman Rekap Laporan'
             ]);
     }
 
 
-    // detial laporan pada admin
-    public function detailAdmin($id)
-    {
-        // ambil data sesuai id
-        $detailLaporan = LaporanModel::find($id);
-
-        return view('admin.laporan.detail_rekap_laporan', [
-
-            'breadcrumb' => 'Detail Laporan',
-            'title' => 'Detail Laporan | Sipid',
-            'detailLaporan' => $detailLaporan
-        ]);
-    }
+    
 }

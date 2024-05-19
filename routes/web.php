@@ -81,7 +81,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'cekLevel:1']], func
           'update' => 'admin.kriteria.update',
      ]);
 
-     Route::post('/kriteria/updateNilai/{id}', [KriteriaController::class, 'updateNilai'])->name('admin.kriteria.updateNilai');
+     Route::post('/alternatif/updateNilai/{id}', [AlternatifController::class, 'updateNilai'])->name('admin.alternatif.updateNilai');
 
      Route::resource('alternatif', AlternatifController::class)->names([
           'index' => 'admin.alternatif.index',

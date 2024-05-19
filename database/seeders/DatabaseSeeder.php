@@ -107,22 +107,26 @@ class DatabaseSeeder extends Seeder
         ]);
         StatusLaporanModel::create([
             'status_kode' => 'STS02',
-            'status_nama' => 'Dalam Verifikasi',
+            'status_nama' => 'Dilihat',
         ]);
         StatusLaporanModel::create([
             'status_kode' => 'STS03',
-            'status_nama' => 'Dalam Proses',
+            'status_nama' => 'Diverifikasi',
         ]);
         StatusLaporanModel::create([
             'status_kode' => 'STS04',
-            'status_nama' => 'Direalisasikan',
+            'status_nama' => 'Diproses',
         ]);
         StatusLaporanModel::create([
             'status_kode' => 'STS05',
-            'status_nama' => 'Selesai',
+            'status_nama' => 'Direalisasikan',
         ]);
         StatusLaporanModel::create([
             'status_kode' => 'STS06',
+            'status_nama' => 'Selesai',
+        ]);
+        StatusLaporanModel::create([
+            'status_kode' => 'STS07',
             'status_nama' => 'Ditolak',
         ]);
 
@@ -134,7 +138,79 @@ class DatabaseSeeder extends Seeder
             'status_id' => 1,
             'tgl_laporan' => '2024-01-01',
             'deskripsi_laporan' => 'lorem lorem',
-            'alamat_laporan' => 'jln. xxx'
+            'alamat_laporan' => 'jln. xxx1'
+        ]);
+        LaporanModel::create([
+            'user_id' => 3,
+            'infrastruktur_id' => 2,
+            'status_id' => 1,
+            'tgl_laporan' => '2024-01-01',
+            'deskripsi_laporan' => 'lorem lorem',
+            'alamat_laporan' => 'jln. xx2'
+        ]);
+        LaporanModel::create([
+            'user_id' => 3,
+            'infrastruktur_id' => 3,
+            'status_id' => 1,
+            'tgl_laporan' => '2024-01-01',
+            'deskripsi_laporan' => 'lorem lorem',
+            'alamat_laporan' => 'jln. xx3'
+        ]);
+        LaporanModel::create([
+            'user_id' => 3,
+            'infrastruktur_id' => 4,
+            'status_id' => 1,
+            'tgl_laporan' => '2024-01-01',
+            'deskripsi_laporan' => 'lorem lorem',
+            'alamat_laporan' => 'jln. xx4'
+        ]);
+        LaporanModel::create([
+            'user_id' => 3,
+            'infrastruktur_id' => 5,
+            'status_id' => 1,
+            'tgl_laporan' => '2024-01-01',
+            'deskripsi_laporan' => 'lorem lorem',
+            'alamat_laporan' => 'jln. xx5'
+        ]);
+        LaporanModel::create([
+            'user_id' => 3,
+            'infrastruktur_id' => 6,
+            'status_id' => 1,
+            'tgl_laporan' => '2024-01-01',
+            'deskripsi_laporan' => 'lorem lorem',
+            'alamat_laporan' => 'jln. xx6'
+        ]);
+        LaporanModel::create([
+            'user_id' => 3,
+            'infrastruktur_id' => 7,
+            'status_id' => 1,
+            'tgl_laporan' => '2024-01-01',
+            'deskripsi_laporan' => 'lorem lorem',
+            'alamat_laporan' => 'jln. xx7'
+        ]);
+        LaporanModel::create([
+            'user_id' => 3,
+            'infrastruktur_id' => 7,
+            'status_id' => 1,
+            'tgl_laporan' => '2024-01-01',
+            'deskripsi_laporan' => 'lorem lorem',
+            'alamat_laporan' => 'jln. xx8'
+        ]);
+        LaporanModel::create([
+            'user_id' => 3,
+            'infrastruktur_id' => 6,
+            'status_id' => 1,
+            'tgl_laporan' => '2024-01-01',
+            'deskripsi_laporan' => 'lorem lorem',
+            'alamat_laporan' => 'jln. xx9'
+        ]);
+        LaporanModel::create([
+            'user_id' => 3,
+            'infrastruktur_id' => 5,
+            'status_id' => 1,
+            'tgl_laporan' => '2024-01-01',
+            'deskripsi_laporan' => 'lorem lorem',
+            'alamat_laporan' => 'jln. xx10'
         ]);
         // End Laporan
 

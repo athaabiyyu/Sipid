@@ -119,25 +119,32 @@
                          @elseif($detailLaporan->status->status_id == 2)
                               <a href="#" class="btn btn-sm btn-warning btn-icon-split">
                                    <span class="icon text-white-50">
-                                        <i class="fas fa-cogs"></i>
+                                        <i class="fas fa-eye"></i>
                                    </span>
                                    <span class="text">{{ $detailLaporan->status->status_nama }}</span>
                               </a>
                          @elseif($detailLaporan->status->status_id == 3)
                               <a href="#" class="btn btn-sm btn-info btn-icon-split">
                                    <span class="icon text-white-50">
-                                        <i class="fas fa-hammer"></i>
+                                        <i class="fas fa-check"></i>
                                    </span>
                                    <span class="text">{{ $detailLaporan->status->status_nama }}</span>
                               </a>
                          @elseif($detailLaporan->status->status_id == 4)
                               <a href="#" class="btn btn-sm btn-success btn-icon-split">
                                    <span class="icon text-white-50">
-                                        <i class="fas fa-hammer"></i>
+                                        <i class="fas fa-calculator"></i>
                                    </span>
                                    <span class="text">{{ $detailLaporan->status->status_nama }}</span>
                               </a>
                          @elseif($detailLaporan->status->status_id == 5)
+                              <a href="#" class="btn btn-sm btn-success btn-icon-split">
+                                   <span class="icon text-white-50">
+                                        <i class="fas fa-hammer"></i>
+                                   </span>
+                                   <span class="text">{{ $detailLaporan->status->status_nama }}</span>
+                              </a>
+                         @elseif($detailLaporan->status->status_id == 6)
                               <a href="#" class="btn btn-sm btn-success btn-icon-split">
                                    <span class="icon text-white-50">
                                         <i class="fas fa-check"></i>
@@ -179,31 +186,28 @@
                                                   ? 'btn-primary'
                                                   : ($detailLaporan->status_id == 5
                                                        ? 'btn-primary'
-                                                       : 'btn-primary')))) }}
+                                                       : ($detailLaporan->status_id == 6
+                                                            ? 'btn-primary'
+                                                            : 'btn-primary'))))) }}
                                              "
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                    {{ $detailLaporan->status->status_nama ?? 'Pilih Status' }}
                               </button>
                               <div class="dropdown-menu">
                                    <a class="dropdown-item" href="#"
-                                        onclick="event.preventDefault(); document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').status.value = 1; document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').submit();">Terkirim
+                                        onclick="event.preventDefault(); document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').status.value = 3; document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').submit();">Diverfikasi
                                    </a>
                                    <a class="dropdown-item" href="#"
-                                        onclick="event.preventDefault(); document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').status.value = 2; document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').submit();">Dalam
-                                        Verifikasi
+                                        onclick="event.preventDefault(); document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').status.value = 4; document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').submit();">Diproses
                                    </a>
                                    <a class="dropdown-item" href="#"
-                                        onclick="event.preventDefault(); document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').status.value = 3; document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').submit();">Dalam
-                                        Proses
+                                        onclick="event.preventDefault(); document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').status.value = 5; document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').submit();">Direalisasikan
                                    </a>
                                    <a class="dropdown-item" href="#"
-                                        onclick="event.preventDefault(); document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').status.value = 4; document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').submit();">Direalisasikan
+                                        onclick="event.preventDefault(); document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').status.value = 6; document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').submit();">Selesai
                                    </a>
                                    <a class="dropdown-item" href="#"
-                                        onclick="event.preventDefault(); document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').status.value = 5; document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').submit();">Selesai
-                                   </a>
-                                   <a class="dropdown-item" href="#"
-                                        onclick="event.preventDefault(); document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').status.value = 6; document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').submit();">Ditolak
+                                        onclick="event.preventDefault(); document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').status.value = 7; document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').submit();">Ditolak
                                    </a>
                               </div>
                          </div>
