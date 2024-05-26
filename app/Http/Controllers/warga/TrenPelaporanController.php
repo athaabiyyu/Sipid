@@ -16,4 +16,11 @@ class TrenPelaporanController extends Controller
             'total_items' => $total_Laporan
         ]);
     }
+    function sumLaporanDiterima() {
+        $laporan_diterima = LaporanModel::whereRaw('status_id =1')->count();
+        return response()->json([
+            'judul' => 'Jumlah Laporan Diterima',
+            'total_items' => $laporan_diterima
+        ]);
+    }
 }
