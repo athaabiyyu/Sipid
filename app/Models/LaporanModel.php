@@ -33,4 +33,15 @@ class LaporanModel extends Model
     public function matrik():HasMany {
         return $this->hasMany(MatrikModel::class, 'laporan_id', 'laporan_id');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::updating(function ($model) {
+            if ($model->isDirty('status')) {
+                $model->status_updated_at = now();
+            }
+        });
+    }
 }

@@ -9,7 +9,7 @@
                          <a class="btn btn-sm btn-success ml-auto" href="{{ route('admin.kriteria.index') }}">Kembali</a>
                     </div>
                     <div class="card-body">
-                         <form method="POST" action="{{ route('admin.kriteria.update', $dataKriteria->kriteria_id) }}">
+                         <form method="POST" action="{{ route('admin.kriteria.update', $dataKriteria->kriteria_id) }}" onsubmit="convertPercentToDecimal()">
                          @csrf
                          @method('PUT')
                          <div class="mb-3">
@@ -34,8 +34,8 @@
                                    <!-- Pesan Error -->
                               </div>
                               <div class="mb-3">
-                                   <label for="kriteria_bobot" class="form-label">Bobot Kriteria</label>
-                                   <input type="number" id="kriteria_bobot" name="kriteria_bobot" class="form-control @error('kriteria_bobot') is-invalid @enderror" placeholder="Masukkan Bobot Kriteria" value="{{ $dataKriteria->kriteria_bobot }}" step="0.01">
+                                   <label for="kriteria_bobot" class="form-label">Bobot Kriteria (%)</label>
+                                   <input type="number" id="kriteria_bobot" name="kriteria_bobot" class="form-control @error('kriteria_bobot') is-invalid @enderror" placeholder="Masukkan Bobot Kriteria" value="{{ $dataKriteria->kriteria_bobot * 100 }}" step="0.01">
 
                                    <!-- Pesan Error -->
                                    @error('kriteria_bobot')
@@ -61,4 +61,16 @@
                </div>
           </div>
      </div>
+
+     <script>
+          function convertPercentToDecimal() {
+               var bobotField = document.getElementById('kriteria_bobot');
+               var bobotValue = parseFloat(bobotField.value);
+
+               if (!isNaN(bobotValue)) {
+                    bobotField.value = bobotValue / 100;
+               }
+          }
+     </script>
 @endsection
+

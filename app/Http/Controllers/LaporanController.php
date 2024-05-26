@@ -23,10 +23,45 @@ class LaporanController extends Controller
 {
     /*** Display a listing of the resource */
     // index WARGA
-    public function index()
-    {
+
+    public function dashboard() {
+        // Hitung total laporan dengan status_id = 1 
+        $totalLaporanTerkirim = LaporanModel::where('user_id', auth()->user()->user_id)
+        ->where('status_id', 1)
+        ->count();
+        // Hitung total laporan dengan status_id = 8 
+        $totalLaporanDirealisasikan = LaporanModel::where('user_id', auth()->user()->user_id)
+        ->where('status_id', 8)
+        ->count();
+        // Hitung total laporan dengan status_id = 9 
+        $totalLaporanSelesai = LaporanModel::where('user_id', auth()->user()->user_id)
+        ->where('status_id', 9)
+        ->count();
+        // Hitung total laporan dengan status_id = 10 
+        $totalLaporanDitolak = LaporanModel::where('user_id', auth()->user()->user_id)
+        ->where('status_id', 10)
+        ->count();
+        // Hitung semu total laporan
+        $totalLaporan = LaporanModel::count();
+
+        return view('laporan.dashboard', [
+
+            // kirim data ke view laporan->index
+            'title' => 'Dashboard | Sipid',
+            'breadcrumb' => 'Halaman Dashboard',
+            'totalLaporanTerkirim' => $totalLaporanTerkirim,
+            'totalLaporanDitolak' => $totalLaporanDitolak,
+            'totalLaporanDirealisasikan' => $totalLaporanDirealisasikan,
+            'totalLaporanSelesai' => $totalLaporanSelesai,
+            'totalLaporan' =>  $totalLaporan
+        ]);   
+    }
+
+    public function index() {
         // Ambil data laporan yang terkait dengan pengguna yang login
         $dataLaporan = LaporanModel::where('user_id', auth()->user()->user_id)->get();
+        // Hitung total laporan yang terkait dengan pengguna yang login
+        $totalLaporan = LaporanModel::where('user_id', auth()->user()->user_id)->count();
 
         return view('laporan.index', [
 
@@ -34,11 +69,11 @@ class LaporanController extends Controller
             'title' => 'Riwayat Laporan | Sipid',
             'breadcrumb' => 'Halaman Riwayat Laporan',
             'dataLaporan' => $dataLaporan,
+            'totalLaporan' => $totalLaporan
         ]);
     }
 
-    public function create()
-    {
+    public function create() {
         $infrastrukturData = InfrastrukturModel::all();
 
         return view('laporan.create', [
@@ -48,8 +83,7 @@ class LaporanController extends Controller
         ]);
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
 
         $validatedData = $request->validate([
             'infrastruktur_id' => 'required',
@@ -90,6 +124,18 @@ class LaporanController extends Controller
 
         return redirect('/laporan')->with('success', 'Laporan Berhasil di Kirimkan');
     }
+
+    // hapus laporan apabila status masih terkirim
+    public function hapusLaporan($id) {
+        // Hapus terlebih dahulu baris-baris yang terkait dari tabel s_matrik
+        MatrikModel::where('laporan_id', $id)->delete();
+
+        // Setelah tidak ada lagi keterkaitan, hapus baris dari tabel s_laporan
+        LaporanModel::findOrFail($id)->delete();
+        return redirect()->back()->with('success', 'Laporan berhasil dihapus.');
+        // Periksa apakah status laporan masih terkirim
+    }
+    
 
     // detail laporan pada warga
     public function detail($id)
@@ -240,10 +286,29 @@ class LaporanController extends Controller
     // index Admin
     public function indexAdmin()
     {
+        // Hitung total laporan dengan status_id = 3 
+        $totalLaporanSedangDiverifikasi = LaporanModel::where('status_id', 3)->count();
+        // Hitung total laporan dengan status_id = 4
+        $totalLaporanDiverifikasi = LaporanModel::where('status_id', 4)->count();
+        // Hitung total laporan dengan status_id = 5
+        $totalLaporanDiproses = LaporanModel::where('status_id', 5)->count();
+        // Hitung total laporan dengan status_id = 7
+        $totalLaporanDikirimKeRw = LaporanModel::where('status_id', 7)->count();
+        // Hitung total laporan dengan status_id = 9
+        $totalLaporanSelesai = LaporanModel::where('status_id', 9)->count();
+        // Hitung total laporan yang masuk
+        $totalLaporan = LaporanModel::count();
+
 
         return view('admin.index', [
-            'title' => 'Index | Sipid',
-            'breadcrumb' => 'Index',
+            'title' => 'Dashboard | Sipid',
+            'breadcrumb' => 'Dashboard',
+            'totalLaporan' =>  $totalLaporan,
+            'totalLaporanSedangDiverifikasi' => $totalLaporanSedangDiverifikasi,
+            'totalLaporanDiverifikasi' => $totalLaporanDiverifikasi,
+            'totalLaporanDiproses' => $totalLaporanDiproses,
+            'totalLaporanDikirimKeRw' => $totalLaporanDikirimKeRw,
+            'totalLaporanSelesai' => $totalLaporanSelesai
         ]);
     }
 
@@ -270,7 +335,7 @@ class LaporanController extends Controller
             // Check if the current status is not 'Dilihat' (assuming 'Dilihat' status_id is 2)
         // Update the status to 'Dilihat' if the current status is 1
     if ($detailLaporan->status_id == 1) {
-        $detailLaporan->status_id = 2; // Assuming 'Dilihat' status_id is 2
+        $detailLaporan->status_id = 3; // Assuming 'Dilihat' status_id is 2
         $detailLaporan->save();
     }
 
@@ -289,7 +354,7 @@ class LaporanController extends Controller
 
         // Validasi input
         $validatedData = $request->validate([
-            'status' => 'required|int|in:1,2,3,4,5,6,7',
+            'status' => 'required|int|in:1,2,3,4,5,6,7,8,9,10',
         ]);
 
         // Temukan laporan berdasarkan ID
@@ -297,6 +362,8 @@ class LaporanController extends Controller
 
         // Perbarui status laporan
         $laporan->status_id = $validatedData['status'];
+        // Set kolom status_created_at dengan waktu saat ini
+        $laporan->status_updated_at = Carbon::now();
         $laporan->save();
 
         // Redirect dengan pesan sukses

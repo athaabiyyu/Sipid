@@ -1,26 +1,39 @@
 @extends('admin.layouts.main')
 
 @section('content')
+
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Berhasil!</strong> {{ session('success') }}.
+            <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+
+        @if (session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Upss!</strong> {{ session('error') }}.
+            <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     
     <!-- Keterangan Alternatif  -->
     <div class="card shadow mb-4">
         <!-- Card Header - Accordion -->
-        <a href="#collapseCardExample" class="d-block card-header py-3 bg-danger" data-toggle="collapse" role="button"
+        <a href="#collapseCardExample" class="d-block card-header py-3 bg-info" data-toggle="collapse" role="button"
             aria-expanded="true" aria-controls="collapseCardExample" style="color: white">
-            <h6 class="m-0 font-weight-bold text-light">Keterangan Alternatif</h6>
+            <h6 class="m-0 font-weight-bold text-light">Keterangan Tabel Alternatif</h6>
         </a>
-
         <div class="collapse" id="collapseCardExample">
             <div class="card-body">
                 <div>
                     <p>
-                        <strong class="text-danger">Untuk memunculkan data alternatif, </strong>
+                        <strong class="text-info">Untuk memunculkan data alternatif, </strong>
                         maka anda harus mengubah status pelaporan menjadi
-                        <strong class="text-danger">'Dalam Proses'</strong> agar data laporan menjadi data alternatif.
+                        <strong class="text-info">'Diverifikasi'</strong> agar data laporan menjadi data alternatif.
 
                     </p>
                 </div>
-                <a href="{{ route('admin.rekap_laporan') }}" class="btn btn-success btn-sm mb-2">Ubah Status</a>
+                <a href="{{ route('admin.rekap_laporan') }}" class="btn btn-info btn-sm mb-2">Ubah Status</a>
             </div>
         </div>
     </div>
@@ -29,9 +42,9 @@
     <!-- Tabel Penilaian Kriteria -->
     <div class="card shadow mb-4">
         <!-- Card Header - Accordion -->
-        <a href="#collapseCardTable" class="d-block card-header py-3 bg-primary" data-toggle="collapse" role="button"
+        <a href="#collapseCardTable" class="d-block card-header py-3 bg-info" data-toggle="collapse" role="button"
             aria-expanded="true" aria-controls="collapseCardTable" style="color: white">
-            <h6 class="m-0 font-weight-bold text-light">Tabel Penilaian Kriteria </h6>
+            <h6 class="m-0 font-weight-bold text-light">Keterangan Penilaian Kriteria </h6>
         </a>
 
         <div class="collapse" id="collapseCardTable">
@@ -49,52 +62,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Rendah</td>
-                                        <td>Kerusakan minor yang tidak mempengaruhi fungsi utama infrastruktur. Perbaikan
-                                            bisa
-                                            ditunda.
-                                            Contoh: retakan kecil pada permukaan jalan, cat mengelupas.</td>
-                                        <td class="text-center">1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sedang</td>
-                                        <td>Kerusakan yang mulai mempengaruhi fungsi tetapi belum menyebabkan kegagalan
-                                            total.
-                                            Memerlukan perhatian dalam waktu dekat. Contoh: lubang sedang di jalan,
-                                            kerusakan ringan
-                                            pada struktur bangunan.</td>
-                                        <td class="text-center">2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tinggi</td>
-                                        <td>Kerusakan signifikan yang mengurangi fungsi utama infrastruktur dan membutuhkan
-                                            perbaikan
-                                            segera. Contoh: lubang besar di jalan yang mengganggu lalu lintas, kerusakan
-                                            parah pada
-                                            struktur bangunan yang bisa membahayakan keselamatan.</td>
-                                        <td class="text-center">3</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sangat Tinggi</td>
-                                        <td>Kerusakan sangat parah yang menyebabkan kegagalan fungsi total atau mengancam
-                                            keselamatan
-                                            publik. Memerlukan tindakan darurat. Contoh: runtuhnya sebagian jalan atau
-                                            jembatan,
-                                            kerusakan struktural serius pada bangunan yang bisa menyebabkan runtuhnya
-                                            bangunan.</td>
-                                        <td class="text-center">4</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Kritis</td>
-                                        <td>Kerusakan yang menyebabkan keadaan darurat atau bencana, membutuhkan tindakan
-                                            darurat
-                                            segera
-                                            untuk menghindari korban atau kerugian yang lebih besar. Contoh: jembatan yang
-                                            runtuh,
-                                            bangunan yang ambruk.</td>
-                                        <td class="text-center">5</td>
-                                    </tr>
+                                    @foreach($dataPenilaian as $penilaian)
+                                        @if($penilaian->kriteria_id == 1)
+                                            <tr>
+                                                <td>{{ $penilaian->level_keparahan }}</td>
+                                                <td>{{ $penilaian->deskripsi_penilaian_kriteria }}</td>
+                                                <td class="text-center">{{ $penilaian->skor_penilaian_kriteria }}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -110,30 +86,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Biaya perbaikan lebih dari 5 juta</td>
-                                        <td class="text-center">1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Biaya perbaikan lebih dari 4 juta, kurang dari 5 juta</td>
-                                        <td class="text-center">2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Biaya perbaikan lebih dari 3 juta, kurang dari 4 juta</td>
-                                        <td class="text-center">3</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Biaya perbaikan lebih dari 2 juta, kurang dari 3 juta</td>
-                                        <td class="text-center">4</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Biaya perbaikan lebih dari 1 juta, kurang dari 2 juta</td>
-                                        <td class="text-center">4</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Biaya perbaikan kurang dari 1 juta</td>
-                                        <td class="text-center">5</td>
-                                    </tr>
+                                    @foreach($dataPenilaian as $penilaian)
+                                        @if($penilaian->kriteria_id == 2)
+                                            <tr>
+                                                <td>{{ $penilaian->deskripsi_penilaian_kriteria }}</td>
+                                                <td class="text-center">{{ $penilaian->skor_penilaian_kriteria }}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -149,26 +109,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Kurang dari 3 laporan</td>
-                                        <td class="text-center">1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4 - 6 laporan</td>
-                                        <td class="text-center">2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>7 - 9 laporan</td>
-                                        <td class="text-center">3</td>
-                                    </tr>
-                                    <tr>
-                                        <td>10 - 12 laporan</td>
-                                        <td class="text-center">4</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Lebih dari 13 laporan</td>
-                                        <td class="text-center">5</td>
-                                    </tr>
+                                    @foreach($dataPenilaian as $penilaian)
+                                        @if($penilaian->kriteria_id == 3)
+                                            <tr>
+                                                <td>{{ $penilaian->deskripsi_penilaian_kriteria }}</td>
+                                                <td class="text-center">{{ $penilaian->skor_penilaian_kriteria }}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -184,26 +132,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Waktu perbaikan lebih dari 30 hari</td>
-                                        <td class="text-center">1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Waktu perbaikan 21 - 30 hari</td>
-                                        <td class="text-center">2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Waktu perbaikan 11 - 20 hari</td>
-                                        <td class="text-center">3</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Waktu perbaikan 6 - 10 hari</td>
-                                        <td class="text-center">4</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Waktu perbaikan kurang dari 5 hari</td>
-                                        <td class="text-center">5</td>
-                                    </tr>
+                                    @foreach($dataPenilaian as $penilaian)
+                                        @if($penilaian->kriteria_id == 4)
+                                            <tr>
+                                                <td>{{ $penilaian->deskripsi_penilaian_kriteria }}</td>
+                                                <td class="text-center">{{ $penilaian->skor_penilaian_kriteria }}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -219,26 +155,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Dampak minimal pada masyarakat, tidak ada gangguan berarti</td>
-                                        <td class="text-center">1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dampak kecil pada masyarakat, gangguan ringan</td>
-                                        <td class="text-center">2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dampak sedang pada masyarakat, beberapa gangguan</td>
-                                        <td class="text-center">3</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dampak besar pada masyarakat, gangguan signifikan</td>
-                                        <td class="text-center">4</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dampak sangat besar pada masyarakat, gangguan sangat parah</td>
-                                        <td class="text-center">5</td>
-                                    </tr>
+                                    @foreach($dataPenilaian as $penilaian)
+                                        @if($penilaian->kriteria_id == 5)
+                                            <tr>
+                                                <td>{{ $penilaian->deskripsi_penilaian_kriteria }}</td>
+                                                <td class="text-center">{{ $penilaian->skor_penilaian_kriteria }}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -253,16 +177,6 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between align-items-center bg-primary">
             <h6 class="m-0 font-weight-bold text-white">Tabel Alternatif</h6>
-            <form class="form-inline">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search..." aria-label="Search" aria-describedby="search-addon">
-                    <div class="input-group-append">
-                        <button class="btn btn-light" type="button">
-                            <i class="fas fa-search text-primary"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -270,31 +184,29 @@
                     <thead class="text-center">
                         <tr class="text-center">
                             <th>#</th>
-                            <th>Kode</th>
                             <th>Nama Alternatif/Infrastruktur</th>
-                            <th>Lokasi Laporan</th>
+                            <th>Lokasi Kerusakan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="text-center">
                         @php $count = 0; @endphp
                         @foreach ($dataAlternatif as $alternatif)
-                            @if ($alternatif->status->status_kode == 'STS04')
+                            @if ($alternatif->status->status_kode == 'STS04' ||'STS05' || 'STS06' || 'STS07')
                                 @php $count++; @endphp
                                 <tr>
                                     <td>{{ $count }}</td>
-                                    <td>A{{ $count }}</td>
                                     <td>{{ $alternatif->infrastruktur->infrastruktur_nama }}</td>
                                     <td>{{ $alternatif->alamat_laporan }}</td>
                                     <td>
                                         <button type="button" class="btn btn-success btn-sm m-2" data-bs-toggle="modal"
-                                            data-bs-target="#inlineForm{{ $count }}">
+                                            data-bs-target="#inlineForm{{ $alternatif->laporan_id }}">
                                             Isi Nilai
                                         </button>
                                     </td>
-                                </tr>
-                                <!-- Modal -->
-                                <div class="modal fade" id="inlineForm{{ $count }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33"
+                                </tr>                    
+
+                                <div class="modal fade" id="inlineForm{{ $alternatif->laporan_id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
@@ -310,16 +222,20 @@
                                                         <input type="text" class="form-control" value="{{ $alternatif->infrastruktur->infrastruktur_nama }}" readonly>
                                                         <input type="hidden" name="laporan_id" value="{{ $alternatif->laporan_id }}">
                                                     </div>
-                                                    @foreach ($dataKriteria as $kriteria)
+                                                    @foreach ($dataKriteria as $index => $kriteria)
                                                         @php
-                                                            // Cari nilai matrik untuk kriteria ini
                                                             $matrik = $alternatif->matrik->where('kriteria_id', $kriteria->kriteria_id)->first();
                                                             $nilai = $matrik ? $matrik->matrik_nilai : '';
                                                         @endphp
                                                         <label>{{ $kriteria->kriteria_nama }}:</label>
                                                         <div class="form-group">
                                                             <input type="hidden" name="kriteria_id[]" value="{{ $kriteria->kriteria_id }}">
-                                                            <input type="number" name="matrik_nilai[]" value="{{ old('matrik_nilai[]', $nilai) }}" placeholder="Nilai..." class="form-control" required>
+                                                            <input type="number" name="matrik_nilai[]" value="{{ old('matrik_nilai.' . $index, $nilai) }}" placeholder="Nilai..." class="form-control" required>
+                                                            @if($errors->has('matrik_nilai.' . $index))
+                                                                <div class="text-danger">
+                                                                    {{ $errors->first('matrik_nilai.' . $index) }}
+                                                                </div>
+                                                            @endif
                                                         </div>
                                                     @endforeach
                                                 </div>
@@ -335,6 +251,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- End Modal Isi Nilai -->
                             @endif
                         @endforeach
                     </tbody>
@@ -351,7 +268,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTableMatriks" width="100%" cellspacing="0">
                     <thead>
                         <tr class="text-center">
                             <th>Alternatif</th>
@@ -369,7 +286,7 @@
                         @foreach ($groupedData as $laporan_id => $matrikGroup)
                             @php
                                 $laporan = $matrikGroup->first()->laporan;
-                                if ($laporan->status->status_kode == 'STS04') {
+                                if ($laporan->status->status_kode == 'STS04' || $laporan->status->status_kode == 'STS05' || $laporan->status->status_kode == 'STS06' || $laporan->status->status_kode == 'STS07') {
                                     $count++;
                                 } else {
                                     continue;
@@ -385,18 +302,66 @@
                                 @endforeach
                                 <td>
                                     <button type="button" class="btn btn-warning btn-sm m-2" data-bs-toggle="modal"
-                                        data-bs-target="#inlineForm{{ $count }}">
+                                        data-bs-target="#editForm{{ $laporan_id }}">
                                         Edit Nilai
                                     </button>
                                 </td>
                             </tr>
+
+                            <!-- Modal Edit Nilai -->
+                            <div class="modal fade" id="editForm{{ $laporan_id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h6 class="m-0 font-weight-bold text-primary">Edit Nilai Alternatif</h6>
+                                            <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form action="{{ route('admin.alternatif.updateNilai', ['id' => $laporan_id]) }}" method="POST">
+                                            @csrf
+                                            <div class="modal-body">
+                                                <label>Nama Alternatif:</label>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" value="{{ $laporan->infrastruktur->infrastruktur_nama }}" readonly>
+                                                    <input type="hidden" name="laporan_id" value="{{ $laporan_id }}">
+                                                </div>
+                                                @foreach ($dataKriteria as $index => $kriteria)
+                                                    @php
+                                                        $matrik = $matrikGroup->firstWhere('kriteria_id', $kriteria->kriteria_id);
+                                                        $nilai = $matrik ? $matrik->matrik_nilai : '';
+                                                    @endphp
+                                                    <label>{{ $kriteria->kriteria_nama }}:</label>
+                                                    <div class="form-group">
+                                                        <input type="hidden" name="kriteria_id[]" value="{{ $kriteria->kriteria_id }}">
+                                                        <input type="number" name="matrik_nilai[]" value="{{ old('matrik_nilai.' . $index, $nilai) }}" placeholder="Nilai..." class="form-control" required>
+                                                        @if($errors->has('matrik_nilai.' . $index))
+                                                            <div class="text-danger">
+                                                                {{ $errors->first('matrik_nilai.' . $index) }}
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                            <div class="modal-footer">
+                                                <div class="d-flex justify-content-start">
+                                                    <button type="button" class="btn btn-danger btn-sm me-auto" data-bs-dismiss="modal">Tutup</button>
+                                                </div>
+                                                <div class="d-flex justify-content-end">
+                                                    <button type="submit" name="submit" class="btn btn-sm btn-primary ms-auto">Simpan</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Modal Edit Nilai -->
                         @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <!-- End Tabel Matriks -->
+    <!-- End Tabel Matriks  -->
 
     <!-- Tabel Utility -->
     <div id="utilityTable" class="card shadow mb-4">
@@ -405,7 +370,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" width="100%" cellspacing="0">
                     <thead>
                         <tr class="text-center">
                             <th>Alternatif</th>
@@ -423,7 +388,7 @@
                         @foreach ($groupedData as $laporan_id => $matrikGroup)
                             @php
                                 $laporan = $matrikGroup->first()->laporan;
-                                if ($laporan->status->status_kode == 'STS04') {
+                                if ($laporan->status->status_kode == 'STS04' || $laporan->status->status_kode == 'STS05' || $laporan->status->status_kode == 'STS06' || $laporan->status->status_kode == 'STS07') {
                                     $count++;
                                 } else {
                                     continue;
@@ -436,10 +401,23 @@
                                     @php
                                         $matrik = $matrikGroup->firstWhere('kriteria_id', $kriteria->kriteria_id);
                                         $nilai = $matrik ? $matrik->matrik_nilai : 0;
-                                        // Hitung nilai utility
-                                        $c_max = 5; // Nilai maksimum kriteria
-                                        $c_min = 0; // Nilai minimum kriteria
-                                        $utility = $c_max * (($c_max - $nilai) / ($c_max - $c_min));
+                                        // Cari nilai minimum dan maksimum dari setiap kolom kriteria
+                                        $minValue = $dataMatrik->where('kriteria_id', $kriteria->kriteria_id)->min('matrik_nilai');
+                                        $maxValue = $dataMatrik->where('kriteria_id', $kriteria->kriteria_id)->max('matrik_nilai');
+                                        
+                                        // Cek apakah nilai minimum dan maksimum sama
+                                        if ($minValue === $maxValue) {
+                                            // Atur nilai utility ke nilai default atau berikan pesan
+                                            $utility = 0; // Nilai default
+                                            // Atau berikan pesan
+                                            // throw new Exception("Nilai minimum dan maksimum sama, pembagian oleh nol tidak dapat dilakukan.");
+                                        } else {
+                                            // Hitung nilai utility berdasarkan atribut benefit
+                                            $utility = ($kriteria->kriteria_attribut == 'Benefit') ? 
+                                                    (($nilai - $minValue) / ($maxValue - $minValue)) * 100 : 
+                                                    (($maxValue - $nilai) / ($maxValue - $minValue)) * 100 ;
+                                        }
+                                        
                                         // Hitung nilai utility dengan bobot
                                         $weightedUtility = $utility * $kriteria->kriteria_bobot;
                                         $totalUtility += $weightedUtility;
@@ -457,9 +435,13 @@
     <!-- End Tabel Utility -->
 
     <!-- Hasil Keputusan -->
-    <div id="keputusanTable" class="card shadow mb-4">
+    <div id="hasil-keputusan" class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between align-items-center bg-primary">
             <h6 class="m-0 font-weight-bold text-light">Hasil Keputusan</h6>
+            <form action="{{ route('admin.alternatif.updateAllStatus') }}" method="POST" style="display:inline;">
+                @csrf
+                <button type="submit" class="btn btn-success btn-sm">Kirim ke RW </button>
+            </form>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -467,6 +449,7 @@
                     <thead>
                         <tr class="text-center">
                             <th>Alternatif</th>
+                            <th>Lokasi Kerusakan</th>
                             <th>Total Nilai Utility</th>
                             <th>Rangking</th>
                         </tr>
@@ -480,16 +463,29 @@
                             $count = 0;
                             foreach ($groupedData as $laporan_id => $matrikGroup) {
                                 $laporan = $matrikGroup->first()->laporan;
-                                if ($laporan->status->status_kode == 'STS04') {
+                                if ($laporan->status->status_kode == 'STS04' || $laporan->status->status_kode == 'STS05' || $laporan->status->status_kode == 'STS06' || $laporan->status->status_kode == 'STS07') {
                                     $count++;
                                     $totalUtility = 0;
                                     foreach ($dataKriteria as $kriteria) {
                                         $matrik = $matrikGroup->firstWhere('kriteria_id', $kriteria->kriteria_id);
                                         $nilai = $matrik ? $matrik->matrik_nilai : 0;
-                                        // Hitung nilai utility
-                                        $c_max = 5; // Nilai maksimum kriteria
-                                        $c_min = 0; // Nilai minimum kriteria
-                                        $utility = $c_max * (($c_max - $nilai) / ($c_max - $c_min));
+                                        // Cari nilai minimum dan maksimum dari setiap kolom kriteria
+                                        $minValue = $dataMatrik->where('kriteria_id', $kriteria->kriteria_id)->min('matrik_nilai');
+                                        $maxValue = $dataMatrik->where('kriteria_id', $kriteria->kriteria_id)->max('matrik_nilai');
+                                        
+                                        // Cek apakah nilai minimum dan maksimum sama
+                                        if ($minValue === $maxValue) {
+                                            // Atur nilai utility ke nilai default atau berikan pesan
+                                            $utility = 0; // Nilai default
+                                            // Atau berikan pesan
+                                            // throw new Exception("Nilai minimum dan maksimum sama, pembagian oleh nol tidak dapat dilakukan.");
+                                        } else {
+                                            // Hitung nilai utility berdasarkan atribut benefit
+                                            $utility = ($kriteria->kriteria_attribut == 'Benefit') ? 
+                                                    (($nilai - $minValue) / ($maxValue - $minValue)) * 100 : 
+                                                    (($maxValue - $nilai) / ($maxValue - $minValue)) * 100 ;
+                                        }
+                                        
                                         // Hitung nilai utility dengan bobot
                                         $weightedUtility = $utility * $kriteria->kriteria_bobot;
                                         $totalUtility += $weightedUtility;
@@ -497,6 +493,7 @@
                                     // Collect data into the totalUtilities array
                                     $totalUtilities[] = [
                                         'alternatif' => "A{$count} - {$laporan->infrastruktur->infrastruktur_nama}",
+                                        'lokasi' => $laporan->alamat_laporan,
                                         'totalUtility' => $totalUtility
                                     ];
                                 }
@@ -513,6 +510,7 @@
                         @foreach ($totalUtilities as $data)
                             <tr>
                                 <td>{{ $data['alternatif'] }}</td>
+                                <td>{{ $data['lokasi'] }}</td>
                                 <td>{{ $data['totalUtility'] }}</td>
                                 <td>{{ $ranking }}</td>
                             </tr>
@@ -527,6 +525,23 @@
     </div>
     <!-- End Hasil Keputusan -->
 
+    <!-- Pesan Erorr Validasi Modal Isi Nilai -->
+    @if ($errors->any())
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var modalId = '#inlineForm{{ $count }}';
+                var modal = new bootstrap.Modal(document.querySelector(modalId));
+                modal.show();
+            });
+        </script>
+    @endif
+    <!-- End Pesan Erorr Validasi Modal Isi Nilai -->
 
-
+        <style>
+            .dataTables_wrapper .dataTables_paginate {
+                margin-top: 10px !important; /* Menambahkan jarak antara tabel dan fitur pagination */
+            }
+        </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 @endsection

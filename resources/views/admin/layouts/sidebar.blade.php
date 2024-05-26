@@ -16,27 +16,17 @@
           <span>Dashboard</span></a>
      </li>
 
-     <!-- Divider -->
+     <!-- Manage Laporan -->
      <hr class="sidebar-divider">
      <div class="sidebar-heading">
-          Edit Data
+          Laporan
      </div>
      <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseData"
-              aria-expanded="true" aria-controls="collapseData">
-              <i class="fas fa-fw fa-book"></i>
-              <span>Manage Data</span>
-          </a>
-          <div id="collapseData" class="collapse" aria-labelledby="headingData"
-              data-parent="#accordionSidebar">
-               <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Data Laporan:</h6>
-                    <a class="collapse-item" href="{{ url('admin/infrastruktur') }}">Data Infrastruktur</a>
-                    <a class="collapse-item" href="{{ route('admin.level.index') }}">Data Level User</a>
-                    <a class="collapse-item" href="{{ route('admin.status_laporan.index') }}">Data Status Laporan</a>
-               </div>
-          </div>
+          <a class="nav-link" href="{{ url('admin/rekap_laporan') }}">
+          <i class="fas fa-fw fa-book"></i>
+          <span>Rekap Laporan</span></a>
      </li>
+     <!-- End Manage Laporan -->
 
      <!-- Divider -->
      <hr class="sidebar-divider">
@@ -52,35 +42,15 @@
           <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
               data-parent="#accordionSidebar">
                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Data Laporan:</h6>
-                    <a class="collapse-item" href="{{ url('admin/rekap_laporan') }}">Rekap Laporan</a>
-                    <a class="collapse-item" href="{{ url('admin/kriteria') }}">Hitung SPK</a>
+                    <h6 class="collapse-header">Tabel SPK :</h6>
+                    <a class="collapse-item" href="{{ url('admin/kriteria') }}">Kriteria</a>
+                    <a class="collapse-item" href="{{ url('admin/alternatif') }}">Alternatif</a>
+                    <a class="collapse-item" href="{{ url('admin/alternatif') }}#hasil-keputusan">Hasil</a>
                </div>
           </div>
      </li>
 
-     <!-- Divider -->
-     <hr class="sidebar-divider">
-     <div class="sidebar-heading">
-          Laporan
-     </div>
-     <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLaporan"
-              aria-expanded="true" aria-controls="collapseLaporan">
-              <i class="fas fa-fw fa-book"></i>
-              <span>Manage Laporan</span>
-          </a>
-          <div id="collapseLaporan" class="collapse" aria-labelledby="headingLaporan"
-              data-parent="#accordionSidebar">
-               <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Data Laporan:</h6>
-                    <a class="collapse-item" href="{{ url('admin/rekap_laporan') }}">Rekap Laporan</a>
-                    <a class="collapse-item" href="{{ url('admin/ubahStatusLaporan') }}">Ubah Status Laporan</a>
-               </div>
-          </div>
-     </li>
-
-     <!-- Divider -->
+     <!-- Manage Data -->
      <hr class="sidebar-divider">
      <div class="sidebar-heading">
           Edit Data
@@ -88,7 +58,7 @@
      <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseData"
               aria-expanded="true" aria-controls="collapseData">
-              <i class="fas fa-fw fa-book"></i>
+              <i class="fas fa-fw fa-database"></i>
               <span>Manage Data</span>
           </a>
           <div id="collapseData" class="collapse" aria-labelledby="headingData"
@@ -101,6 +71,7 @@
                </div>
           </div>
      </li>
+     <!-- End Manage Data -->
 
      <hr class="sidebar-divider">
      <!-- Heading -->
@@ -156,3 +127,5 @@
               });
           });
      </script>
+     
+      

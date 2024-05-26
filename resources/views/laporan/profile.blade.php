@@ -17,7 +17,7 @@
 
      <div class="row">
           <div class="col-md-4">
-               <div class="card mb-4 py-3 border-bottom-info">
+               <div class="card mb-4 py-3 border-bottom-primary">
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                          <h6 class="m-0 font-weight-bold text-primary text-center">Profile</h6>
                          <div class="mt-4" style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden;">
@@ -47,7 +47,7 @@
           </div>
 
           <div class="col-md-8">
-               <div class="card mb-4 py-3 border-bottom-info">
+               <div class="card mb-4 py-3 border-bottom-primary">
                     <div class="p-3 py-5">
                          <form action="{{ url('laporan/edit_profile') }}" method="POST" enctype="multipart/form-data">
                          @csrf

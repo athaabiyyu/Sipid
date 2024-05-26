@@ -2,103 +2,159 @@
 
 @section('content')
 
-     <!-- Content Row -->
+     <!-- Card -->
      <div class="row">
-
-          <!-- Earnings (Monthly) Card Example -->
-          <div class="col-xl-4 col-md-6 mb-4">
-               <div class="card border-left-info shadow h-100 py-2">
+          <!-- Card Jumlah Laporan Terkirim -->
+          <div class="col-xl-4 col-md-6 mb-5">
+               <div class="card border-left-warning shadow h-100 py-2">
                     <div class="card-body">
                          <div class="row no-gutters align-items-center">
                          <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Laporan Terkirim
+                              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Laporan Terkirim
                               </div>
                               <div class="row no-gutters align-items-center">
                                    <div class="col-auto">
-                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">8</div>
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $totalLaporanTerkirim }}</div>
                                    </div>
                               </div>
+                              @if ($totalLaporanTerkirim > 0)
+                              <div class="row mt-3">
+                                   <div class="col">
+                                        <a href="{{ url('/laporan?status=1') }}" class="btn btn-secondary btn-sm">Detail &rarr;</a>
+                                   </div>
+                              </div>
+                              @endif
                          </div>
                          <div class="col-auto">
-                              <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                              <i class="fas fa-paper-plane fa-2x text-warning"></i>
                          </div>
                          </div>
                     </div>
                </div>
           </div>
+          <!-- End Card Jumlah Laporan Terkirim -->
 
-                    <!-- Pending Requests Card Example -->
-                    <div class="col-xl-4 col-md-6 mb-4">
-                         <div class="card border-left-warning shadow h-100 py-2">
-                              <div class="card-body">
-                                   <div class="row no-gutters align-items-center">
-                                   <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Laporan di Proses </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
-                                   </div>
+          <!-- Card Jumlah Laporan Ditolak -->
+          <div class="col-xl-4 col-md-6 mb-5">
+               <div class="card border-left-danger shadow h-100 py-2">
+                    <div class="card-body">
+                         <div class="row no-gutters align-items-center">
+                         <div class="col mr-2">
+                              <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Laporan Ditolak
+                              </div>
+                              <div class="row no-gutters align-items-center">
                                    <div class="col-auto">
-                                        <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                   </div>
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $totalLaporanDitolak }}</div>
                                    </div>
                               </div>
+                              @if ($totalLaporanDitolak > 0)
+                              <div class="row mt-3">
+                                   <div class="col">
+                                        <a href="{{ url('/laporan?status=10') }}" class="btn btn-secondary btn-sm">Detail &rarr;</a>
+                                   </div>
+                              </div>
+                              @endif
+                         </div>
+                         <div class="col-auto">
+                              <i class="fas fa-times-circle fa-2x text-danger"></i>
+                         </div>
                          </div>
                     </div>
+               </div>
+          </div>
+          <!-- End Card Jumlah Laporan Ditolak -->
 
-          <!-- Earnings (Monthly) Card Example -->
-          <div class="col-xl-4 col-md-6 mb-4">
+          <!-- Card Jumlah Laporan Direalisasikan -->
+          <div class="col-xl-4 col-md-6 mb-5">
+               <div class="card border-left-secondary shadow h-100 py-2">
+                    <div class="card-body">
+                         <div class="row no-gutters align-items-center">
+                         <div class="col mr-2">
+                              <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Laporan Direalisasikan
+                              </div>
+                              <div class="row no-gutters align-items-center">
+                                   <div class="col-auto">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $totalLaporanDirealisasikan }}</div>
+                                   </div>
+                              </div>
+                              @if ($totalLaporanDirealisasikan > 0)
+                              <div class="row mt-3">
+                                   <div class="col">
+                                        <a href="{{ url('/laporan?status=8') }}" class="btn btn-secondary btn-sm">Detail &rarr;</a>
+                                   </div>
+                              </div>
+                              @endif
+                         </div>
+                         <div class="col-auto">
+                              <i class="fas fa-hammer fa-2x text-secondary"></i>
+                         </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          <!-- End Card Jumlah Laporan Direalisasikan -->
+
+          <!-- Card Jumlah Laporan Selesai -->
+          <div class="col-xl-4 col-md-6 mb-5">
+               <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                         <div class="row no-gutters align-items-center">
+                         <div class="col mr-2">
+                              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Laporan Selesai
+                              </div>
+                              <div class="row no-gutters align-items-center">
+                                   <div class="col-auto">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $totalLaporanSelesai }}</div>
+                                   </div>
+                              </div>
+                              @if ($totalLaporanSelesai > 0)
+                              <div class="row mt-3">
+                                   <div class="col">
+                                        <a href="{{ url('/laporan?status=9') }}" class="btn btn-secondary btn-sm">Detail &rarr;</a>
+                                   </div>
+                              </div>
+                              @endif
+                         </div>
+                         <div class="col-auto">
+                              <i class="fas fa-check-circle fa-2x text-success"></i>
+                         </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          <!-- End Card Jumlah Laporan Selesai -->
+
+          <!-- Card Jumlah Semua Laporan -->
+          <div class="col-xl-4 col-md-6 mb-5">
                <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                          <div class="row no-gutters align-items-center">
                          <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                   Laporan di Realisasikan
+                              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Laporan Anda
                               </div>
-                              <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
+                              <div class="row no-gutters align-items-center">
+                                   <div class="col-auto">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{  $totalLaporan }}</div>
+                                   </div>
+                              </div>
+                              @if ( $totalLaporan > 0)
+                              <div class="row mt-3">
+                                   <div class="col">
+                                        <a href="{{ url('/laporan?status=1') }}" class="btn btn-secondary btn-sm">Detail &rarr;</a>
+                                   </div>
+                              </div>
+                              @endif
                          </div>
                          <div class="col-auto">
-                              <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                              <i class="fas fa-file-alt fa-2x text-primary"></i>
                          </div>
                          </div>
                     </div>
                </div>
           </div>
-
-          <!-- Earnings (Monthly) Card Example -->
-          <div class="col-xl-3 col-md-6 mb-4">
-               <div class="card border-left-success shadow h-100 py-2">
-                    <div class="card-body">
-                         <div class="row no-gutters align-items-center">
-                         <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                   Laporan Telah Di Realisasikan </div>
-                              <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
-                         </div>
-                         <div class="col-auto">
-                              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                         </div>
-                         </div>
-                    </div>
-               </div>
-          </div>
-
-          <!-- Earnings (Monthly) Card Example -->
-          <div class="col-xl-3 col-md-6 mb-4">
-               <div class="card border-left-success shadow h-100 py-2">
-                    <div class="card-body">
-                         <div class="row no-gutters align-items-center">
-                         <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                   Laporan di Tolak </div>
-                              <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
-                         </div>
-                         <div class="col-auto">
-                              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                         </div>
-                         </div>
-                    </div>
-               </div>
-          </div>
+          <!-- End Card Jumlah Semua Laporan -->
      </div>
+     <!-- End Card -->
 
      <!-- Content Row -->
      <div class="row">

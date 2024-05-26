@@ -12,7 +12,7 @@
 
      <!-- Nav Item - Tentang -->
      <li class="nav-item">
-          <a class="nav-link" href="{{ url('/dashboard') }}">
+          <a class="nav-link" href="{{ route('laporan.dashboard') }}">
           <i class="fas fa-fw fa-book"></i>
           <span>Dashboard</span></a>
      </li>

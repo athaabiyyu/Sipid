@@ -15,112 +15,161 @@
           </div>
      @endif
 
-     <div class="card shadow mb-4">
+     @php
+          // Mengelompokkan laporan berdasarkan status dan mengurutkannya berdasarkan status_id terkecil
+          $statusGroups = $dataLaporan->groupBy('status.status_id')->sortKeys();
+     @endphp
 
-          <div class="card-header py-3 d-flex justify-content-between align-items-center bg-primary">
-               <h6 class="m-0 font-weight-bold text-light">Rekap Laporan</h6>
-               <form class="form-inline">
-                    <div class="input-group">
-                         <input type="text" class="form-control" placeholder="Search..." aria-label="Search" aria-describedby="search-addon">
-                         <div class="input-group-append">
-                              <button class="btn btn-light" type="button">
-                                   <i class="fas fa-search text-primary"></i>
-                              </button>
-                         </div>
-                    </div>
-               </form>
-          </div>
-           
-          <div class="card-body">
-               <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+     @foreach ($statusGroups as $statusId => $laporanGroup)
+          @php
+               $statusName = $laporanGroup->first()->status->status_nama;
+               $tableId = 'dataTable' . $statusId;
+               $cardId = 'cardStatus' . $statusId;
+          @endphp
+          <div class="card shadow mb-4" id="{{ $cardId }}">
+               <div class="card-header py-3 d-flex justify-content-between align-items-center bg-primary">
+                    <h6 class="m-0 font-weight-bold text-light">Rekap Laporan - Dengan Status {{ $statusName }}</h6>
+               </div>
+               <div class="card-body">
+                    <div class="table-responsive">
+                         <table class="table table-bordered" id="{{ $tableId }}" width="100%" cellspacing="0">
                          <thead>
-                         <tr class="text-center">
-                              
-                              <th>Nama Pelapor</th>
-                              <th>Nama Infrastruktur</th>
-                              <th>Tanggal</th>
-                              <th>Lokasi Kerusakan</th>
-                              <th>Status</th>
-                              <th>Aksi</th>
-                         </tr>
+                              <tr class="text-center">
+                                   <th>Nama Pelapor</th>
+                                   <th>Nama Infrastruktur</th>
+                                   <th>Tanggal</th>
+                                   <th>Lokasi Kerusakan</th>
+                                   <th>Status</th>
+                                   <th>Aksi</th>
+                              </tr>
                          </thead>
                          <tbody>
-                         @foreach ($dataLaporan as $laporan)
-                              <tr>                           
-                                   <td>{{ $laporan->user->user_nama }}</td>
-                                   <td>{{ $laporan->infrastruktur->infrastruktur_nama }}</td>
-                                   <td>{{ \Carbon\Carbon::parse($laporan->tgl_laporan)->format('d-m-Y') }}</td>
-                                   <td>{{ $laporan->alamat_laporan }}</td>
-                                   <td class="text-center">
-                                        @if ($laporan->status->status_id == 1)
+                              @foreach ($laporanGroup as $laporan)
+                                   <tr>
+                                        <td>{{ $laporan->user->user_nama }}</td>
+                                        <td>{{ $laporan->infrastruktur->infrastruktur_nama }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($laporan->tgl_laporan)->format('d-m-Y') }}</td>
+                                        <td>{{ $laporan->alamat_laporan }}</td>
+                                        <td class="text-center">
+                                             @if ($laporan->status->status_id == 1)
                                              <a href="#" class="btn btn-sm btn-primary btn-icon-split">
                                                   <span class="icon text-white-50">
-                                                       <i class="fas fa-check-circle"></i>
+                                                       <i class="fas fa-paper-plane"></i>
                                                   </span>
                                                   <span class="text">{{ $laporan->status->status_nama }}</span>
                                              </a>
-                                        @elseif($laporan->status->status_id == 2)
+                                             @elseif($laporan->status->status_id == 2)
                                              <a href="#" class="btn btn-sm btn-warning btn-icon-split">
                                                   <span class="icon text-white-50">
                                                        <i class="fas fa-eye"></i>
                                                   </span>
                                                   <span class="text">{{ $laporan->status->status_nama }}</span>
                                              </a>
-                                        @elseif($laporan->status->status_id == 3)
+                                             @elseif($laporan->status->status_id == 3)
                                              <a href="#" class="btn btn-sm btn-info btn-icon-split">
+                                                  <span class="icon text-white-50">
+                                                       <i class="fas fa-eye"></i>
+                                                  </span>
+                                                  <span class="text">{{ $laporan->status->status_nama }}</span>
+                                             </a>
+                                             @elseif($laporan->status->status_id == 4)
+                                             <a href="#" class="btn btn-sm btn-success btn-icon-split">
                                                   <span class="icon text-white-50">
                                                        <i class="fas fa-check"></i>
                                                   </span>
                                                   <span class="text">{{ $laporan->status->status_nama }}</span>
                                              </a>
-                                        @elseif($laporan->status->status_id == 4)
+                                             @elseif($laporan->status->status_id == 5)
                                              <a href="#" class="btn btn-sm btn-success btn-icon-split">
                                                   <span class="icon text-white-50">
                                                        <i class="fas fa-calculator"></i>
                                                   </span>
                                                   <span class="text">{{ $laporan->status->status_nama }}</span>
                                              </a>
-                                        @elseif($laporan->status->status_id == 5)
+                                             @elseif($laporan->status->status_id == 6)
+                                             <a href="#" class="btn btn-sm btn-warning btn-icon-split">
+                                                  <span class="icon text-white-50">
+                                                       <i class="fas fa-paper-plane"></i>
+                                                  </span>
+                                                  <span class="text">{{ $laporan->status->status_nama }}</span>
+                                             </a>
+                                             @elseif($laporan->status->status_id == 7)
+                                             <a href="#" class="btn btn-sm btn-success btn-icon-split">
+                                                  <span class="icon text-white-50">
+                                                       <i class="fas fa-eye"></i>
+                                                  </span>
+                                                  <span class="text">{{ $laporan->status->status_nama }}</span>
+                                             </a>
+                                             @elseif($laporan->status->status_id == 8)
                                              <a href="#" class="btn btn-sm btn-success btn-icon-split">
                                                   <span class="icon text-white-50">
                                                        <i class="fas fa-hammer"></i>
                                                   </span>
                                                   <span class="text">{{ $laporan->status->status_nama }}</span>
                                              </a>
-                                        @elseif($laporan->status->status_id == 6)
+                                             @elseif($laporan->status->status_id == 9)
                                              <a href="#" class="btn btn-sm btn-success btn-icon-split">
                                                   <span class="icon text-white-50">
                                                        <i class="fas fa-check"></i>
                                                   </span>
                                                   <span class="text">{{ $laporan->status->status_nama }}</span>
                                              </a>
-                                        @else
+                                             @else
                                              <a href="#" class="btn btn-sm btn-danger btn-icon-split">
                                                   <span class="icon text-white-50">
                                                        <i class="fas fa-times"></i>
                                                   </span>
                                                   <span class="text">{{ $laporan->status->status_nama }}</span>
                                              </a>
-                                        @endif
-                                   </td>
-                                   <td class="text-center" >
-                                        <form action="{{ url('laporan/detail', $laporan->laporan_id) }}" method="POST">
-                                             <a class="btn btn-info btn-sm mb-2"href="{{ url('admin/detail', $laporan->laporan_id) }}">
+                                             @endif
+                                        </td>
+                                        <td class="text-center">
+                                             <form action="{{ url('laporan/detail', $laporan->laporan_id) }}" method="POST">
+                                             <a class="btn btn-info btn-sm mb-2"
+                                                  href="{{ url('admin/detail', $laporan->laporan_id) }}">
                                                   Detail
                                              </a>
-                                             @csrf
+                                             {{-- @csrf
                                              @method('DELETE')
-                                             <button type="submit" class="btn btn-danger btn-sm  mb-2"
-                                             onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
-                                        </form>
-                                   </td>
-                              </tr>
-                         @endforeach
+                                             <button type="submit" class="btn btn-danger btn-sm mb-2" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button> --}}
+                                             </form>
+                                        </td>
+                                   </tr>
+                              @endforeach
                          </tbody>
-                    </table>
+                         </table>
+                    </div>
                </div>
-               
           </div>
-     </div>
+     @endforeach
+     <style>
+          .dataTables_wrapper .dataTables_paginate {
+              margin-top: 10px !important; /* Menambahkan jarak antara tabel dan fitur pagination */
+          }
+     </style>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+     <script>
+          $(document).ready(function() {
+               @foreach ($statusGroups as $statusId => $laporanGroup)
+                    $('#dataTable{{ $statusId }}').DataTable({
+                         "paging": true,
+                         "searching": true,
+                         "lengthChange": true,
+                         "info": true,
+                         "pageLength": 5,
+                         "lengthMenu": [5, 10, 25, 50, 100] // Menambahkan opsi 5 pada lengthMenu
+                    });
+               @endforeach
+
+               // Check if the URL contains the status parameter and scroll to the corresponding card header
+               const urlParams = new URLSearchParams(window.location.search);
+               const statusId = urlParams.get('status');
+               if (statusId) {
+                    $('html, body').animate({
+                         scrollTop: $('#cardStatus' + statusId).offset().top
+                    }, 500);
+               }
+          });
+     </script>
 @endsection

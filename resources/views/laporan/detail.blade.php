@@ -144,7 +144,7 @@
                <hr>
                <div class="d-flex justify-content-between">
                     <a class="btn btn-sm btn-success" href="{{ url('laporan') }}">Kembali</a>
-                    @if ($detailLaporan->status->status_id == 1)
+                    @if ($detailLaporan->status->status_id == 1 )
                          <a class="btn btn-sm btn-primary"
                          href="{{ route('laporan.editLaporan', $detailLaporan->laporan_id) }}">Edit</a>
                     @endif

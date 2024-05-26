@@ -41,7 +41,7 @@ class LoginController extends Controller
             if(auth()->user()->level_id == 1) {
                 return redirect()->intended('/admin');
             } elseif(auth()->user()->level_id == 2) {
-                return redirect()->intended('/tes');
+                return redirect()->intended('/rw');
             } else {
                 return redirect()->intended('/laporan');
             }

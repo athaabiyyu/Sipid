@@ -17,4 +17,7 @@ class KriteriaModel extends Model
     public function matrik(): HasMany {
         return $this->hasMany(MatrikModel::class, 'kriteria_id', 'kriteria_id');
     }
+    public function penilaian(): HasMany {
+        return $this->hasMany(PenilaianKriteriaModel::class, 'kriteria_id', 'kriteria_id');
+    }
 }

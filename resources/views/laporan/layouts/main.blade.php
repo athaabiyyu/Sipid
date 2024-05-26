@@ -23,6 +23,9 @@
      <!-- Custom styles for this page -->
      <link href="{{ asset('sbAdmin_Template/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
+     <!-- DataTables CSS -->
+     <link href="{{ asset('sbAdmin_Template/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+
      @stack('css')
 </head>
 
@@ -95,17 +98,24 @@
      <!-- Custom scripts for all pages-->
      <script src="{{ asset('sbAdmin_Template/js/sb-admin-2.min.js') }}"></script>
 
-     <!-- Page level plugins -->
-    <script src="{{ asset('sbAdmin_Template/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('sbAdmin_Template/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+     <!-- Page level plugins -->
+     <script src="{{ asset('sbAdmin_Template/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+     <script src="{{ asset('sbAdmin_Template/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+     <!-- Page level custom scripts -->
+     <script src="{{ asset('sbAdmin_Template/js/demo/datatables-demo.js') }}"></script>
 
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-
      @stack('scripts')
+
+     <!-- DataTables Initialization -->
+     <script>
+         $(document).ready(function() {
+             $('#dataTable').DataTable(); // Ensure your table ID matches here
+         });
+     </script>
      
 </body>
 
