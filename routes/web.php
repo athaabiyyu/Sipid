@@ -92,7 +92,6 @@ Route::group(['prefix' => 'rw', 'middleware' => ['auth', 'cekLevel:2']], functio
 Route::group(['prefix' => 'laporan', 'middleware' => ['auth', 'cekLevel:3']], function () {
      Route::get('/', [LaporanController::class, 'index']);
      Route::get('/dashboard', [LaporanController::class, 'dashboard'])->name('laporan.dashboard');
-     Route::get('/{status_id?}', [LaporanController::class, 'index'])->name('laporan.index');
      Route::get('/tambah', [LaporanController::class, 'create']);
      Route::post('/', [LaporanController::class, 'store']);
      Route::get('/editLaporan/{id}', [LaporanController::class, 'editLaporan'])->name('laporan.editLaporan');
@@ -103,6 +102,8 @@ Route::group(['prefix' => 'laporan', 'middleware' => ['auth', 'cekLevel:3']], fu
      Route::post('/edit_profile', [LaporanController::class, 'editProfile']); 
      Route::get('/sandi', [LaporanController::class, 'sandi']);
      Route::post('/edit_sandi', [LaporanController::class, 'editSandi']);
+
+     Route::get('/{status_id?}', [LaporanController::class, 'index'])->name('laporan.index');
 });
 
 Route::get('/registration', [RegisterController::class, 'index'])->middleware('guest');
