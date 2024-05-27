@@ -9,6 +9,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MatrikController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RWController;
 use App\Http\Controllers\StatusLaporanController;
@@ -24,6 +25,7 @@ Route::get('/hak_akses', function () {
      return view('hak_akses');
 });
 
+// Route Admin
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'cekLevel:1']], function () {
      Route::get('/', [LaporanController::class, 'indexAdmin']);
      Route::get('/rekap_laporan', [LaporanController::class, 'rekaplaporan'])->name('admin.rekap_laporan');
@@ -61,6 +63,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'cekLevel:1']], func
           'update' => 'admin.kriteria.update',
      ]);
 
+     // Profile
+     Route::get('/profile', [ProfileController::class, 'profileAdmin'])->name('admin.profile');
+     Route::post('/edit_profile', [ProfileController::class, 'editProfileAdmin'])->name('admin.edit_profile');
+     Route::get('/sandi', [ProfileController::class, 'sandiAdmin'])->name('admin.sandi');
+     Route::post('/edit_sandi', [ProfileController::class, 'editSandiAdmin'])->name('admin.edit_sandi');
+
+     
      Route::post('/alternatif/updateNilai/{id}', [AlternatifController::class, 'updateNilai'])->name('admin.alternatif.updateNilai');
      Route::post('/admin/alternatif/updateAllStatus', [AlternatifController::class, 'updateAllStatus'])->name('admin.alternatif.updateAllStatus');
 
@@ -75,6 +84,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'cekLevel:1']], func
 
      Route::get('/{status_id?}', [LaporanController::class, 'rekaplaporan'])->name('laporan.indexAdmin');
 });
+// End Route Admin
 
 // Route RW
 Route::group(['prefix' => 'rw', 'middleware' => ['auth', 'cekLevel:2']], function () {
@@ -89,6 +99,7 @@ Route::group(['prefix' => 'rw', 'middleware' => ['auth', 'cekLevel:2']], functio
 });
 // End Route RW
 
+// Route Warga
 Route::group(['prefix' => 'laporan', 'middleware' => ['auth', 'cekLevel:3']], function () {
      Route::get('/', [LaporanController::class, 'index']);
      Route::get('/dashboard', [LaporanController::class, 'dashboard'])->name('laporan.dashboard');
@@ -105,6 +116,7 @@ Route::group(['prefix' => 'laporan', 'middleware' => ['auth', 'cekLevel:3']], fu
 
      Route::get('/{status_id?}', [LaporanController::class, 'index'])->name('laporan.index');
 });
+// End Route Warga
 
 Route::get('/registration', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/registration', [RegisterController::class, 'store']);

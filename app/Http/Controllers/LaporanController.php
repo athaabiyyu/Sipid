@@ -223,6 +223,7 @@ class LaporanController extends Controller
 
     public function editProfile(Request $request)
     {
+        /** @var User $user */
         $user = auth()->user();
 
         $dataProfile = $request->validate([
@@ -256,8 +257,8 @@ class LaporanController extends Controller
         ]);
     }
 
-    public function editSandi(Request $request)
-    {
+    public function editSandi(Request $request) {
+        /** @var User $user */
         $user = auth()->user();
 
         // Ambil password lama dari input
@@ -327,29 +328,27 @@ class LaporanController extends Controller
     }
 
     // detial laporan pada admin
-    public function detailAdmin($id)
-    {
+    public function detailAdmin($id) {
         // ambil data sesuai id
         $detailLaporan = LaporanModel::find($id);
 
-            // Check if the current status is not 'Dilihat' (assuming 'Dilihat' status_id is 2)
+        // Check if the current status is not 'Dilihat' (assuming 'Dilihat' status_id is 2)
         // Update the status to 'Dilihat' if the current status is 1
-    if ($detailLaporan->status_id == 1) {
-        $detailLaporan->status_id = 3; // Assuming 'Dilihat' status_id is 2
-        $detailLaporan->save();
-    }
+        if ($detailLaporan->status_id == 1) {
+            $detailLaporan->status_id = 3; // Assuming 'Dilihat' status_id is 2
+            $detailLaporan->save();
+        }
 
-        return view('admin.laporan.detail_rekap_laporan', [
+            return view('admin.laporan.detail_rekap_laporan', [
 
-            'breadcrumb' => 'Detail Laporan',
-            'title' => 'Detail Laporan | Sipid',
-            'detailLaporan' => $detailLaporan
-        ]);
+                'breadcrumb' => 'Detail Laporan',
+                'title' => 'Detail Laporan | Sipid',
+                'detailLaporan' => $detailLaporan
+            ]);
     }
 
     // ubah status
-    public function editStatus(Request $request, $id)
-    {
+    public function editStatus(Request $request, $id) {
         $detailLaporan = LaporanModel::find($id);
 
         // Validasi input
@@ -375,7 +374,6 @@ class LaporanController extends Controller
                 'breadcrumb' => 'Halaman Rekap Laporan'
             ]);
     }
-
 
     
 }
