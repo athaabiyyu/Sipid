@@ -68,6 +68,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'cekLevel:1']], func
      Route::post('/edit_profile', [ProfileController::class, 'editProfileAdmin'])->name('admin.edit_profile');
      Route::get('/sandi', [ProfileController::class, 'sandiAdmin'])->name('admin.sandi');
      Route::post('/edit_sandi', [ProfileController::class, 'editSandiAdmin'])->name('admin.edit_sandi');
+     // End Profile
 
      
      Route::post('/alternatif/updateNilai/{id}', [AlternatifController::class, 'updateNilai'])->name('admin.alternatif.updateNilai');
@@ -96,6 +97,13 @@ Route::group(['prefix' => 'rw', 'middleware' => ['auth', 'cekLevel:2']], functio
 
      Route::get('/detail_realisasi/{id}', [RWController::class, 'detailRealisasi'])->name('rw.detail_realisasi');
      Route::post('/edit_detailRealisasi/{id}', [RWController::class, 'editdetailRealisasi'])->name('rw.detailRealisasi');
+
+     // Profile
+     Route::get('/profile', [ProfileController::class, 'profileRw'])->name('rw.profile');
+     Route::post('/edit_profile', [ProfileController::class, 'editProfileRw'])->name('rw.edit_profile');
+     Route::get('/sandi', [ProfileController::class, 'sandiRw'])->name('rw.sandi');
+     Route::post('/edit_sandi', [ProfileController::class, 'editSandiRw'])->name('rw.edit_sandi');
+     // End Profile
 });
 // End Route RW
 
