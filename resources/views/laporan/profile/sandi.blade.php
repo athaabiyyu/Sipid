@@ -15,8 +15,8 @@
           </div>
      @endif
 
-     <div class="card mb-4 py-3 border-left-info">
-          <form action="{{ url('laporan/edit_sandi') }}" method="POST">
+     <div class="card mb-4 py-3 border-left-primary">
+          <form action="{{ route('laporan.edit_sandi') }}" method="POST">
                @csrf
                <div class="card-body">
                     <div class="row">

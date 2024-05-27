@@ -172,4 +172,77 @@ class ProfileController extends Controller
             return redirect()->route('rw.sandi')->with('error', 'Kata Sandi Lama Salah');
         }
     }
+
+
+    public function profileWarga() {
+        // Ambil data pengguna yang login
+        $dataUser = UserModel::findOrFail(auth()->user()->user_id);
+
+        return view('laporan.profile.profile', [
+            'title' => 'Profile | Sipid',
+            'breadcrumb' => 'Halaman Profile',
+            'dataUser' => $dataUser
+        ]);
+    }
+    public function editProfileWarga(Request $request) {
+        /** @var User $user */
+        $user = auth()->user();
+
+        $dataProfile = $request->validate([
+            'user_nama' => 'nullable|max:100',
+            'user_nomor' => 'min:10|max:12|nullable',
+            'user_foto' => 'image|file|max:1024|nullable',
+            'user_alamat' => 'min:10|max:100|nullable',
+        ]);
+
+        // simpan bukti laporan di storage lokal
+        if ($request->file('user_foto')) {
+            $dataProfile['user_foto'] = $request->file('user_foto')->store('img-profile_user');
+        }
+
+        // edit data
+        $user->update($dataProfile);
+
+        return redirect()->route('laporan.profile')->with('success', 'Profil Berhasil di Perbarui');
+    }
+
+    public function sandiWarga() {
+
+        // Ambil data pengguna yang login
+        $dataUser = UserModel::findOrFail(auth()->user()->user_id);
+
+        return view('laporan.profile.sandi', [
+            'title' => 'Ubah Kata Sandi | Sipid',
+            'breadcrumb' => 'Halaman Ubah Kata Sandi',
+            'dataUser' => $dataUser,
+        ]);
+    }
+
+    public function editSandiWarga(Request $request) {
+        /** @var User $user */
+        $user = auth()->user();
+
+        // Ambil password lama dari input
+        $passwordLama = $request->input('password_lama');
+
+        // Bandingkan password lama yang dimasukkan dengan password yang disimpan
+        if (Hash::check($passwordLama, $user->user_password)) {
+            // Jika password lama cocok, lanjutkan dengan validasi dan pembaruan password baru
+            $dataProfile = $request->validate([
+                'user_password' => 'required|min:5'
+            ]);
+
+            // Enkripsi password baru
+            $dataProfile['user_password'] = Hash::make($dataProfile['user_password']);
+
+            // Perbarui password
+            $user->update($dataProfile);
+
+            return redirect()->route('laporan.sandi')->with('success', 'Kata Sandi Berhasil di Perbarui');
+        } else {
+            // Jika password lama tidak cocok, kembalikan dengan pesan kesalahan
+            return redirect()->route('laporan.sandi')->with('error', 'Kata Sandi Lama Salah');
+        }
+    }
+
 }

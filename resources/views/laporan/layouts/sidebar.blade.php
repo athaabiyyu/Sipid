@@ -63,8 +63,8 @@
           <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
               <div class="bg-white py-2 collapse-inner rounded">
                   <h6 class="collapse-header">Login Screens:</h6>
-                  <a class="collapse-item" href="{{ url('laporan/profile') }}">Infromasi Akun</a>
-                  <a class="collapse-item" href="{{ url('laporan/sandi') }}">Ubah Sandi</a>
+                  <a class="collapse-item" href="{{ route('laporan.profile') }}">Infromasi Akun</a>
+                  <a class="collapse-item" href="{{ route('laporan.sandi') }}">Ubah Sandi</a>
               </div>
           </div>
      </li>

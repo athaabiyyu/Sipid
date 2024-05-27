@@ -16,6 +16,7 @@
      @endif
 
      <div class="row">
+          <!-- Card Profile -->
           <div class="col-md-4">
                <div class="card mb-4 py-3 border-bottom-primary">
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
@@ -29,27 +30,60 @@
                                    height="90" style="object-fit: cover;">
                          @endif
                          </div>
+                         <div class="mt-2">
+                              <span class="text-gray-900">{{ $dataUser->user_nama }}</span>
+                         </div>
                          
-                         <div class="mt-5">
-                              <span class="text-black-50">NIK : {{ $dataUser->user_nik }}</span>
-                         </div>
-                         <div class="mt-1">
-                              <span class="text-black-50">Nama : {{ $dataUser->user_nama }}</span>
-                         </div>
-                         <div class="mt-1">
-                              <span class="text-black-50">Nomor Hp : {{ $dataUser->user_nomor }}</span>
-                         </div>
-                         <div class="mt-1">
-                              <span class="text-black-50">Alamat : {{ $dataUser->user_alamat }}</span>
+                         <div class="align-items-left text-left">
+                              <div class="mt-5">
+                                   <div class="row">
+                                        <div class="col-md-3 col-sm-3">
+                                             <h6 class="d-inline-block mb-0">NIK</h6>
+                                        </div>
+                                        <div class="col-md-1 col-sm-1">
+                                             <span class="d-inline-block">:</span>
+                                        </div>
+                                        <div class="col-md-8 col-sm-8">
+                                             {{ $dataUser->user_nik }}
+                                        </div>
+                                   </div>
+                              </div>
+                              <div class="mt-1">
+                                   <div class="row">
+                                        <div class="col-md-3 col-sm-3">
+                                             <h6 class="d-inline-block mb-0">No.Hp</h6>
+                                        </div>
+                                        <div class="col-md-1 col-sm-1">
+                                             <span class="d-inline-block">:</span>
+                                        </div>
+                                        <div class="col-md-8 col-sm-8">
+                                             {{ $dataUser->user_nomor }}
+                                        </div>
+                                   </div>
+                              </div>
+                              <div class="mt-1">
+                                   <div class="row">
+                                        <div class="col-md-3 col-sm-3">
+                                             <h6 class="d-inline-block mb-0">Alamat</h6>
+                                        </div>
+                                        <div class="col-md-1 col-sm-1">
+                                             <span class="d-inline-block">:</span>
+                                        </div>
+                                        <div class="col-md-8 col-sm-8">
+                                             {{ $dataUser->user_alamat }}
+                                        </div>
+                                   </div>
+                              </div>
                          </div>
                     </div>
                </div>
           </div>
+          <!-- End Card Profile -->
 
           <div class="col-md-8">
                <div class="card mb-4 py-3 border-bottom-primary">
                     <div class="p-3 py-5">
-                         <form action="{{ url('laporan/edit_profile') }}" method="POST" enctype="multipart/form-data">
+                         <form action="{{ route('laporan.edit_profile') }}" method="POST" enctype="multipart/form-data">
                          @csrf
                          <h6 class="m-0 font-weight-bold text-primary text-right flex-grow-1">Edit Profile</h6>
                          <div class="row mt-4">

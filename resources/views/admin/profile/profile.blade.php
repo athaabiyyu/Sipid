@@ -30,8 +30,9 @@
                                    height="90" style="object-fit: cover;">
                          @endif
                          </div>
+
                          <div class="mt-2">
-                         <span class="text-gray-900">{{ $dataUser->user_nama }}</span>
+                              <span class="text-gray-900">{{ $dataUser->user_nama }}</span>
                          </div>
 
                          <div class="align-items-left text-left">

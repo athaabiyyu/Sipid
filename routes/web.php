@@ -117,10 +117,13 @@ Route::group(['prefix' => 'laporan', 'middleware' => ['auth', 'cekLevel:3']], fu
      Route::post('/update/{id}', [LaporanController::class, 'updateLaporan'])->name('laporan.updateLaporan');
      Route::get('/hapus/{id}', [LaporanController::class, 'hapusLaporan'])->name('laporan.hapusLaporan');
      Route::get('/detail/{id}', [LaporanController::class, 'detail'])->name('laporan.detailLaporan');
-     Route::get('/profile', [LaporanController::class, 'profile']);
-     Route::post('/edit_profile', [LaporanController::class, 'editProfile']); 
-     Route::get('/sandi', [LaporanController::class, 'sandi']);
-     Route::post('/edit_sandi', [LaporanController::class, 'editSandi']);
+
+     // Profile
+     Route::get('/profile', [ProfileController::class, 'profileWarga'])->name('laporan.profile');
+     Route::post('/edit_profile', [ProfileController::class, 'editProfileWarga'])->name('laporan.edit_profile'); 
+     Route::get('/sandi', [ProfileController::class, 'sandiWarga'])->name('laporan.sandi');
+     Route::post('/edit_sandi', [ProfileController::class, 'editSandiWarga'])->name('laporan.edit_sandi');
+     // End Profile
 
      Route::get('/{status_id?}', [LaporanController::class, 'index'])->name('laporan.index');
 });
