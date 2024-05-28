@@ -160,19 +160,20 @@
           <div class="topbar-divider d-none d-sm-block"></div>
 
           <!-- Nav Item - User Information -->
+          <!-- Nav Item - User Information -->
           <li class="nav-item dropdown no-arrow">
-               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->user_nama }}</span>
-                    @if(auth()->user()->user_foto)
-                         <img class="img-profile rounded-circle" width="100"
+               <a class="nav-link" href="/laporan/profile">
+               <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->user_nama }}</span>
+               @if(auth()->user()->user_foto)
+                    <img class="img-profile rounded-circle" width="100"
                          height="100" style="object-fit: cover;" src="{{ asset('storage/' . auth()->user()->user_foto) }}">
-                    @else
-                         <img class="img-profile rounded-circle" width="100"
+               @else
+                    <img class="img-profile rounded-circle" width="100"
                          height="100" style="object-fit: cover;" src="{{ asset('img/default_profile.jpg') }}" >
-                    @endif
+               @endif
                </a>
           </li>
+          
 
      </ul>
 
