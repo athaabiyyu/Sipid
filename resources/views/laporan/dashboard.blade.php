@@ -166,23 +166,39 @@
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-primary">
                          <h6 class="m-0 font-weight-bold text-light">Cara Pelaporan</h6>
                          <div class="dropdown no-arrow">
-                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                         </a>
-                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                              aria-labelledby="dropdownMenuLink">
-                              <div class="dropdown-header">Dropdown Header:</div>
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#">Another action</a>
-                              <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="#">Something else here</a>
-                         </div>
+                       
+                        
                          </div>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
-                         <h3>Di sini akan berisi about sipid dan tata cara pelaporan di sipid</h3>
+                         <ul class="list-unstyled">
+                              <li class="mb-3">
+                                   <i class="fas fa-arrow-right mr-2"></i>
+                                   <strong>Klik "Buat Laporan"</strong> pada sidebar untuk masuk ke halaman pembuatan laporan.
+                              </li>
+                              <li class="mb-3">
+                                   <i class="fas fa-arrow-right mr-2"></i>
+                                   <strong>Pilih "Infrastruktur"</strong> yang ingin dilaporkan (jaringan listrik, jalan, saluran air, dll).
+                              </li>
+                              <li class="mb-3">
+                                   <i class="fas fa-arrow-right mr-2"></i>
+                                   <strong>Upload "Bukti Laporan"</strong> berupa foto infrastruktur yang rusak.
+                              </li>
+                              <li class="mb-3">
+                                   <i class="fas fa-arrow-right mr-2"></i>
+                                   <strong>Isi "Isi Laporan"</strong> dengan detail kerusakan dan informasi terkait lainnya.
+                              </li>
+                              <li class="mb-3">
+                                   <i class="fas fa-arrow-right mr-2"></i>
+                                   <strong>Isi "Lokasi Kerusakan"</strong> untuk menyebutkan lokasi infrastruktur yang rusak.
+                              </li>
+                              <li class="mb-3">
+                                   <i class="fas fa-arrow-right mr-2"></i>
+                                   <strong>Klik "Kirim"</strong> untuk mengirim laporan yang telah kita tulis
+                              </li>
+                         </ul>
+                        
                     </div>
                </div>
           </div>
