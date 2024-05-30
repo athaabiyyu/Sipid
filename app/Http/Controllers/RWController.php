@@ -12,11 +12,20 @@ use Illuminate\Routing\Controller;
 
 class RWController extends Controller
 {
-    public function index()
-    {
+    public function index(){
+        // Hitung total laporan dengan status_id = 7
+        $totalLaporanDikirimKeRw = LaporanModel::where('status_id', 7)->count();
+        // Hitung total laporan dengan status_id = 8 
+        $totalLaporanDirealisasikan = LaporanModel::where('status_id', 8)->count();
+        // Hitung total laporan dengan status_id = 9
+        $totalLaporanSelesai = LaporanModel::where('status_id', 9)->count();
+
         return view('rw.index', [
             'breadcrumb' => 'Halaman Dashboard',
             'title' => 'Dashboard | Sipid',
+            'totalLaporanDikirimKeRw' => $totalLaporanDikirimKeRw,
+            'totalLaporanDirealisasikan' => $totalLaporanDirealisasikan,
+            'totalLaporanSelesai' => $totalLaporanSelesai
         ]);
     }
 
