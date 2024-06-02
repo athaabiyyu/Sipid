@@ -14,6 +14,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RWController;
 use App\Http\Controllers\StatusLaporanController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\warga\TrenPelaporanController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LoginController::class, 'index'])->middleware('guest')->name('login');
@@ -112,6 +113,7 @@ Route::group(['prefix' => 'laporan', 'middleware' => ['auth', 'cekLevel:3']], fu
      Route::get('/', [LaporanController::class, 'index']);
      Route::get('/dashboard', [LaporanController::class, 'dashboard'])->name('laporan.dashboard');
      Route::get('/tambah', [LaporanController::class, 'create']);
+     Route::get('/tren', [TrenPelaporanController::class, 'testes']);
      Route::post('/', [LaporanController::class, 'store']);
      Route::get('/editLaporan/{id}', [LaporanController::class, 'editLaporan'])->name('laporan.editLaporan');
      Route::post('/update/{id}', [LaporanController::class, 'updateLaporan'])->name('laporan.updateLaporan');
@@ -134,6 +136,7 @@ Route::post('/registration', [RegisterController::class, 'store']);
 
 
 Route::resource('/user', UserController::class);
+
 
 // Route::resource('/infrastruktur', InfrastrukturController::class);
 

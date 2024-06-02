@@ -97,7 +97,7 @@ class RWController extends Controller
         }
 
         // Load view untuk PDF
-        $pdf = \PDF::loadView('rw.pdf.keputusan', compact('totalUtilities'));
+        $pdf = PDF::loadView('rw.pdf.keputusan', compact('totalUtilities'));
 
         // Return PDF stream
         return $pdf->stream('hasil_keputusan.pdf');

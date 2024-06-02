@@ -43,7 +43,7 @@
 
      <!-- Nav Trend laporan -->
      <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="{{ url('laporan/tren') }}">
                <i class="fas fa-fw fa-chart-line"></i>
                <span>Trend Laporan</span></a>
      </li>

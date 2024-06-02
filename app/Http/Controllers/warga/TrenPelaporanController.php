@@ -2,25 +2,20 @@
 
 namespace App\Http\Controllers\warga;
 
+use App\Charts\DonutChart;
+use App\Charts\TrenChart;
 use App\Http\Controllers\Controller;
 use App\Models\LaporanModel;
-use Illuminate\Http\Request;
+
 
 class TrenPelaporanController extends Controller
 {
-    function sumLaporan()
-    {
-        $total_Laporan = LaporanModel::count();
-        return response()->json([
-            'judul' => 'Jumlah Laporan',
-            'total_items' => $total_Laporan
-        ]);
-    }
-    function sumLaporanDiterima() {
-        $laporan_diterima = LaporanModel::whereRaw('status_id =1')->count();
-        return response()->json([
-            'judul' => 'Jumlah Laporan Diterima',
-            'total_items' => $laporan_diterima
+    public function testes(TrenChart $chart, DonutChart $donutChart){
+        return view('tren_pelaporan.index', [
+            'breadcrumb' => 'Halaman Trend Laporan',
+            'title' => 'Dashboard | Sipid',
+            'chart' => $chart->build(),
+            'donut' => $donutChart->build()
         ]);
     }
 }

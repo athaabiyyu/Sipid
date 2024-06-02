@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/sum-laporan', [TrenPelaporanController::class, 'sumLaporan']);
-Route::get('/sum-laporan-diterima', [TrenPelaporanController::class, 'sumLaporanDiterima']);
+// Route::get('/sum-laporan', [TrenPelaporanController::class, 'sumLaporan']);
+// Route::get('/sum-laporan-diterima', [TrenPelaporanController::class, 'sumLaporanDiterima']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
