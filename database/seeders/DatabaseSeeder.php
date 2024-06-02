@@ -99,6 +99,10 @@ class DatabaseSeeder extends Seeder
             'infrastruktur_kode' => 'INFRA07',
             'infrastruktur_nama' => 'Pos Ronda',
         ]);
+        InfrastrukturModel::create([
+            'infrastruktur_kode' => 'INFRA08',
+            'infrastruktur_nama' => 'Balai RW',
+        ]);
         // End Infrastruktur
 
         // Status Laporan
