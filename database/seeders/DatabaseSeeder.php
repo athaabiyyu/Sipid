@@ -97,7 +97,7 @@ class DatabaseSeeder extends Seeder
         ]);
         InfrastrukturModel::create([
             'infrastruktur_kode' => 'INFRA07',
-            'infrastruktur_nama' => 'Posyandu',
+            'infrastruktur_nama' => 'Pos Ronda',
         ]);
         // End Infrastruktur
 
