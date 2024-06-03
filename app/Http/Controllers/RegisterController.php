@@ -18,16 +18,15 @@ class RegisterController extends Controller
 
         // validasi data input
         $validatedData = $request->validate([
-            'user_nik' => 'required|min:16|max:16|unique:s_user',
+            'username' => 'required',
             'user_nama' => 'required|min:5|max:100',
             'user_alamat' => 'required|min:5|max:100',
             'user_nomor' => 'required|min:10|max:12',
             'user_password' => 'required|min:5'
         ], [
-            'user_nik.required' => 'NIK wajib diisi.',
-            'user_nik.min' => 'NIK harus terdiri dari 16 karakter.',
-            'user_nik.max' => 'NIK harus terdiri dari 16 karakter.',
-            'user_nik.unique' => 'NIK sudah digunakan.',
+            'username.required' => 'Username wajib diisi.',
+            'username.min' => 'Username harus terdiri dari 16 karakter.',
+            'username.max' => 'Username harus terdiri dari 16 karakter.',
             'user_nama.required' => 'Nama wajib diisi.',
             'user_nama.min' => 'Nama harus terdiri dari minimal 5 karakter.',
             'user_nama.max' => 'Nama maksimal terdiri dari 100 karakter.',

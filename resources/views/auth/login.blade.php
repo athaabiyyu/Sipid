@@ -38,9 +38,9 @@
                             @csrf
                             <div class="form-group row mt-5">
                                 <div class="col mb-3 mb-sm-0">
-                                    <input type="text" id="user_nik" placeholder="NIK" name="user_nik"
-                                        class="form-control form-control-user @error('user_nik') is-invalid @enderror">
-                                    @error('user_nik')
+                                    <input type="text" id="username" placeholder="Masukkan Username" name="username"
+                                        class="form-control form-control-user @error('username') is-invalid @enderror">
+                                    @error('username')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>

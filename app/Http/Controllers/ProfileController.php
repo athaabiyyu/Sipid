@@ -26,15 +26,13 @@ class ProfileController extends Controller
         $user = auth()->user();
     
         $dataProfile = $request->validate([
-            'user_nik' => 'nullable|min:16|max:16|unique:s_user,user_nik,' . $user->user_id . ',user_id',
+            'username' => 'nullable|unique:s_user,username,' . $user->user_id . ',user_id',
             'user_nama' => 'nullable|max:100',
             'user_nomor' => 'nullable|min:10|max:12',
             'user_foto' => 'nullable|image|file|max:1024',
             'user_alamat' => 'nullable|min:10|max:100',
         ], [
-            'user_nik.min' => 'NIK harus terdiri dari 16 karakter.',
-            'user_nik.max' => 'NIK harus terdiri dari 16 karakter.',
-            'user_nik.unique' => 'NIK ini sudah terdaftar.',
+            'username.unique' => 'NIK ini sudah terdaftar.',
             'user_nama.max' => 'Nama tidak boleh lebih dari 100 karakter.',
             'user_nomor.min' => 'Nomor telepon minimal terdiri dari 10 karakter.',
             'user_nomor.max' => 'Nomor telepon maksimal terdiri dari 12 karakter.',
@@ -108,15 +106,13 @@ class ProfileController extends Controller
         $user = auth()->user();
     
         $dataProfile = $request->validate([
-            'user_nik' => 'nullable|min:16|max:16|unique:s_user,user_nik,' . $user->user_id . ',user_id',
+            'username' => 'nullable|unique:s_user,username,' . $user->user_id . ',user_id',
             'user_nama' => 'nullable|max:100',
             'user_nomor' => 'nullable|min:10|max:12',
             'user_foto' => 'nullable|image|file|max:1024',
             'user_alamat' => 'nullable|min:10|max:100',
         ], [
-            'user_nik.min' => 'NIK harus terdiri dari 16 karakter.',
-            'user_nik.max' => 'NIK harus terdiri dari 16 karakter.',
-            'user_nik.unique' => 'NIK ini sudah terdaftar.',
+            'username.unique' => 'NIK ini sudah terdaftar.',
             'user_nama.max' => 'Nama tidak boleh lebih dari 100 karakter.',
             'user_nomor.min' => 'Nomor telepon minimal terdiri dari 10 karakter.',
             'user_nomor.max' => 'Nomor telepon maksimal terdiri dari 12 karakter.',
@@ -189,7 +185,7 @@ class ProfileController extends Controller
         $user = auth()->user();
 
         $dataProfile = $request->validate([
-            'user_nama' => 'nullable|max:100',
+            'username' => 'nullable|max:100',
             'user_nomor' => 'min:10|max:12|nullable',
             'user_foto' => 'image|file|max:1024|nullable',
             'user_alamat' => 'min:10|max:100|nullable',

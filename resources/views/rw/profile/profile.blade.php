@@ -38,13 +38,13 @@
                               <div class="mt-5">
                                    <div class="row">
                                         <div class="col-md-3 col-sm-3">
-                                             <h6 class="d-inline-block mb-0">NIK</h6>
+                                             <h6 class="d-inline-block mb-0">Username</h6>
                                         </div>
                                         <div class="col-md-1 col-sm-1">
                                              <span class="d-inline-block">:</span>
                                         </div>
                                         <div class="col-md-8 col-sm-8">
-                                             {{ $dataUser->user_nik }}
+                                             {{ $dataUser->username }}
                                         </div>
                                    </div>
                               </div>
@@ -100,10 +100,10 @@
                          </div>
                          <div class="row mt-4">
                               <div class="col">
-                                   <label for="user_nik">NIK</label>
-                                   <input type="number" name="user_nik" value="{{ auth()->user()->user_nik }}"
-                                        class="form-control @error('user_nik') is-invalid @enderror">
-                                   @error('user_nik')
+                                   <label for="username">NIK</label>
+                                   <input type="text" name="username" value="{{ auth()->user()->username }}"
+                                        class="form-control @error('username') is-invalid @enderror">
+                                   @error('username')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                    @enderror
                               </div>

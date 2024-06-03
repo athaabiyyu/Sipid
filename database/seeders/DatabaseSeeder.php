@@ -52,19 +52,19 @@ class DatabaseSeeder extends Seeder
         // User
         UserModel::create([
             'level_id' => '1',
-            'user_nik' => '1234623421234521',
+            'username' => 'admin',
             'user_password' => Hash::make('12345'),
             'user_nama' => 'Sofyan Abullah',
         ]);
         UserModel::create([
             'level_id' => '2',
-            'user_nik' => '2234623421234522',
+            'username' => 'rw',
             'user_password' => Hash::make('12345'),
             'user_nama' => 'Alexander Abigail',
         ]);
         UserModel::create([
             'level_id' => '3',
-            'user_nik' => '3234623421234523',
+            'username' => 'warga',
             'user_password' => Hash::make('12345'),
             'user_nama' => 'Anthono',
         ]);

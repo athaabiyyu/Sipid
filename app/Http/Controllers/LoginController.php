@@ -24,17 +24,17 @@ class LoginController extends Controller
     public function authenticate(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
-            'user_nik' => 'required|min:16|max:16',
+            'username' => 'required',
             'user_password' => 'required|min:5'
         ], [
-            'user_nik.required' => 'NIK wajib diisi.',
-            'user_nik.min' => 'NIK harus terdiri dari 16 karakter.',
-            'user_nik.max' => 'NIK harus terdiri dari 16 karakter.',
+            'username.required' => 'Username wajib diisi.',
+            'username.min' => 'Username harus terdiri dari 16 karakter.',
+            'username.max' => 'Username harus terdiri dari 16 karakter.',
             'user_password.required' => 'Password wajib diisi.',
             'user_password.min' => 'Password minimal terdiri dari 5 karakter.'
         ]);
 
-        if (Auth::attempt(['user_nik' => $credentials['user_nik'], 'password' => $credentials['user_password']])) {
+        if (Auth::attempt(['username' => $credentials['username'], 'password' => $credentials['user_password']])) {
             $request->session()->regenerate();
 
             // cek level id user yang login
@@ -48,7 +48,7 @@ class LoginController extends Controller
             
         }
 
-        return back()->with('loginGagal', 'NIK atau Password Salah');
+        return back()->with('loginGagal', 'Username atau Password Salah');
     }
 
     // logout
