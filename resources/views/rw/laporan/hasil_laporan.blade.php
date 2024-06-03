@@ -43,7 +43,7 @@
                                    $count = 0;
                                    foreach ($groupedData as $laporan_id => $matrikGroup) {
                                    $laporan = $matrikGroup->first()->laporan;
-                                   if ($laporan->status->status_kode == 'STS04' || $laporan->status->status_kode == 'STS05' || $laporan->status->status_kode == 'STS06' || $laporan->status->status_kode == 'STS07') {
+                                   if ($laporan->status->status_kode == 'STS06' || $laporan->status->status_kode == 'STS07') {
                                         $count++;
                                         $totalUtility = 0;
                                         foreach ($dataKriteria as $kriteria) {

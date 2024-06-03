@@ -161,7 +161,6 @@
           <div class="topbar-divider d-none d-sm-block"></div>
 
           <!-- Nav Item - User Information -->
-<<<<<<< Updated upstream
           <li class="nav-item dropdown no-arrow">
                <a class="nav-link" href="/rw/profile">
                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->user_nama }}</span>
@@ -172,16 +171,6 @@
                     <img class="img-profile rounded-circle" width="100"
                          height="100" style="object-fit: cover;" src="{{ asset('img/default_profile.jpg') }}" >
                @endif
-=======
-          <li class="nav-item no-arrow">
-               <a class="nav-link" href="{{ route('rw.profile') }}" id="userProfileLink" role="button">
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->user_nama }}</span>
-                    @if(auth()->user()->user_foto)
-                         <img class="img-profile rounded-circle" width="40" height="40" style="object-fit: cover;" src="{{ asset('storage/' . auth()->user()->user_foto) }}">
-                    @else
-                         <img class="img-profile rounded-circle" width="40" height="40" style="object-fit: cover;" src="{{ asset('img/default_profile.jpg') }}">
-                    @endif
->>>>>>> Stashed changes
                </a>
           </li>
 

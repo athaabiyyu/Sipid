@@ -9,6 +9,7 @@ use App\Models\MatrikModel;
 use App\Models\LaporanModel;
 use Illuminate\Http\Request;
 use App\Models\AlternatifModel;
+use App\Models\BuktiLaporan;
 use App\Models\InfrastrukturModel;
 use Illuminate\Routing\Controller;
 use function Laravel\Prompts\alert;
@@ -44,7 +45,7 @@ class LaporanController extends Controller
         ->where('status_id', 10)
         ->count();
         // Hitung semu total laporan
-        $totalLaporan = LaporanModel::count();
+        $totalLaporan = LaporanModel::where('user_id', auth()->user()->user_id)->count();;
 
         return view('laporan.dashboard', [
 
@@ -178,12 +179,17 @@ class LaporanController extends Controller
     public function hapusLaporan($id) {
         // Hapus terlebih dahulu baris-baris yang terkait dari tabel s_matrik
         MatrikModel::where('laporan_id', $id)->delete();
-
+    
+        // Hapus baris-baris yang terkait dari tabel bukti_laporans
+        BuktiLaporan::where('laporan_id', $id)->delete();
+    
         // Setelah tidak ada lagi keterkaitan, hapus baris dari tabel s_laporan
         LaporanModel::findOrFail($id)->delete();
+        
         return redirect()->back()->with('success', 'Laporan berhasil dihapus.');
-        // Periksa apakah status laporan masih terkirim
     }
+    
+    
     
     // view detail laporan pada warga
     public function detail($id)

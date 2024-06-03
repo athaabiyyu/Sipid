@@ -82,7 +82,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'cekLevel:1']], func
      // End Kriteria
 
      Route::post('/alternatif/updateNilai/{id}', [AlternatifController::class, 'updateNilai'])->name('admin.alternatif.updateNilai');
+
+
      Route::post('/admin/alternatif/updateAllStatus', [AlternatifController::class, 'updateAllStatus'])->name('admin.alternatif.updateAllStatus');
+
+
 
 
      Route::resource('alternatif', AlternatifController::class)->names([
@@ -119,7 +123,7 @@ Route::group(['prefix' => 'rw', 'middleware' => ['auth', 'cekLevel:2']], functio
 Route::group(['prefix' => 'laporan', 'middleware' => ['auth', 'cekLevel:3']], function () {
      Route::get('/', [LaporanController::class, 'index'])->name('laporan.riwayat');
      Route::get('/dashboard', [LaporanController::class, 'dashboard'])->name('laporan.dashboard');
-     Route::get('/tambah', [LaporanController::class, 'create']);
+     Route::get('/tambah', [LaporanController::class, 'create'])->name('laporan.buat_laporan');
      Route::get('/tren', [TrenPelaporanController::class, 'testes']);
      Route::post('/', [LaporanController::class, 'store']);
      Route::get('/editLaporan/{id}', [LaporanController::class, 'editLaporan'])->name('laporan.editLaporan');

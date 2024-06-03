@@ -34,77 +34,73 @@ class AlternatifController extends Controller
         ]);
     }
 
-    // public function updateNilai(Request $request, $id) {
-    //     // Validasi input
-    //     $request->validate([
-    //         'matrik_nilai.*' => 'required',
-    //         'kriteria_id.*' => 'required'
-    //     ], [
-    //         'matrik_nilai.*.required' => 'Nilai matrik harus diisi.',
-    //         'kriteria_id.*.required' => 'ID kriteria harus diisi.'
-    //     ]);
-
-    //     // Loop melalui setiap kriteria dan simpan nilai
-    //     foreach ($request->kriteria_id as $index => $kriteria_id) {
-    //         $nilai = $request->matrik_nilai[$index];
-
-    //         // Cari matrik berdasarkan laporan ID dan kriteria ID
-    //         $matrik = MatrikModel::where('laporan_id', $id)
-    //             ->where('kriteria_id', $kriteria_id)
-    //             ->first();
-
-    //         // Jika matrik sudah ada, update nilai; jika tidak, buat baru
-    //         if ($matrik) {
-    //             $matrik->matrik_nilai = $nilai;
-    //             $matrik->save();
-    //         } else {
-    //             MatrikModel::create([
-    //                 'laporan_id' => $id,
-    //                 'kriteria_id' => $kriteria_id,
-    //                 'matrik_nilai' => $nilai,
-    //             ]);
-    //         }
-    //     }
-
-    //     // Redirect atau response sesuai kebutuhan
-    //     return redirect()->route('admin.alternatif.index')->with('success', 'Nilai kriteria berhasil diperbarui')->withFragment('matrikTable');
-    // }
-
     public function updateNilai(Request $request, $id) {
         // Validasi input
         $request->validate([
-            'matrik_nilai.*' => 'required|numeric', // Menambahkan validasi numeric untuk memastikan nilai yang diterima adalah angka
+            'matrik_nilai.*' => 'required',
             'kriteria_id.*' => 'required'
         ], [
             'matrik_nilai.*.required' => 'Nilai matrik harus diisi.',
-            'matrik_nilai.*.numeric' => 'Nilai matrik harus berupa angka.', // Pesan kesalahan baru untuk validasi numeric
             'kriteria_id.*.required' => 'ID kriteria harus diisi.'
         ]);
-    
+
+        // Loop melalui setiap kriteria dan simpan nilai
         foreach ($request->kriteria_id as $index => $kriteria_id) {
-            // Ambil id penilaian dari request
-            $penilaianId = $request->matrik_nilai[$index];
-        
-            // Cari penilaian berdasarkan id
-            $penilaian = PenilaianKriteriaModel::findOrFail($penilaianId);
-        
-            // Ambil skor_penilaian
-            $skor_penilaian = $penilaian->skor_penilaian_kriteria;
-        
-            // Cari atau buat matriks berdasarkan laporan ID dan kriteria ID
-            $matrik = MatrikModel::updateOrCreate(
-                ['laporan_id' => $id, 'kriteria_id' => $kriteria_id],
-                ['matrik_nilai' => $skor_penilaian]
-            );
+            $nilai = $request->matrik_nilai[$index];
+
+            // Cari matrik berdasarkan laporan ID dan kriteria ID
+            $matrik = MatrikModel::where('laporan_id', $id)
+                ->where('kriteria_id', $kriteria_id)
+                ->first();
+
+            // Jika matrik sudah ada, update nilai; jika tidak, buat baru
+            if ($matrik) {
+                $matrik->matrik_nilai = $nilai;
+                $matrik->save();
+            } else {
+                MatrikModel::create([
+                    'laporan_id' => $id,
+                    'kriteria_id' => $kriteria_id,
+                    'matrik_nilai' => $nilai,
+                ]);
+            }
         }
+
         // Redirect atau response sesuai kebutuhan
         return redirect()->route('admin.alternatif.index')->with('success', 'Nilai kriteria berhasil diperbarui')->withFragment('matrikTable');
     }
-    
-    
-    
-    
 
+    // public function updateNilai(Request $request, $id) {
+    //     // Validasi input
+    //     $request->validate([
+    //         'matrik_nilai.*' => 'required|numeric', // Menambahkan validasi numeric untuk memastikan nilai yang diterima adalah angka
+    //         'kriteria_id.*' => 'required'
+    //     ], [
+    //         'matrik_nilai.*.required' => 'Nilai matrik harus diisi.',
+    //         'matrik_nilai.*.numeric' => 'Nilai matrik harus berupa angka.', // Pesan kesalahan baru untuk validasi numeric
+    //         'kriteria_id.*.required' => 'ID kriteria harus diisi.'
+    //     ]);
+    
+    //     foreach ($request->kriteria_id as $index => $kriteria_id) {
+    //         // Ambil id penilaian dari request
+    //         $penilaianId = $request->matrik_nilai[$index];
+        
+    //         // Cari penilaian berdasarkan id
+    //         $penilaian = PenilaianKriteriaModel::findOrFail($penilaianId);
+        
+    //         // Ambil skor_penilaian
+    //         $skor_penilaian = $penilaian->skor_penilaian_kriteria;
+        
+    //         // Cari atau buat matriks berdasarkan laporan ID dan kriteria ID
+    //         $matrik = MatrikModel::updateOrCreate(
+    //             ['laporan_id' => $id, 'kriteria_id' => $kriteria_id],
+    //             ['matrik_nilai' => $skor_penilaian]
+    //         );
+    //     }
+    //     // Redirect atau response sesuai kebutuhan
+    //     return redirect()->route('admin.alternatif.index')->with('success', 'Nilai kriteria berhasil diperbarui')->withFragment('matrikTable');
+    // }
+    
     public function updateAllStatus(Request $request) {
         LaporanModel::where('status_id', 4)->update(['status_id' => 6]); 
         return redirect()->back()->with('success', 'Laporan berhasil dikirim ke RW.');
