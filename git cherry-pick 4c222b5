@@ -1,0 +1,24 @@
+[33m4c222b5[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{0}: pull --tags origin main: Fast-forward
+[33m6aa2394[m HEAD@{1}: reset: moving to HEAD
+[33m6aa2394[m HEAD@{2}: commit: Profile & Ubah Sandi pada Page Warga
+[33m5f70643[m HEAD@{3}: commit: Profile & Ubah Sandi pada Page RW
+[33ma49a6ba[m HEAD@{4}: commit: Profile & Ubah Sandi pada Page Admin
+[33m1f93e4f[m HEAD@{5}: commit: -2-
+[33m8e3dd41[m HEAD@{6}: commit: halamn rw dan perbaikan lain
+[33mcd82473[m[33m ([m[1;32mathaBranch[m[33m)[m HEAD@{7}: pull: Fast-forward
+[33ma99827c[m HEAD@{8}: reset: moving to HEAD
+[33ma99827c[m HEAD@{9}: commit: SPK - Perangkingan
+[33m2e88665[m HEAD@{10}: commit: tabel utilty - spk & perbaikan kecil kecilan
+[33md679d00[m HEAD@{11}: commit (merge): Merge branch 'main' of https://github.com/athaabiyyu/Sipid
+[33m851a4ad[m HEAD@{12}: commit: SPK - belum perhitungan
+[33m7f25032[m HEAD@{13}: commit: admin page
+[33m8c6eb9b[m HEAD@{14}: commit: Page Admin
+[33m90a2a44[m HEAD@{15}: commit: Halaman Profile & Edit Profile
+[33m07ee2a3[m HEAD@{16}: commit: Detail Laporan - Warga
+[33m70a3e50[m HEAD@{17}: commit: Halaman Create Laporan & Riwayat Laporan Warga
+[33m3591f01[m HEAD@{18}: commit: Template, Login & Register
+[33m880d1a1[m HEAD@{19}: commit: skip aja ni
+[33m9bef4fc[m HEAD@{20}: commit: Perbaikan Format Index Crud - Skip aja
+[33ma15efa9[m HEAD@{21}: commit: PERBAIKAN & CRUD : Infrastruktur, Status Laporan & Laporan
+[33me469558[m HEAD@{22}: commit: CRUD : Level & User
+[33m8795b88[m HEAD@{23}: commit (initial): first commit
