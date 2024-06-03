@@ -29,6 +29,7 @@
           <div class="card shadow mb-4" id="{{ $cardId }}">
                <div class="card-header py-3 d-flex justify-content-between align-items-center bg-primary">
                     <h6 class="m-0 font-weight-bold text-light">Rekap Laporan - Dengan Status {{ $statusName }}</h6>
+                    <a class="btn btn-sm btn-success ml-auto" href="{{ route('admin') }}">Kembali</a>
                </div>
                <div class="card-body">
                     <div class="table-responsive">
@@ -43,13 +44,13 @@
                                    <th>Aksi</th>
                               </tr>
                          </thead>
-                         <tbody>
+                         <tbody class="text-center">
                               @foreach ($laporanGroup as $laporan)
                                    <tr>
                                         <td>{{ $laporan->user->user_nama }}</td>
                                         <td>{{ $laporan->infrastruktur->infrastruktur_nama }}</td>
                                         <td>{{ \Carbon\Carbon::parse($laporan->tgl_laporan)->format('d-m-Y') }}</td>
-                                        <td>{{ $laporan->alamat_laporan }}</td>
+                                        <td>{{ $laporan->alamat_laporan}}</td>
                                         <td class="text-center">
                                              @if ($laporan->status->status_id == 1)
                                              <a href="#" class="btn btn-sm btn-primary btn-icon-split">
@@ -125,13 +126,13 @@
                                         </td>
                                         <td class="text-center">
                                              <form action="{{ url('laporan/detail', $laporan->laporan_id) }}" method="POST">
-                                             <a class="btn btn-info btn-sm mb-2"
+                                             <a class="btn btn-info btn-sm btn-icon-split mb-2"
                                                   href="{{ url('admin/detail', $laporan->laporan_id) }}">
-                                                  Detail
+                                                  <span class="icon text-white-50">
+                                                       <i class="fas fa-info-circle"></i>
+                                                  </span>
+                                                  <span class="text">Detail</span>
                                              </a>
-                                             {{-- @csrf
-                                             @method('DELETE')
-                                             <button type="submit" class="btn btn-danger btn-sm mb-2" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button> --}}
                                              </form>
                                         </td>
                                    </tr>

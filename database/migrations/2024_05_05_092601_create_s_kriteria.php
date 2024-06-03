@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('kriteria_nama', 100);
             $table->float('kriteria_bobot');
             $table->string('kriteria_attribut');
+            $table->integer('jumlah_deskripsi')->nullable();
             $table->timestamps();
         });
     }

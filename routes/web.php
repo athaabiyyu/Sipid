@@ -17,9 +17,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\warga\TrenPelaporanController;
 use Illuminate\Support\Facades\Route;
 
+// Auth
 Route::get('/', [LoginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/', [LoginController::class, 'authenticate']);
-Route::get('/logout', [LoginController::class, 'logout']);
+Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/registration', [RegisterController::class, 'index'])->middleware('guest');
+Route::post('/registration', [RegisterController::class, 'store']);
 
 // Hak Akses
 Route::get('/hak_akses', function () {
@@ -28,7 +31,7 @@ Route::get('/hak_akses', function () {
 
 // Route Admin
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'cekLevel:1']], function () {
-     Route::get('/', [LaporanController::class, 'indexAdmin']);
+     Route::get('/', [LaporanController::class, 'indexAdmin'])->name('admin');
      Route::get('/rekap_laporan', [LaporanController::class, 'rekaplaporan'])->name('admin.rekap_laporan');
      Route::post('/ubah_status/{id}', [LaporanController::class, 'editStatus'])->name('admin.ubah_status');
      Route::get('/detail/{id}', [LaporanController::class, 'detailAdmin'])->name('admin.detail');
@@ -58,20 +61,26 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'cekLevel:1']], func
           'destroy' => 'admin.status_laporan.destroy',
      ]);
 
-     Route::resource('kriteria', KriteriaController::class)->names([
-          'index' => 'admin.kriteria.index',
-          'edit' => 'admin.kriteria.edit',
-          'update' => 'admin.kriteria.update',
-     ]);
-
      // Profile
      Route::get('/profile', [ProfileController::class, 'profileAdmin'])->name('admin.profile');
      Route::post('/edit_profile', [ProfileController::class, 'editProfileAdmin'])->name('admin.edit_profile');
      Route::get('/sandi', [ProfileController::class, 'sandiAdmin'])->name('admin.sandi');
      Route::post('/edit_sandi', [ProfileController::class, 'editSandiAdmin'])->name('admin.edit_sandi');
-     // End Profile
 
-     
+     // Kriteria
+     Route::resource('kriteria', KriteriaController::class)->except(['show'])->names([
+          'index' => 'admin.kriteria.index',
+          'create' => 'admin.kriteria.create',
+          'store' => 'admin.kriteria.store',
+          'edit' => 'admin.kriteria.edit',
+          'update' => 'admin.kriteria.update',
+          'destroy' => 'admin.kriteria.destroy',
+     ]);
+     Route::get('kriteria/keterangan_penilaian/{id}', [KriteriaController::class, 'keterangan_penilaian'])->name('admin.kriteria.keterangan_penilaian');
+     Route::post('kriteria/simpan_keterangan_penilaian/{id}', [KriteriaController::class, 'simpan_keterangan_penilaian'])->name('admin.kriteria.simpan_keterangan_penilaian');
+
+     // End Kriteria
+
      Route::post('/alternatif/updateNilai/{id}', [AlternatifController::class, 'updateNilai'])->name('admin.alternatif.updateNilai');
      Route::post('/admin/alternatif/updateAllStatus', [AlternatifController::class, 'updateAllStatus'])->name('admin.alternatif.updateAllStatus');
 
@@ -86,7 +95,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'cekLevel:1']], func
 
      Route::get('/{status_id?}', [LaporanController::class, 'rekaplaporan'])->name('laporan.indexAdmin');
 });
-// End Route Admin
 
 // Route RW
 Route::group(['prefix' => 'rw', 'middleware' => ['auth', 'cekLevel:2']], function () {
@@ -106,11 +114,10 @@ Route::group(['prefix' => 'rw', 'middleware' => ['auth', 'cekLevel:2']], functio
      Route::post('/edit_sandi', [ProfileController::class, 'editSandiRw'])->name('rw.edit_sandi');
      // End Profile
 });
-// End Route RW
 
 // Route Warga
 Route::group(['prefix' => 'laporan', 'middleware' => ['auth', 'cekLevel:3']], function () {
-     Route::get('/', [LaporanController::class, 'index']);
+     Route::get('/', [LaporanController::class, 'index'])->name('laporan.riwayat');
      Route::get('/dashboard', [LaporanController::class, 'dashboard'])->name('laporan.dashboard');
      Route::get('/tambah', [LaporanController::class, 'create']);
      Route::get('/tren', [TrenPelaporanController::class, 'testes']);

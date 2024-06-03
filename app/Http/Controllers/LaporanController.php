@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use App\Models\UserModel;
 use App\Models\MatrikModel;
 use App\Models\LaporanModel;
@@ -24,6 +25,7 @@ class LaporanController extends Controller
     /*** Display a listing of the resource */
     // index WARGA
 
+    // view dashboard
     public function dashboard() {
         // Hitung total laporan dengan status_id = 1 
         $totalLaporanTerkirim = LaporanModel::where('user_id', auth()->user()->user_id)
@@ -57,6 +59,7 @@ class LaporanController extends Controller
         ]);   
     }
 
+    // view riwayat laporan
     public function index() {
         // Ambil data laporan yang terkait dengan pengguna yang login
         $dataLaporan = LaporanModel::where('user_id', auth()->user()->user_id)->get();
@@ -73,6 +76,7 @@ class LaporanController extends Controller
         ]);
     }
 
+    // view buat laporan
     public function create() {
         $infrastrukturData = InfrastrukturModel::all();
 
@@ -83,12 +87,53 @@ class LaporanController extends Controller
         ]);
     }
 
-    public function store(Request $request) {
+    // proses store laporan
+    // public function store(Request $request) {
 
+    //     $validatedData = $request->validate([
+    //         'infrastruktur_id' => 'required',
+    //         'alamat_laporan' => 'required',
+    //         'bukti_laporan' => 'required|image|file|max:1024',
+    //         'deskripsi_laporan' => 'required|max:255',
+    //     ], [
+    //         'infrastruktur_id.required' => 'Kolom nama infrastruktur diperlukan.',
+    //         'alamat_laporan.required' => 'Kolom lokasi laporan diperlukan.',
+    //         'bukti_laporan.required' => 'Kolom bukti laporan diperlukan.',
+    //         'bukti_laporan.image' => 'Kolom bukti laporan harus berupa gambar.',
+    //         'bukti_laporan.file' => 'Kolom bukti laporan harus berupa file.',
+    //         'bukti_laporan.max' => 'Ukuran file bukti laporan tidak boleh lebih dari 1024 kilobit.',
+    //         'deskripsi_laporan.required' => 'Kolom deskripsi laporan diperlukan.',
+    //         'deskripsi_laporan.max' => 'Deskripsi laporan tidak boleh lebih dari 255 karakter.',
+    //     ]);
+
+    //     // simpan bukti laporan di storage lokal
+    //     if ($request->file('bukti_laporan')) {
+    //         $validatedData['bukti_laporan'] = $request->file('bukti_laporan')->store('img-bukti_laporan');
+    //     }
+
+    //     // set nilai default tanggal secara otomatis ketika laporan dibuat
+    //     $validatedData['tgl_laporan'] = Carbon::now();
+    //     // set nilai default status secara otomatis ketika laporan dibuat
+    //     $validatedData['status_id'] = 1;
+    //     // set nilai default id user secara otomatis ektika laporan dibuat
+    //     $validatedData['user_id'] = auth()->user()->user_id;
+
+    //     // Tambahkan data laporan
+    //     $laporan = LaporanModel::create($validatedData);
+
+    //     // Setelah menyimpan laporan, buat entri matrik yang terkait
+    //     $matrik = new MatrikModel();
+    //     $matrik->laporan_id = $laporan->laporan_id; // Gunakan laporan_id yang baru dibuat
+    //     $matrik->kriteria_id = null; // Set kriteria_id to null by default
+    //     $matrik->save(); // Menyimpan matrik dengan laporan_id yang terkait
+
+    //     return redirect('/laporan')->with('success', 'Laporan Berhasil di Kirimkan');
+    // }
+    public function store(Request $request) {
         $validatedData = $request->validate([
             'infrastruktur_id' => 'required',
             'alamat_laporan' => 'required',
-            'bukti_laporan' => 'required|image|file|max:1024',
+            'bukti_laporan.*' => 'required|image|file|max:1024',
             'deskripsi_laporan' => 'required|max:255',
         ], [
             'infrastruktur_id.required' => 'Kolom nama infrastruktur diperlukan.',
@@ -100,32 +145,36 @@ class LaporanController extends Controller
             'deskripsi_laporan.required' => 'Kolom deskripsi laporan diperlukan.',
             'deskripsi_laporan.max' => 'Deskripsi laporan tidak boleh lebih dari 255 karakter.',
         ]);
-
-        // simpan bukti laporan di storage lokal
-        if ($request->file('bukti_laporan')) {
-            $validatedData['bukti_laporan'] = $request->file('bukti_laporan')->store('img-bukti_laporan');
+    
+        $laporan = new LaporanModel();
+        $laporan->infrastruktur_id = $validatedData['infrastruktur_id'];
+        $laporan->alamat_laporan = $validatedData['alamat_laporan'];
+        $laporan->deskripsi_laporan = $validatedData['deskripsi_laporan'];
+        $laporan->tgl_laporan = Carbon::now();
+        $laporan->status_id = 1;
+        $laporan->user_id = auth()->user()->user_id;
+        $laporan->save();
+    
+        // Handle multiple file uploads
+        if ($request->hasFile('bukti_laporan')) {
+            foreach ($request->file('bukti_laporan') as $file) {
+                $path = $file->store('img-bukti_laporan');
+                $laporan->buktiLaporan()->create(['file_path' => $path]);
+            }
         }
-
-        // set nilai default tanggal secara otomatis ketika laporan dibuat
-        $validatedData['tgl_laporan'] = Carbon::now();
-        // set nilai default status secara otomatis ketika laporan dibuat
-        $validatedData['status_id'] = 1;
-        // set nilai default id user secara otomatis ektika laporan dibuat
-        $validatedData['user_id'] = auth()->user()->user_id;
-
-        // Tambahkan data laporan
-        $laporan = LaporanModel::create($validatedData);
-
-        // Setelah menyimpan laporan, buat entri matrik yang terkait
+    
+        // Create related entry in MatrikModel
         $matrik = new MatrikModel();
-        $matrik->laporan_id = $laporan->laporan_id; // Gunakan laporan_id yang baru dibuat
+        $matrik->laporan_id = $laporan->laporan_id;
         $matrik->kriteria_id = null; // Set kriteria_id to null by default
-        $matrik->save(); // Menyimpan matrik dengan laporan_id yang terkait
-
+        $matrik->save();
+    
         return redirect('/laporan')->with('success', 'Laporan Berhasil di Kirimkan');
     }
+    
 
-    // hapus laporan apabila status masih terkirim
+    // proses hapus laporan 
+    // apabila status masih terkirim
     public function hapusLaporan($id) {
         // Hapus terlebih dahulu baris-baris yang terkait dari tabel s_matrik
         MatrikModel::where('laporan_id', $id)->delete();
@@ -136,8 +185,7 @@ class LaporanController extends Controller
         // Periksa apakah status laporan masih terkirim
     }
     
-
-    // detail laporan pada warga
+    // view detail laporan pada warga
     public function detail($id)
     {
         $detailLaporan = LaporanModel::find($id);
@@ -148,9 +196,8 @@ class LaporanController extends Controller
         ]);
     }
 
-    // edit laporan pada warga
-    public function editLaporan(string $id)
-    {
+    // view edit laporan pada warga
+    public function editLaporan(string $id) {
         $dataLaporan = LaporanModel::find($id);
         $infrastrukturData = InfrastrukturModel::all();
 
@@ -164,9 +211,8 @@ class LaporanController extends Controller
         ]);
     }
 
-    // update laporan
-    public function updateLaporan(Request $request, $id)
-    {
+    // proses update laporan yang di edit
+    public function updateLaporan(Request $request, $id) {
         $detailLaporan = LaporanModel::findOrFail($id);
 
         $request->validate([
@@ -207,6 +253,12 @@ class LaporanController extends Controller
                 'breadcrumb' => 'Halaman Detail Laporan'
             ]);
     }
+
+
+
+
+
+
 
     // index Admin
     public function indexAdmin()

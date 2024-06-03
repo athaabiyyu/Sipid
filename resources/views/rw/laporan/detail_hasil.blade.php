@@ -25,10 +25,10 @@
                          <span class="d-inline-block">:</span>
                     </div>
                     <div class="col-md-9 col-sm-8">
-                         <small>{{ $detailLaporan->laporan_id }}</small>
+                         <h6>{{ $detailLaporan->laporan_id }}</h6>
                     </div>
                </div>
-               <hr>
+               <hr class="border-2">
                <div class="row">
                     <div class="col-md-2 col-sm-3">
                          <h6 class="d-inline-block mb-0">Nama Pelapor</h6>
@@ -37,10 +37,10 @@
                          <span class="d-inline-block">:</span>
                     </div>
                     <div class="col-md-9 col-sm-8">
-                         <small>{{ $detailLaporan->user->user_nama }}</small>
+                         <h6>{{ $detailLaporan->user->user_nama }}</h6>
                     </div>
                </div>
-               <hr>
+               <hr class="border-2">
                <div class="row">
                     <div class="col-md-2 col-sm-3">
                          <h6 class="d-inline-block mb-0">Nama Infrastruktur</h6>
@@ -49,10 +49,10 @@
                          <span class="d-inline-block">:</span>
                     </div>
                     <div class="col-md-9 col-sm-8">
-                         <small>{{ $detailLaporan->infrastruktur->infrastruktur_nama }}</small>
+                         <h6>{{ $detailLaporan->infrastruktur->infrastruktur_nama }}</h6>
                     </div>
                </div>
-               <hr>
+               <hr class="border-2">
                <div class="row">
                     <div class="col-md-2 col-sm-3">
                          <h6 class="d-inline-block mb-0">Tanggal Laporan</h6>
@@ -61,23 +61,45 @@
                          <span class="d-inline-block">:</span>
                     </div>
                     <div class="col-md-9 col-sm-8">
-                         <small>{{ \Carbon\Carbon::parse($detailLaporan->tgl_laporan)->format('d-m-Y') }}</small>
+                         <h6>{{ \Carbon\Carbon::parse($detailLaporan->tgl_laporan)->format('d-m-Y') }}</h6>
                     </div>
                </div>
-               <hr>
+
+               <!-- Detail Bukti Laporan-->
+               <hr class="border-2">
                <div class="row">
-                    <div class="col-md-2 col-sm-3">
-                         <h6 class="d-inline-block mb-0">Bukti Laporan</h6>
-                    </div>
-                    <div class="col-md-1 col-sm-1">
-                         <span class="d-inline-block">:</span>
-                    </div>
-                    <div class="col-md-9 col-sm-8">
-                         <img src="{{ asset('storage/' . $detailLaporan->bukti_laporan) }}" alt="Bukti Laporan"
-                         class="img-fluid rounded" style="width: 200px; height: auto;">
+               <div class="col-md-2 col-sm-3">
+                    <h6 class="d-inline-block mb-0">Bukti Laporan</h6>
+               </div>
+               <div class="col-md-1 col-sm-1">
+                    <span class="d-inline-block">:</span>
+               </div>
+               <div class="col-md-9 col-sm-8">
+                    @foreach ($detailLaporan->buktiLaporan as $bukti)
+                    <img src="{{ asset('storage/' . $bukti->file_path) }}" alt="Bukti Laporan"
+                         class="img-fluid rounded mb-2 report-image"
+                         data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-src="{{ asset('storage/' . $bukti->file_path) }}">
+                    @endforeach
+               </div>
+               </div>
+               <!-- Modal untuk zoom bukti -->
+               <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                         <div class="modal-header">
+                              <h5 class="modal-title" id="imageModalLabel">Bukti Laporan</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                         </div>
+                         <div class="modal-body text-center">
+                              <img id="modalImage" src="" alt="Bukti Laporan" class="img-fluid rounded">
+                         </div>
                     </div>
                </div>
-               <hr>
+               </div>
+               <!-- End Modal untuk zoom bukti -->
+               <!-- End Detail Bukti Laporan-->
+               
+               <hr class="border-2">
                <div class="row mb-4">
                     <div class="col-md-2 col-sm-3">
                          <h6 class="d-inline-block mb-0">Deskripsi Laporan</h6>
@@ -86,7 +108,7 @@
                          <span class="d-inline-block">:</span>
                     </div>
                     <div class="col-md-9 col-sm-8">
-                         <small>{{ $detailLaporan->deskripsi_laporan }}</small>
+                         <h6>{{ $detailLaporan->deskripsi_laporan }}</h6>
                     </div>
                </div>
                <div class="row">
@@ -97,10 +119,10 @@
                          <span class="d-inline-block">:</span>
                     </div>
                     <div class="col-md-9 col-sm-8">
-                         <small>{{ $detailLaporan->alamat_laporan }}</small>
+                         <h6>{{ $detailLaporan->alamat_laporan }}</h6>
                     </div>
                </div>
-               <hr>
+               <hr class="border-2">
                <div class="row">
                     <div class="col-md-2 col-sm-3">
                          <h6 class="d-inline-block mb-0">Status Laporan</h6>
@@ -109,7 +131,7 @@
                          <span class="d-inline-block">:</span>
                     </div>
                     <div class="col-md-9 col-sm-8">
-                         <small>
+                         <h6>
                               @if ($detailLaporan->status->status_id == 1)
                                    <a href="#" class="btn btn-sm btn-primary btn-icon-split">
                                         <span class="icon text-white-50">
@@ -181,10 +203,10 @@
                                         <span class="text">{{ $detailLaporan->status->status_nama }}</span>
                                    </a>
                               @endif
-                         </small>
+                         </h6>
                     </div>
                </div>
-               <hr>
+               <hr class="border-2">
                <div class="row">
                     <div class="col-md-2 col-sm-3">
                          <h6 class="d-inline-block mb-0">Detail Penilaian</h6>
@@ -193,7 +215,7 @@
                          <span class="d-inline-block">:</span>
                     </div>
                     <div class="col-md-9 col-sm-8">
-                         <small>
+                         <h6>
                               <div class="table-responsive">
                                    <table class="table table-bordered" width="100%" cellspacing="0">
                                         <thead>
@@ -208,10 +230,10 @@
                                         </tbody>
                                    </table>
                               </div>
-                         </small>
+                         </h6>
                     </div>
                </div>
-               <hr>
+               <hr class="border-2">
                <div class="row">
                     <div class="col-md-2 col-sm-3">
                          <h6 class="d-inline-block mb-0">Ubah Status</h6>
@@ -262,9 +284,32 @@
                          </form>
                     </div>
                </div>
-               <hr>
-               <a class="btn btn-sm btn-success ml-auto" href="{{ url('rw/hasil_laporan') }}">Kembali</a>
+               <hr class="border-2">
+               <a class="btn btn-sm btn-secondary ml-auto" href="{{ url('rw/hasil_laporan') }}">Kembali</a>
           </div>
      </div>
+
+     <style>
+          .report-image {
+              width: 200px;
+              height: 150px;
+              object-fit: cover;
+              cursor: pointer;
+          }
+     </style>
+
+     <script>
+          // JS Modal Bukti Pelaporan
+          document.addEventListener('DOMContentLoaded', function () {
+          var imageModal = document.getElementById('imageModal');
+          var modalImage = document.getElementById('modalImage');
+     
+          imageModal.addEventListener('show.bs.modal', function (event) {
+               var button = event.relatedTarget;
+               var src = button.getAttribute('data-bs-src');
+               modalImage.src = src;
+          });
+          });
+     </script>
 @endsection
 

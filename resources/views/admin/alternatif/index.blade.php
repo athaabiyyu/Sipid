@@ -46,130 +46,42 @@
             aria-expanded="true" aria-controls="collapseCardTable" style="color: white">
             <h6 class="m-0 font-weight-bold text-light">Keterangan Penilaian Kriteria </h6>
         </a>
-
+        
         <div class="collapse" id="collapseCardTable">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-12">
-                        <h6 class="m-0 font-weight-bold mb-2 text-center">Kriteria Tingkat Keparahan (C1)</h6>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped" id="dataTable1" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr class="text-center">
-                                        <th>Level Keparahan</th>
-                                        <th>Deskripsi</th>
-                                        <th>Skor</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($dataPenilaian as $penilaian)
-                                        @if($penilaian->kriteria_id == 1)
+                    @foreach ($dataPenilaian->groupBy('kriteria_id') as $kriteriaId => $penilaians)
+                        @php
+                            $kriteriaName = $kriteriaNames[$kriteriaId] ?? 'Kriteria Lain';
+                        @endphp
+                        <div class="col-md-12">
+                            <h6 class="m-0 font-weight-bold mb-2 mt-4 text-center">Kriteria {{ $kriteriaName }} (C{{ $loop->iteration }})</h6>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped" id="dataTable{{ $kriteriaId }}" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>Level</th>
+                                            <th>Deskripsi</th>
+                                            <th>Skor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($penilaians as $penilaian)
                                             <tr>
-                                                <td>{{ $penilaian->level_keparahan }}</td>
+                                                <td class="text-center">{{ $penilaian->level_keparahan }}</td>
                                                 <td>{{ $penilaian->deskripsi_penilaian_kriteria }}</td>
                                                 <td class="text-center">{{ $penilaian->skor_penilaian_kriteria }}</td>
                                             </tr>
-                                        @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <h6 class="m-0 font-weight-bold mt-4 mb-2 text-center">Kriteria Biaya Perbaikan (C2)</h6>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped" id="dataTable2" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr class="text-center">
-                                        <th>Deskripsi</th>
-                                        <th>Skor</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($dataPenilaian as $penilaian)
-                                        @if($penilaian->kriteria_id == 2)
-                                            <tr>
-                                                <td>{{ $penilaian->deskripsi_penilaian_kriteria }}</td>
-                                                <td class="text-center">{{ $penilaian->skor_penilaian_kriteria }}</td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <h6 class="m-0 font-weight-bold mt-4 mb-2 text-center">Kriteria Banyak Laporan (C3)</h6>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped" id="dataTable3" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr class="text-center">
-                                        <th>Deskripsi</th>
-                                        <th>Skor</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($dataPenilaian as $penilaian)
-                                        @if($penilaian->kriteria_id == 3)
-                                            <tr>
-                                                <td>{{ $penilaian->deskripsi_penilaian_kriteria }}</td>
-                                                <td class="text-center">{{ $penilaian->skor_penilaian_kriteria }}</td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <h6 class="m-0 font-weight-bold mt-4 mb-2 text-center">Kriteria Waktu Perbaikan (C4)</h6>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped" id="dataTable3" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr class="text-center">
-                                        <th>Deskripsi</th>
-                                        <th>Skor</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($dataPenilaian as $penilaian)
-                                        @if($penilaian->kriteria_id == 4)
-                                            <tr>
-                                                <td>{{ $penilaian->deskripsi_penilaian_kriteria }}</td>
-                                                <td class="text-center">{{ $penilaian->skor_penilaian_kriteria }}</td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <h6 class="m-0 font-weight-bold mt-4 mb-2 text-center">Kriteria Dampak Sosial (C5)</h6>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped" id="dataTable4" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr class="text-center">
-                                        <th>Deskripsi</th>
-                                        <th>Skor</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($dataPenilaian as $penilaian)
-                                        @if($penilaian->kriteria_id == 5)
-                                            <tr>
-                                                <td>{{ $penilaian->deskripsi_penilaian_kriteria }}</td>
-                                                <td class="text-center">{{ $penilaian->skor_penilaian_kriteria }}</td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
+        
     </div>
     <!-- End Tabel Penilaian Kriteria -->
 
@@ -177,6 +89,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between align-items-center bg-primary">
             <h6 class="m-0 font-weight-bold text-white">Tabel Alternatif</h6>
+            <a class="btn btn-sm btn-success ml-auto" href="{{ route('admin.kriteria.index') }}">Kembali</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -206,6 +119,7 @@
                                     </td>
                                 </tr>                    
 
+                                <!-- Modal Isi Nilai -->
                                 <div class="modal fade" id="inlineForm{{ $alternatif->laporan_id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
@@ -223,21 +137,26 @@
                                                         <input type="hidden" name="laporan_id" value="{{ $alternatif->laporan_id }}">
                                                     </div>
                                                     @foreach ($dataKriteria as $index => $kriteria)
-                                                        @php
-                                                            $matrik = $alternatif->matrik->where('kriteria_id', $kriteria->kriteria_id)->first();
-                                                            $nilai = $matrik ? $matrik->matrik_nilai : '';
-                                                        @endphp
                                                         <label>{{ $kriteria->kriteria_nama }}:</label>
                                                         <div class="form-group">
                                                             <input type="hidden" name="kriteria_id[]" value="{{ $kriteria->kriteria_id }}">
-                                                            <input type="number" name="matrik_nilai[]" value="{{ old('matrik_nilai.' . $index, $nilai) }}" placeholder="Nilai..." class="form-control" required>
+                                                            <select name="matrik_nilai[]" class="form-control" required>
+                                                                <option value="">Pilih Nilai...</option>
+                                                                @php
+                                                                    // Ambil data penilaian sesuai dengan kriteria saat ini
+                                                                    $penilaianKriteria = $dataPenilaian->where('kriteria_id', $kriteria->kriteria_id);
+                                                                @endphp
+                                                                @foreach ($penilaianKriteria as $penilaian)
+                                                                    <option value="{{ $penilaian->skor_penilaian_kriteria }}">{{ $penilaian->level_keparahan }}</option>
+                                                                @endforeach
+                                                            </select>
                                                             @if($errors->has('matrik_nilai.' . $index))
                                                                 <div class="text-danger">
                                                                     {{ $errors->first('matrik_nilai.' . $index) }}
                                                                 </div>
                                                             @endif
                                                         </div>
-                                                    @endforeach
+                                                    @endforeach 
                                                 </div>
                                                 <div class="modal-footer">
                                                     <div class="d-flex justify-content-start">
@@ -247,11 +166,11 @@
                                                         <button type="submit" name="submit" class="btn btn-sm btn-primary ms-auto">Simpan</button>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </form>                                                   
                                         </div>
                                     </div>
                                 </div>
-                                <!-- End Modal Isi Nilai -->
+                                 <!-- End Modal Isi Nilai -->
                             @endif
                         @endforeach
                     </tbody>
@@ -265,6 +184,7 @@
     <div id="matrikTable" class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between align-items-center bg-primary">
             <h6 class="m-0 font-weight-bold text-light">Matrik Keputusan (X)</h6>
+            <a class="btn btn-sm btn-success ml-auto" href="{{ route('admin.kriteria.index') }}">Kembali</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -307,10 +227,9 @@
                                     </button>
                                 </td>
                             </tr>
-
+                            
                             <!-- Modal Edit Nilai -->
-                            <div class="modal fade" id="editForm{{ $laporan_id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33"
-                                aria-hidden="true">
+                            <div class="modal fade" id="editForm{{ $laporan_id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -329,11 +248,18 @@
                                                     @php
                                                         $matrik = $matrikGroup->firstWhere('kriteria_id', $kriteria->kriteria_id);
                                                         $nilai = $matrik ? $matrik->matrik_nilai : '';
+                                                        // Ambil data penilaian sesuai dengan kriteria saat ini
+                                                        $penilaianKriteria = $dataPenilaian->where('kriteria_id', $kriteria->kriteria_id);
                                                     @endphp
                                                     <label>{{ $kriteria->kriteria_nama }}:</label>
                                                     <div class="form-group">
                                                         <input type="hidden" name="kriteria_id[]" value="{{ $kriteria->kriteria_id }}">
-                                                        <input type="number" name="matrik_nilai[]" value="{{ old('matrik_nilai.' . $index, $nilai) }}" placeholder="Nilai..." class="form-control" required>
+                                                        <select name="matrik_nilai[]" class="form-control" required>
+                                                            <option value="">Pilih Nilai...</option>
+                                                            @foreach ($penilaianKriteria as $penilaian)
+                                                                <option value="{{ $penilaian->skor_penilaian_kriteria }}" @if($nilai == $penilaian->skor_penilaian_kriteria) selected @endif>{{ $penilaian->level_keparahan }}</option>
+                                                            @endforeach
+                                                        </select>
                                                         @if($errors->has('matrik_nilai.' . $index))
                                                             <div class="text-danger">
                                                                 {{ $errors->first('matrik_nilai.' . $index) }}
@@ -355,6 +281,7 @@
                                 </div>
                             </div>
                             <!-- End Modal Edit Nilai -->
+
                         @endforeach
                     </tbody>
                 </table>
@@ -367,6 +294,7 @@
     <div id="utilityTable" class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between align-items-center bg-primary">
             <h6 class="m-0 font-weight-bold text-light">Nilai Utility dan Nilai Keseluruhan Utility</h6>
+            <a class="btn btn-sm btn-success ml-auto" href="{{ route('admin.kriteria.index') }}">Kembali</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -422,9 +350,9 @@
                                         $weightedUtility = $utility * $kriteria->kriteria_bobot;
                                         $totalUtility += $weightedUtility;
                                     @endphp
-                                    <td>{{ $utility }}</td>
+                                    <td>{{ number_format($utility / 100, 3, '.', ',') }}</td>
                                 @endforeach
-                                <td>{{ $totalUtility }}</td>
+                                <td>{{ number_format($totalUtility / 100, 3, '.', ',') }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -440,7 +368,7 @@
             <h6 class="m-0 font-weight-bold text-light">Hasil Keputusan</h6>
             <form action="{{ route('admin.alternatif.updateAllStatus') }}" method="POST" style="display:inline;">
                 @csrf
-                <button type="submit" class="btn btn-success btn-sm">Kirim ke RW </button>
+                <button type="submit" class="btn btn-warning btn-sm">Kirim ke RW </button>
             </form>
         </div>
         <div class="card-body">
@@ -511,7 +439,7 @@
                             <tr>
                                 <td>{{ $data['alternatif'] }}</td>
                                 <td>{{ $data['lokasi'] }}</td>
-                                <td>{{ $data['totalUtility'] }}</td>
+                                <td>{{ number_format($data['totalUtility'] / 100, 3, ',', '.') }}</td>
                                 <td>{{ $ranking }}</td>
                             </tr>
                             @php

@@ -33,6 +33,10 @@ class LaporanModel extends Model
     public function matrik():HasMany {
         return $this->hasMany(MatrikModel::class, 'laporan_id', 'laporan_id');
     }
+    public function buktiLaporan() {
+        return $this->hasMany(BuktiLaporan::class, 'laporan_id', 'laporan_id');
+    }
+
 
     public static function boot()
     {

@@ -28,27 +28,17 @@
      </li>
      <!-- End Manage Laporan -->
 
-     <!-- Divider -->
+     <!-- Pengambilan Keputusan -->
      <hr class="sidebar-divider">
      <div class="sidebar-heading">
-          Perhitungan
+          Perhitungan SPK
      </div>
      <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-              aria-expanded="true" aria-controls="collapseUtilities">
+          <a class="nav-link" href="{{ url('admin/kriteria') }}">
               <i class="fas fa-fw fa-calculator"></i>
-              <span>Pengambilan Keputusan</span>
-          </a>
-          <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-              data-parent="#accordionSidebar">
-               <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Tabel SPK :</h6>
-                    <a class="collapse-item" href="{{ url('admin/kriteria') }}">Kriteria</a>
-                    <a class="collapse-item" href="{{ url('admin/alternatif') }}">Alternatif</a>
-                    <a class="collapse-item" href="{{ url('admin/alternatif') }}#hasil-keputusan">Hasil</a>
-               </div>
-          </div>
+              <span>Pengambilan Keputusan</span></a>
      </li>
+     <!-- End Pengambilan Keputusan -->
 
      <!-- Manage Data -->
      <hr class="sidebar-divider">
@@ -95,11 +85,35 @@
      <hr class="sidebar-divider">
 
      <!-- Nav Item - Keluar -->
+     <!-- Nav Item - Keluar -->
      <li class="nav-item">
-          <a class="nav-link" href="{{url('logout')}}">
-          <i class="fas fa-fw fa-sign-out-alt"></i>
-          <span>Keluar</span></a>
+          <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+              <i class="fas fa-fw fa-sign-out-alt"></i>
+              <span>Keluar</span>
+          </a>
      </li>
+     <!-- Logout Modal-->
+     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                    <div class="modal-header">
+                         <h5 class="modal-title" id="exampleModalLabel">Keluarkan Akun?</h5>
+                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">×</span>
+                         </button>
+                    </div>
+                    <div class="modal-body">Pilih "Logout" apabila ingin mengeluarkan akun anda</div>
+                    <div class="modal-footer">
+                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                         <form action="/logout" method="post">
+                              @csrf
+                             <button type="submit" class="btn btn-danger">Logout</button>
+                         </form>
+                    </div>
+               </div>
+          </div>
+     </div> 
 
      <!-- Divider -->
      <hr class="sidebar-divider d-none d-md-block">

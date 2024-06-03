@@ -140,12 +140,10 @@
                          <div class="mt-5 mb-2">
                               <div class="row">
                                    <div class="col text-left">
-                                        <a class="btn btn-sm btn-success ml-auto" href="{{ url('/admin') }}">Kembali</a>
+                                       <a class="btn btn-sm btn-secondary mr-2" href="{{ url('/admin') }}">Kembali</a>
+                                       <button class="btn btn-sm btn-primary profile-button" type="submit">Simpan</button>
                                    </div>
-                                   <div class="col text-right">
-                                        <button class="btn btn-primary btn-sm profile-button" type="submit">Simpan</button>
-                                   </div>
-                              </div>
+                              </div> 
                          </div>
                          </form>
                     </div>

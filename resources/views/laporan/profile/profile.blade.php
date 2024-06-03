@@ -19,7 +19,7 @@
           <!-- Card Profile -->
           <div class="col-md-4">
                <div class="card mb-4 py-3 border-bottom-primary">
-                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-2">
                          <h6 class="m-0 font-weight-bold text-primary text-center">Profile</h6>
                          <div class="mt-4" style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden;">
                          @if ($dataUser->user_foto)
@@ -82,7 +82,7 @@
 
           <div class="col-md-8">
                <div class="card mb-4 py-3 border-bottom-primary">
-                    <div class="p-3 py-5">
+                    <div class="p-3 py-2">
                          <form action="{{ route('laporan.edit_profile') }}" method="POST" enctype="multipart/form-data">
                          @csrf
                          <h6 class="m-0 font-weight-bold text-primary text-right flex-grow-1">Edit Profile</h6>
@@ -125,13 +125,9 @@
                               </div>
                          </div>
                          <div class="mt-5">
-                              <div class="row">
-                                   <div class="col text-left">
-                                        <a class="btn btn-sm btn-success ml-auto" href="{{ url('laporan') }}">Kembali</a>
-                                   </div>
-                                   <div class="col text-right">
-                                        <button class="btn btn-primary btn-sm profile-button" type="submit">Simpan</button>
-                                   </div>
+                              <div class="d-flex justify-content-start">
+                                  <a class="btn btn-sm btn-secondary me-2" href="{{ route('laporan.dashboard') }}">Kembali</a>
+                                  <button class="btn btn-sm btn-primary profile-button" type="submit">Simpan</button>
                               </div>
                          </div>
                          </form>

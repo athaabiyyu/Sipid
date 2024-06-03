@@ -41,8 +41,9 @@
                     </div>
                     <div class="row mt-3">
                          <div class="col">
-                         <button class="btn btn-primary btn-sm profile-button" type="submit">Simpan</button>
-                         </div>
+                              <a class="btn btn-sm btn-secondary me-2" href="{{ route('laporan.dashboard') }}">Kembali</a>
+                              <button class="btn btn-sm btn-primary profile-button" type="submit">Simpan</button>
+                         </div>        
                     </div>
                </div>
           </form>

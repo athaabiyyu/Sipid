@@ -92,7 +92,7 @@
                                    <tr>
                                    <td>{{ $data['alternatif'] }}</td>
                                    <td>{{ $data['lokasi'] }}</td>
-                                   <td>{{ $data['totalUtility'] }}</td>
+                                   <td>{{ number_format($data['totalUtility'] / 100, 3, ',', '.') }}</td>
                                    <td>{{ $ranking }}</td>
                                    <td class="text-center">
                                         <a class="btn btn-info btn-sm mb-2"

@@ -160,6 +160,7 @@
           <div class="topbar-divider d-none d-sm-block"></div>
 
           <!-- Nav Item - User Information -->
+<<<<<<< Updated upstream
           <!-- Nav Item - User Information -->
           <li class="nav-item dropdown no-arrow">
                <a class="nav-link" href="/laporan/profile">
@@ -174,6 +175,19 @@
                </a>
           </li>
           
+=======
+          <li class="nav-item no-arrow">
+               <a class="nav-link" href="{{ route('laporan.profile') }}" id="userProfileLink" role="button">
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->user_nama }}</span>
+                    @if(auth()->user()->user_foto)
+                         <img class="img-profile rounded-circle" width="40" height="40" style="object-fit: cover;" src="{{ asset('storage/' . auth()->user()->user_foto) }}">
+                    @else
+                         <img class="img-profile rounded-circle" width="40" height="40" style="object-fit: cover;" src="{{ asset('img/default_profile.jpg') }}">
+                    @endif
+               </a>
+          </li>
+           
+>>>>>>> Stashed changes
 
      </ul>
 

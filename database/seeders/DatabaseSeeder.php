@@ -237,30 +237,35 @@ class DatabaseSeeder extends Seeder
             'kriteria_nama' => 'Tingkat Keparahan',
             'kriteria_bobot' => 0.2,
             'kriteria_attribut' => 'Benefit',
+            'jumlah_deskripsi' => 5
         ]);
         KriteriaModel::create([
             'kriteria_kode' => 'C2',
             'kriteria_nama' => 'Biaya Perbaikan',
             'kriteria_bobot' => 0.15,
             'kriteria_attribut' => 'Cost',
+            'jumlah_deskripsi' => 5
         ]);
         KriteriaModel::create([
             'kriteria_kode' => 'C3',
             'kriteria_nama' => 'Banyak Laporan',
             'kriteria_bobot' => 0.25,
             'kriteria_attribut' => 'Benefit',
+            'jumlah_deskripsi' => 5
         ]);
         KriteriaModel::create([
             'kriteria_kode' => 'C4',
             'kriteria_nama' => 'Waktu Perbaikan',
             'kriteria_bobot' => 0.1,
             'kriteria_attribut' => 'Cost',
+            'jumlah_deskripsi' => 5
         ]);
         KriteriaModel::create([
             'kriteria_kode' => 'C5',
             'kriteria_nama' => 'Dampak Sosial',
             'kriteria_bobot' => 0.3,
             'kriteria_attribut' => 'Benefit',
+            'jumlah_deskripsi' => 5
         ]);
         // End Kriteria
 
@@ -300,109 +305,130 @@ class DatabaseSeeder extends Seeder
         // C2
         PenilaianKriteriaModel::create([
             'kriteria_id' => 2,
+            'level_keparahan' => 'Lebih dari 5jt',
             'deskripsi_penilaian_kriteria' => 'Biaya perbaikan lebih dari 5 juta',
             'skor_penilaian_kriteria' => 1,
         ]);
         PenilaianKriteriaModel::create([
             'kriteria_id' => 2,
+            'level_keparahan' => '4jt - 5jt',
             'deskripsi_penilaian_kriteria' => 'Biaya perbaikan lebih dari 4 juta, kurang dari 5 juta',
             'skor_penilaian_kriteria' => 2,
         ]);
         PenilaianKriteriaModel::create([
             'kriteria_id' => 2,
+            'level_keparahan' => '3jt - 4jt',
             'deskripsi_penilaian_kriteria' => 'Biaya perbaikan lebih dari 3 juta, kurang dari 4 juta',
             'skor_penilaian_kriteria' => 3,
         ]);
         PenilaianKriteriaModel::create([
             'kriteria_id' => 2,
+            'level_keparahan' => '2jt - 3jt',
             'deskripsi_penilaian_kriteria' => 'Biaya perbaikan lebih dari 2 juta, kurang dari 3 juta',
             'skor_penilaian_kriteria' => 4,
         ]);
         PenilaianKriteriaModel::create([
             'kriteria_id' => 2,
+            'level_keparahan' => '1jt - 2jt',
             'deskripsi_penilaian_kriteria' => 'Biaya perbaikan lebih dari 1 juta, kurang dari 2 juta',
             'skor_penilaian_kriteria' => 4,
         ]);
         PenilaianKriteriaModel::create([
             'kriteria_id' => 2,
+            'level_keparahan' => 'Kurang dari 1jt',
             'deskripsi_penilaian_kriteria' => 'Biaya perbaikan kurang dari 1 juta',
             'skor_penilaian_kriteria' => 5,
         ]);
         // C3
         PenilaianKriteriaModel::create([
             'kriteria_id' => 3,
+            'level_keparahan' => 'Kurang dari 3 laporan',
             'deskripsi_penilaian_kriteria' => 'Kurang dari 3 laporan',
             'skor_penilaian_kriteria' => 1,
         ]);
         PenilaianKriteriaModel::create([
             'kriteria_id' => 3,
+            'level_keparahan' => '4 - 6 laporan',
             'deskripsi_penilaian_kriteria' => '4 - 6 laporan',
             'skor_penilaian_kriteria' => 2,
         ]);
         PenilaianKriteriaModel::create([
             'kriteria_id' => 3,
+            'level_keparahan' => '7 - 9 laporan',
             'deskripsi_penilaian_kriteria' => '7 - 9 laporan',
             'skor_penilaian_kriteria' => 3,
         ]);
         PenilaianKriteriaModel::create([
             'kriteria_id' => 3,
+            'level_keparahan' => '10 - 12 Laporan',
             'deskripsi_penilaian_kriteria' => '10 - 12 laporan',
             'skor_penilaian_kriteria' => 4,
         ]);
         PenilaianKriteriaModel::create([
             'kriteria_id' => 3,
+            'level_keparahan' => 'Lebih dari 13 laporan',
             'deskripsi_penilaian_kriteria' => 'Lebih dari 13 laporan',
             'skor_penilaian_kriteria' => 5,
         ]);
         // C4
         PenilaianKriteriaModel::create([
             'kriteria_id' => 4,
+            'level_keparahan' => 'Durasi lebih dari 30 hari',
             'deskripsi_penilaian_kriteria' => 'Waktu perbaikan lebih dari 30 hari',
             'skor_penilaian_kriteria' => 1,
         ]);
         PenilaianKriteriaModel::create([
             'kriteria_id' => 4,
+            'level_keparahan' => 'Durasi 21 hari - 30 hari',
             'deskripsi_penilaian_kriteria' => 'Waktu perbaikan 21 - 30 hari',
             'skor_penilaian_kriteria' => 2,
         ]);
         PenilaianKriteriaModel::create([
             'kriteria_id' => 4,
+            'level_keparahan' => 'Durasi 11 hari - 20 hari',
             'deskripsi_penilaian_kriteria' => 'Waktu perbaikan 11 - 20 hari',
             'skor_penilaian_kriteria' => 3,
         ]);
         PenilaianKriteriaModel::create([
             'kriteria_id' => 4,
+            'level_keparahan' => 'Durasi 6 hari - 10 hari',
             'deskripsi_penilaian_kriteria' => 'Waktu perbaikan 6 - 10 hari',
             'skor_penilaian_kriteria' => 4,
         ]);
         PenilaianKriteriaModel::create([
             'kriteria_id' => 4,
+            'level_keparahan' => 'Durasi kurang dari 5 hari',
             'deskripsi_penilaian_kriteria' => 'Waktu perbaikan kurang dari 5 hari',
             'skor_penilaian_kriteria' => 5,
         ]);
         // C5
         PenilaianKriteriaModel::create([
             'kriteria_id' => 5,
+            'level_keparahan' => 'Dampak Minimal',
             'deskripsi_penilaian_kriteria' => 'Dampak minimal pada masyarakat, tidak ada gangguan berarti',
             'skor_penilaian_kriteria' => 1,
         ]);
         PenilaianKriteriaModel::create([
             'kriteria_id' => 5,
+            'level_keparahan' => 'Dampak Kecil',
             'deskripsi_penilaian_kriteria' => 'Dampak kecil pada masyarakat, gangguan ringan',
             'skor_penilaian_kriteria' => 2,
         ]);
         PenilaianKriteriaModel::create([
             'kriteria_id' => 5,
+            'level_keparahan' => 'Dampak Sedang',
             'deskripsi_penilaian_kriteria' => 'Dampak sedang pada masyarakat, beberapa gangguan',
             'skor_penilaian_kriteria' => 3,
         ]);
         PenilaianKriteriaModel::create([
             'kriteria_id' => 5,
+            'level_keparahan' => 'Dampak Besar',
             'deskripsi_penilaian_kriteria' => 'Dampak besar pada masyarakat, gangguan signifikan',
             'skor_penilaian_kriteria' => 4,
         ]);
         PenilaianKriteriaModel::create([
             'kriteria_id' => 5,
+            'level_keparahan' => 'Dampak Sangat Besar',
             'deskripsi_penilaian_kriteria' => 'Dampak sangat besar pada masyarakat, gangguan sangat parah',
             'skor_penilaian_kriteria' => 5,
         ]);
