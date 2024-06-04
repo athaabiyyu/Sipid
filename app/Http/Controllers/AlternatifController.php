@@ -34,6 +34,42 @@ class AlternatifController extends Controller
         ]);
     }
 
+    // public function updateNilai(Request $request, $id) {
+    //     // Validasi input
+    //     $request->validate([
+    //         'matrik_nilai.*' => 'required',
+    //         'kriteria_id.*' => 'required'
+    //     ], [
+    //         'matrik_nilai.*.required' => 'Nilai matrik harus diisi.',
+    //         'kriteria_id.*.required' => 'ID kriteria harus diisi.'
+    //     ]);
+
+    //     // Loop melalui setiap kriteria dan simpan nilai
+    //     foreach ($request->kriteria_id as $index => $kriteria_id) {
+    //         $nilai = $request->matrik_nilai[$index];
+
+    //         // Cari matrik berdasarkan laporan ID dan kriteria ID
+    //         $matrik = MatrikModel::where('laporan_id', $id)
+    //             ->where('kriteria_id', $kriteria_id)
+    //             ->first();
+
+    //         // Jika matrik sudah ada, update nilai; jika tidak, buat baru
+    //         if ($matrik) {
+    //             $matrik->matrik_nilai = $nilai;
+    //             $matrik->save();
+    //         } else {
+    //             MatrikModel::create([
+    //                 'laporan_id' => $id,
+    //                 'kriteria_id' => $kriteria_id,
+    //                 'matrik_nilai' => $nilai,
+    //             ]);
+    //         }
+    //     }
+
+    //     // Redirect atau response sesuai kebutuhan
+    //     return redirect()->route('admin.alternatif.index')->with('success', 'Nilai kriteria berhasil diperbarui')->withFragment('matrikTable');
+    // }
+
     public function updateNilai(Request $request, $id) {
         // Validasi input
         $request->validate([
@@ -43,8 +79,7 @@ class AlternatifController extends Controller
             'matrik_nilai.*.required' => 'Nilai matrik harus diisi.',
             'kriteria_id.*.required' => 'ID kriteria harus diisi.'
         ]);
-
-        // Loop melalui setiap kriteria dan simpan nilai
+    
         foreach ($request->kriteria_id as $index => $kriteria_id) {
             $nilai = $request->matrik_nilai[$index];
 
@@ -69,6 +104,10 @@ class AlternatifController extends Controller
         // Redirect atau response sesuai kebutuhan
         return redirect()->route('admin.alternatif.index')->with('success', 'Nilai kriteria berhasil diperbarui')->withFragment('matrikTable');
     }
+    
+    
+    
+    
 
     // public function updateNilai(Request $request, $id) {
     //     // Validasi input
