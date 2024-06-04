@@ -112,9 +112,12 @@
                                     <td>{{ $alternatif->infrastruktur->infrastruktur_nama }}</td>
                                     <td>{{ $alternatif->alamat_laporan }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-success btn-sm m-2" data-bs-toggle="modal"
+                                        <button type="button" class="btn btn-success btn-sm m-2 btn-icon-split" data-bs-toggle="modal"
                                             data-bs-target="#inlineForm{{ $alternatif->laporan_id }}">
-                                            Isi Nilai
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                            <span class="text">Isi Nilai</span>
                                         </button>
                                     </td>
                                 </tr>                    
@@ -221,9 +224,12 @@
                                     <td>{{ $matrik ? $matrik->matrik_nilai : '0' }}</td>
                                 @endforeach
                                 <td>
-                                    <button type="button" class="btn btn-warning btn-sm m-2" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-warning btn-sm m-2 btn-icon-split" data-bs-toggle="modal"
                                         data-bs-target="#editForm{{ $laporan_id }}">
-                                        Edit Nilai
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </span>
+                                        <span class="text">Edit Nilai</span>
                                     </button>
                                 </td>
                             </tr>
