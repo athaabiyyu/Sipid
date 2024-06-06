@@ -6,23 +6,27 @@
           <h1 class="h3 mb-0 text-gray-800">Halaman Detail Laporan</h1>
      </div>
 
+     <!--Session Sukses-->
      @if (session('success'))
           <div class="alert alert-success alert-dismissible fade show" role="alert">
                <strong>Berhasil!</strong> {{ session('success') }}.
                <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
      @endif
+     <!--End Session Sukses-->
 
+     <!--Session Erorr-->
      @if (session('error'))
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
                <strong>Upss!</strong> {{ session('error') }}.
                <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
      @endif
+     <!--End Session Erorr-->
+     
      <div class="card mb-4 py-2 border-left-primary">
           <div class="card-body">
-               <!-- Detail laporan -->
-               <!-- Omitting detail laporan code for brevity -->
+               <!--Id Laporan -->
                <div class="row">
                     <div class="col-md-2 col-sm-3">
                          <h6 class="d-inline-block mb-0">Laporan ID</h6>
@@ -34,8 +38,10 @@
                          <h6>{{ $detailLaporan->laporan_id }}</h6>
                     </div>
                </div>
+               <!--End Id Laporan -->
 
-               <hr>
+               <!--Nama pelaporan -->
+               <hr class="border-2">
                <div class="row">
                     <div class="col-md-2 col-sm-3">
                          <h6 class="d-inline-block mb-0">Nama Pelapor</h6>
@@ -47,8 +53,10 @@
                          <h6>{{ $detailLaporan->user->user_nama }}</h6>
                     </div>
                </div>
+               <!--End Nama pelaporan -->
 
-               <hr>
+               <!--Nama Infrastruktur -->
+               <hr class="border-2">
                <div class="row">
                     <div class="col-md-2 col-sm-3">
                          <h6 class="d-inline-block mb-0">Nama Infrastruktur</h6>
@@ -60,8 +68,10 @@
                          <h6>{{ $detailLaporan->infrastruktur->infrastruktur_nama }}</h6>
                     </div>
                </div>
+               <!--End Nama Infrastruktur -->
 
-               <hr>
+               <!--Tanggal Laporan -->
+               <hr class="border-2">
                <div class="row">
                     <div class="col-md-2 col-sm-3">
                          <h6 class="d-inline-block mb-0">Tanggal Laporan</h6>
@@ -73,6 +83,7 @@
                          <h6>{{ \Carbon\Carbon::parse($detailLaporan->tgl_laporan)->format('d-m-Y') }}</h6>
                     </div>
                </div>
+               <!--End Tanggal Laporan -->
 
                <!-- Detail Bukti Laporan-->
                <hr class="border-2">
@@ -112,6 +123,7 @@
                <!-- End Modal untuk zoom bukti -->
                <!-- End Detail Bukti Laporan-->
 
+               <!--Deskripsi Laporan-->
                <hr class="border-2">
                <div class="row mb-4">
                     <div class="col-md-2 col-sm-3">
@@ -124,11 +136,13 @@
                          <h6>{{ $detailLaporan->deskripsi_laporan }}</h6>
                     </div>
                </div>
+               <!--End Deskripsi Laporan-->
 
-               <hr>
+               <!--Lokasi Laporan-->
+               <hr class="border-2">
                <div class="row">
                     <div class="col-md-2 col-sm-3">
-                         <h6 class="d-inline-block mb-0">Lokasi</h6>
+                         <h6 class="d-inline-block mb-0">Lokasi Kerusakan</h6>
                     </div>
                     <div class="col-md-1 col-sm-1">
                          <span class="d-inline-block">:</span>
@@ -137,6 +151,7 @@
                          <h6>{{ $detailLaporan->alamat_laporan }}</h6>
                     </div>
                </div>
+               <!--Lokasi Laporan-->
 
                @if ($detailLaporan->status->status_id == 8)
                     <!-- Detail Bukti Realisasi-->
@@ -177,7 +192,6 @@
                     </div>
                     <!-- End Modal untuk zoom bukti -->
                     <!-- End Detail Bukti Realisasi-->
-
                @elseif ($detailLaporan->status->status_id == 9)
                     <!-- Detail Bukti Selesai-->
                     <hr class="border-2">
@@ -219,7 +233,8 @@
                     <!-- End Detail Bukti Realisasi-->
                @endif
      
-               <hr>
+               <!--Status Laporan-->
+               <hr class="border-2">
                <div class="row">
                     <div class="col-md-2 col-sm-3">
                          <h6 class="d-inline-block mb-0">Status Laporan</h6>
@@ -229,83 +244,70 @@
                     </div>
                     <div class="col-md-9 col-sm-8">
                          <h6>
-                         @if ($detailLaporan->status->status_id == 1)
+                              @if ($detailLaporan->status->status_id == 1)
                               <a href="#" class="btn btn-sm btn-primary btn-icon-split">
                                    <span class="icon text-white-50">
                                         <i class="fas fa-paper-plane"></i>
                                    </span>
                                    <span class="text">{{ $detailLaporan->status->status_nama }}</span>
                               </a>
-                         @elseif($detailLaporan->status->status_id == 2)
-                              <a href="#" class="btn btn-sm btn-warning btn-icon-split">
-                                   <span class="icon text-white-50">
-                                        <i class="fas fa-eye"></i>
-                                   </span>
-                                   <span class="text">{{ $detailLaporan->status->status_nama }}</span>
-                              </a>
-                         @elseif($detailLaporan->status->status_id == 3)
+                              @elseif($detailLaporan->status->status_id == 3)
                               <a href="#" class="btn btn-sm btn-info btn-icon-split">
                                    <span class="icon text-white-50">
                                         <i class="fas fa-eye"></i>
                                    </span>
                                    <span class="text">{{ $detailLaporan->status->status_nama }}</span>
                               </a>
-                         @elseif($detailLaporan->status->status_id == 4)
-                              <a href="#" class="btn btn-sm btn-success btn-icon-split">
+                              @elseif($detailLaporan->status->status_id == 4)
+                              <a href="#" class="btn btn-sm btn-info btn-icon-split">
                                    <span class="icon text-white-50">
-                                        <i class="fas fa-check"></i>
+                                        <i class="fas fa-certificate"></i>
                                    </span>
                                    <span class="text">{{ $detailLaporan->status->status_nama }}</span>
                               </a>
-                         @elseif($detailLaporan->status->status_id == 5)
-                              <a href="#" class="btn btn-sm btn-success btn-icon-split">
-                                   <span class="icon text-white-50">
-                                        <i class="fas fa-calculator"></i>
-                                   </span>
-                                   <span class="text">{{ $detailLaporan->status->status_nama }}</span>
-                              </a>
-                         @elseif($detailLaporan->status->status_id == 6)
+                              @elseif($detailLaporan->status->status_id == 6)
                               <a href="#" class="btn btn-sm btn-warning btn-icon-split">
                                    <span class="icon text-white-50">
                                         <i class="fas fa-paper-plane"></i>
                                    </span>
                                    <span class="text">{{ $detailLaporan->status->status_nama }}</span>
                               </a>
-                         @elseif($detailLaporan->status->status_id == 7)
+                              @elseif($detailLaporan->status->status_id == 7)
                               <a href="#" class="btn btn-sm btn-success btn-icon-split">
                                    <span class="icon text-white-50">
                                         <i class="fas fa-eye"></i>
                                    </span>
                                    <span class="text">{{ $detailLaporan->status->status_nama }}</span>
                               </a>
-                         @elseif($detailLaporan->status->status_id == 8)
-                              <a href="#" class="btn btn-sm btn-success btn-icon-split">
+                              @elseif($detailLaporan->status->status_id == 8)
+                              <a href="#" class="btn btn-sm btn-dark btn-icon-split">
                                    <span class="icon text-white-50">
                                         <i class="fas fa-hammer"></i>
                                    </span>
                                    <span class="text">{{ $detailLaporan->status->status_nama }}</span>
                               </a>
-                         @elseif($detailLaporan->status->status_id == 9)
+                              @elseif($detailLaporan->status->status_id == 9)
                               <a href="#" class="btn btn-sm btn-success btn-icon-split">
                                    <span class="icon text-white-50">
                                         <i class="fas fa-check"></i>
                                    </span>
                                    <span class="text">{{ $detailLaporan->status->status_nama }}</span>
                               </a>
-                         @else
+                              @else
                               <a href="#" class="btn btn-sm btn-danger btn-icon-split">
                                    <span class="icon text-white-50">
                                         <i class="fas fa-times"></i>
                                    </span>
                                    <span class="text">{{ $detailLaporan->status->status_nama }}</span>
                               </a>
-                         @endif
+                              @endif
                          </h6>
                     </div>
                </div>
+               <!--End Status Laporan-->
 
                <!-- Ubah Status -->
-               <hr>
+               <hr class="border-2">
                @if($detailLaporan->status->status_id == 1 || $detailLaporan->status->status_id == 2 || $detailLaporan->status->status_id == 3)
                     <div class="row">
                          <div class="col-md-2 col-sm-3">
@@ -376,8 +378,10 @@
                @endif
                <!-- End Ubah Status -->
                
-               <hr>
+               <!--Tombol-->
+               <hr class="border-2">
                <a class="btn btn-sm btn-secondary ml-auto" href="{{ url('admin/rekap_laporan') }}">Kembali</a>
+               <!--End Tombol-->
           </div>
      </div>
 
@@ -393,6 +397,8 @@
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
      
      <script>
+
+          // sweet alert perubahan status
           function confirmChangeStatus(statusValue, formId, statusName) {
                Swal.fire({
                     title: 'Apakah Anda yakin?',
@@ -412,7 +418,7 @@
                });
           }
 
-          // JS Modal Bukti Pelaporan
+          // JS Modal Imgae Bukti
           document.addEventListener('DOMContentLoaded', function () {
               var imageModal = document.getElementById('imageModal');
               var modalImage = document.getElementById('modalImage');

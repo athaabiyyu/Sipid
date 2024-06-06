@@ -228,7 +228,7 @@ class LaporanController extends Controller
         // Hitung total laporan dengan status_id = 5
         $totalLaporanDirealisasikan = LaporanModel::where('status_id', 8)->count();
         // Hitung total laporan dengan status_id = 7
-        $totalLaporanDikirimKeRw = LaporanModel::where('status_id', 7)->count();
+        $totalLaporanDikirimKeRw = LaporanModel::where('status_id', 6)->count();
         // Hitung total laporan dengan status_id = 9
         $totalLaporanSelesai = LaporanModel::where('status_id', 9)->count();
         // Hitung total laporan yang masuk
@@ -237,7 +237,6 @@ class LaporanController extends Controller
 
         return view('admin.index', [
             'title' => 'Dashboard | Sipid',
-            'breadcrumb' => 'Dashboard',
             'totalLaporan' =>  $totalLaporan,
             'totalLaporanSedangDiverifikasi' => $totalLaporanSedangDiverifikasi,
             'totalLaporanDiverifikasi' => $totalLaporanDiverifikasi,

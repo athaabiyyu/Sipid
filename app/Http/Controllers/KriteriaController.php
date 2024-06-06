@@ -19,6 +19,7 @@ class KriteriaController extends Controller
         ]);
     }
 
+    // buat data kriteria
     public function create() {
         $dataKriteria = KriteriaModel::all();
 
@@ -29,6 +30,7 @@ class KriteriaController extends Controller
         ]);
     }
 
+    // store data kriteria baru
     public function store(Request $request) {
         $validasiData = $request->validate([
             'kriteria_nama' => 'required|max:100',
@@ -67,6 +69,7 @@ class KriteriaController extends Controller
         return redirect()->route('admin.kriteria.keterangan_penilaian', ['id' => $kriteria->kriteria_id])->with('success', 'Data Kriteria berhasil ditambahkan');
     }
 
+    // edit data kriteria
     public function edit($id) {
         $dataKriteria = KriteriaModel::findOrFail($id);
 
@@ -77,6 +80,7 @@ class KriteriaController extends Controller
         ]);
     }
 
+    // update data kriteria yang diedit
     public function update(Request $request, $id) {
         $validasiData = $request->validate([
             'kriteria_nama' => 'required|max:100',
@@ -106,6 +110,7 @@ class KriteriaController extends Controller
         return redirect()->route('admin.kriteria.keterangan_penilaian', ['id' => $id])->with('success', 'Data Kriteria berhasil diedit');
     }
 
+    // buat / edit keterangan penilaian
     public function keterangan_penilaian($id) {
         $dataKriteria = KriteriaModel::findOrFail($id);
         $jumlah_deskripsi = $dataKriteria->jumlah_deskripsi;
@@ -128,6 +133,7 @@ class KriteriaController extends Controller
         ]);
     }
     
+    // store / update keterngan penilaian
     public function simpan_keterangan_penilaian(Request $request, $id) {
         $kriteria_id = $id; // Menggunakan id dari rute
     
@@ -155,8 +161,8 @@ class KriteriaController extends Controller
     
         return redirect()->route('admin.kriteria.index')->with('success', 'Data Keterangan Kriteria berhasil diperbarui');
     }
-    
-    
+     
+    // hapus data kriteria
     public function destroy($id) {
         // Hapus semua baris dari tabel s_matrik yang terkait dengan kriteria yang ingin dihapus
         MatrikModel::where('kriteria_id', $id)->delete();
