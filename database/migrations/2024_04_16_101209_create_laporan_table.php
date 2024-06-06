@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('deskripsi_laporan', 100)->nullable();
             $table->string('alamat_laporan', 100)->nullable();
             $table->timestamp('status_updated_at')->nullable();
+            $table->string('bukti_realisasi')->nullable();
+            $table->string('bukti_selesai')->nullable();
             $table->timestamps();
             
             $table->foreign('infrastruktur_id')->references('infrastruktur_id')->on('s_infrastruktur');

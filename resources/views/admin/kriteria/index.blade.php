@@ -1,6 +1,10 @@
 @extends('admin.layouts.main')
 
 @section('content')
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Halaman Kriteria</h1>
+    </div>
+
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Berhasil!</strong> {{ session('success') }}.
@@ -103,10 +107,10 @@
                 </table>
             </div>
 
-            <div class="text-right mt-4">
+            <div class="d-flex justify-content-between mt-4">
                 <a href="{{ route('admin') }}" class="btn btn-secondary btn-sm">Kembali</a>
                 <a href="#" class="btn btn-primary btn-sm" onclick="cekTotalBobot()">Selanjutnya</a>
-            </div>
+            </div>            
         </div>
     </div>
     <!-- End Tabel Kriteria -->

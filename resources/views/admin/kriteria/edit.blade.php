@@ -3,6 +3,9 @@
 @section('content')
      <div class="row justify-content-center mb-5">
           <div class="col-md-9">
+               <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Halaman Edit Kriteria</h1>
+               </div>
                <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex justify-content-between align-items-center bg-primary">
                          <h6 class="m-0 font-weight-bold text-light">Form Edit Kriteria</h6>
@@ -79,10 +82,12 @@
                               </div>
                               <!-- End Input Jumlah Deskripsi -->
 
-                              <div class="d-flex justify-content-end">
-                                   <a href="{{ route('admin.kriteria.index') }}" class="btn btn-secondary btn-sm mr-2">Kembali</a>
-                                   <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
-                              </div> 
+                              <!-- Tombol -->
+                              <div class="d-flex justify-content-between">
+                                   <a class="btn btn-sm btn-secondary mb-0 mr-1" href="{{ route('admin.kriteria.index') }}">Kembali</a>
+                                   <button type="submit" class="btn btn-sm btn-primary ms-auto">Simpan</button>
+                              </div>
+                              <!-- End Tombol -->
                          </form>
                     </div>
                </div>
@@ -90,6 +95,7 @@
      </div>
 
      <script>
+          // Konfersi input bobot dari integer menjadi desimal
           function convertPercentToDecimal() {
               var bobotField = document.getElementById('kriteria_bobot');
               var bobotValue = parseFloat(bobotField.value);

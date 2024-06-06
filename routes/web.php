@@ -110,6 +110,10 @@ Route::group(['prefix' => 'rw', 'middleware' => ['auth', 'cekLevel:2']], functio
 
      Route::get('/detail_realisasi/{id}', [RWController::class, 'detailRealisasi'])->name('rw.detail_realisasi');
      Route::post('/edit_detailRealisasi/{id}', [RWController::class, 'editdetailRealisasi'])->name('rw.detailRealisasi');
+     Route::put('/rw/edit-status/{id}', [RWController::class, 'editStatus'])->name('rw.edit_status');
+
+     Route::get('/detail_selesai/{id}', [RWController::class, 'detailSelesai'])->name('rw.detail_selesai');
+     Route::put('/rw/edit-statusSelesai/{id}', [RWController::class, 'editStatusSelesai'])->name('rw.edit_statusSelesai');
 
      // Profile
      Route::get('/profile', [ProfileController::class, 'profileRw'])->name('rw.profile');

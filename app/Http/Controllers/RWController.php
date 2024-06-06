@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BuktiLaporan;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\PDF;
 use App\Models\MatrikModel;
@@ -123,24 +124,93 @@ class RWController extends Controller
         ]);
     }
 
-    // edit status
     public function editStatus(Request $request, $id) {
         $detailLaporan = LaporanModel::find($id);
-
+    
         // Validasi input
         $validatedData = $request->validate([
             'status' => 'required|int|in:1,2,3,4,5,6,7,8,9,10',
         ]);
-
+    
         // Temukan laporan berdasarkan ID
         $laporan = LaporanModel::findOrFail($id);
-
+    
         // Perbarui status laporan
         $laporan->status_id = $validatedData['status'];
-        // Set kolom status_created_at dengan waktu saat ini
+        // Set kolom status_updated_at dengan waktu saat ini
         $laporan->status_updated_at = Carbon::now();
         $laporan->save();
+    
+        // Cek dan simpan bukti realisasi jika ada
+        if ($request->hasFile('bukti_realisasi')) {
+            foreach ($request->file('bukti_realisasi') as $file) {
+                // Simpan file dan dapatkan path
+                $path = $file->store('bukti_realisasi');
 
+                // Buat entri baru di tabel bukti_laporans dengan menyertakan file_path
+                BuktiLaporan::create([
+                    'laporan_id' => $laporan->laporan_id,
+                    'file_path' => $path, // Sertakan nilai file_path yang sudah didapat
+                    'type' => 'bukti_realisasi',
+                ]);
+            }
+        }
+    
+        // Redirect dengan pesan sukses
+        return redirect()->route('rw.hasil_laporan')
+            ->with([
+                'success' => 'Status berhasil diubah',
+                'detailLaporan' => $detailLaporan,
+                'title' => 'Hasil Laporan | Sipid',
+                'breadcrumb' => 'Halaman Hasil Laporan'
+            ]);
+    }
+    
+    // detail realisasi
+    public function detailRealisasi($id) {
+        // ambil data sesuai id
+        $detailLaporan = LaporanModel::find($id);
+
+        return view('rw.laporan.detail_realisasi', [
+
+            'breadcrumb' => 'Detail Laporan',
+            'title' => 'Detail Laporan | Sipid',
+            'detailLaporan' => $detailLaporan
+        ]);
+    }
+
+    public function editStatusSelesai(Request $request, $id) {
+        $detailLaporan = LaporanModel::find($id);
+    
+        // Validasi input
+        $validatedData = $request->validate([
+            'status' => 'required|int|in:1,2,3,4,5,6,7,8,9,10',
+        ]);
+    
+        // Temukan laporan berdasarkan ID
+        $laporan = LaporanModel::findOrFail($id);
+    
+        // Perbarui status laporan
+        $laporan->status_id = $validatedData['status'];
+        // Set kolom status_updated_at dengan waktu saat ini
+        $laporan->status_updated_at = Carbon::now();
+        $laporan->save();
+    
+        // Cek dan simpan bukti realisasi jika ada
+        if ($request->hasFile('bukti_selesai')) {
+            foreach ($request->file('bukti_selesai') as $file) {
+                // Simpan file dan dapatkan path
+                $path = $file->store('bukti_selesai');
+
+                // Buat entri baru di tabel bukti_laporans dengan menyertakan file_path
+                BuktiLaporan::create([
+                    'laporan_id' => $laporan->laporan_id,
+                    'file_path' => $path, // Sertakan nilai file_path yang sudah didapat
+                    'type' => 'bukti_selesai',
+                ]);
+            }
+        }
+    
         // Redirect dengan pesan sukses
         return redirect()->route('rw.hasil_laporan')
             ->with([
@@ -152,11 +222,11 @@ class RWController extends Controller
     }
 
     // detail realisasi
-    public function detailRealisasi($id) {
+    public function detailSelesai($id) {
         // ambil data sesuai id
         $detailLaporan = LaporanModel::find($id);
 
-        return view('rw.laporan.detail_realisasi', [
+        return view('rw.laporan.detail_selesai', [
 
             'breadcrumb' => 'Detail Laporan',
             'title' => 'Detail Laporan | Sipid',

@@ -20,6 +20,8 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('sbAdmin_Template/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- DataTables CSS -->
     <link href="{{ asset('sbAdmin_Template/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 

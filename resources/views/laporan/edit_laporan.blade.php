@@ -30,6 +30,7 @@
                               <!-- Pesan Error -->
                               </select>
 
+                              <!-- Bukti Laporan -->
                               <div class="mb-3 mt-3">
                                    <label for="bukti_laporan" class="form-label">Bukti Laporan</label>
                                    <input type="file" id="bukti_laporan" name="bukti_laporan"
@@ -41,7 +42,9 @@
                                    @enderror
                                    <!-- Pesan Erorr -->
                               </div>
+                              <!-- End Bukti Laporan -->
 
+                              <!-- Isi Laporan -->
                               <div class="mb-3">
                                    <label for="deskripsi_laporan" class="form-label">Isi Laporan</label>
                                    <textarea id="deskripsi_laporan" name="deskripsi_laporan"
@@ -53,7 +56,9 @@
                                    @enderror
                                    <!-- Pesan Error -->
                               </div>
+                              <!-- End Isi Laporan -->
 
+                              <!-- Alamat -->
                               <div class="mb-3">
                                    <label for="alamat_laporan" class="form-label">Alamat Kerusakan</label>
                                    <input type="text" id="alamat_laporan" name="alamat_laporan"
@@ -67,12 +72,15 @@
                                    @enderror
                                    <!-- Pesan Error -->
                               </div>
+                              <!-- End Alamat -->
+
+                              <!-- Tombol -->
                               <div class="d-flex justify-content-between align-items-center">
-                                   <a class="btn btn-sm btn-success mb-0"
+                                   <a class="btn btn-sm btn-secondary mb-0"
                                         href="{{ route('laporan.detailLaporan', $dataLaporan->laporan_id) }}">Kembali</a>
                                    <button type="submit" class="btn btn-sm btn-primary mb-0">Kirim</button>
                               </div>
-
+                              <!-- End Tombol -->
                          </div>
                          </form>
                     </div>

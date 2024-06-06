@@ -1,19 +1,30 @@
 @extends('admin.layouts.main')
 
 @section('content')
+
+     <!--Judul Halaman-->
+     <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Halaman Rekap Laporan</h1>
+     </div>
+     <!--End Judul Halaman-->
+
+     <!--Session Sukses-->
      @if (session('success'))
           <div class="alert alert-success alert-dismissible fade show" role="alert">
                <strong>Berhasil!</strong> {{ session('success') }}.
                <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
      @endif
+     <!--End Session Sukses-->
 
+     <!--Session Erorr-->
      @if (session('error'))
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
                <strong>Upss!</strong> {{ session('error') }}.
                <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
      @endif
+     <!--End Session Sukses-->
 
      @php
           // Mengelompokkan laporan berdasarkan status dan mengurutkannya berdasarkan status_id terkecil
@@ -143,14 +154,15 @@
                </div>
           </div>
      @endforeach
+     
      <style>
           .dataTables_wrapper .dataTables_paginate {
               margin-top: 10px !important; /* Menambahkan jarak antara tabel dan fitur pagination */
           }
      </style>
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+     
      <script>
+          // Edit Table
           $(document).ready(function() {
                @foreach ($statusGroups as $statusId => $laporanGroup)
                     $('#dataTable{{ $statusId }}').DataTable({

@@ -138,13 +138,11 @@
                               </div>
                          </div>
                          <div class="mt-5 mb-2">
-                              <div class="row">
-                                   <div class="col text-left">
-                                       <a class="btn btn-sm btn-secondary mr-2" href="{{ url('/admin') }}">Kembali</a>
-                                       <button class="btn btn-sm btn-primary profile-button" type="submit">Simpan</button>
-                                   </div>
-                              </div> 
-                         </div>
+                              <div class="d-flex justify-content-between">
+                                  <a class="btn btn-sm btn-secondary" href="{{ url('/admin') }}">Kembali</a>
+                                  <button class="btn btn-sm btn-primary profile-button" type="submit">Simpan</button>
+                              </div>
+                         </div> 
                          </form>
                     </div>
                </div>

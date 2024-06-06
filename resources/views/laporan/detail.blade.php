@@ -65,33 +65,37 @@
                <!-- Detail Bukti Laporan-->
                <hr class="border-2">
                <div class="row">
-               <div class="col-md-2 col-sm-3">
-                    <h6 class="d-inline-block mb-0">Bukti Laporan</h6>
-               </div>
-               <div class="col-md-1 col-sm-1">
-                    <span class="d-inline-block">:</span>
-               </div>
-               <div class="col-md-9 col-sm-8">
-                    @foreach ($detailLaporan->buktiLaporan as $bukti)
-                    <img src="{{ asset('storage/' . $bukti->file_path) }}" alt="Bukti Laporan"
-                         class="img-fluid rounded mb-2 report-image"
-                         data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-src="{{ asset('storage/' . $bukti->file_path) }}">
-                    @endforeach
-               </div>
+                    <div class="col-md-2 col-sm-3">
+                         <h6 class="d-inline-block mb-0">Bukti Laporan</h6>
+                    </div>
+                    <div class="col-md-1 col-sm-1">
+                         <span class="d-inline-block">:</span>
+                    </div>
+                    <div class="col-md-9 col-sm-8">
+
+                         @foreach ($detailLaporan->buktiLaporan as $bukti)
+                         @if ($bukti->type != 'bukti_realisasi' && $bukti->type != 'bukti_selesai')
+                              <!-- Hanya tampilkan bukti realisasi -->
+                              <img src="{{ asset('storage/' . $bukti->file_path) }}" alt="Bukti Laporan"
+                                   class="img-fluid rounded mb-2 report-image" data-bs-toggle="modal"
+                                   data-bs-target="#imageModal" data-bs-src="{{ asset('storage/' . $bukti->file_path) }}">
+                         @endif
+                         @endforeach
+                    </div>
                </div>
                <!-- Modal untuk zoom bukti -->
                <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
+                    <div class="modal-dialog modal-dialog-centered">
+                         <div class="modal-content">
                          <div class="modal-header">
-                              <h5 class="modal-title" id="imageModalLabel">Bukti Laporan</h5>
+                              <h5 class="modal-title" id="imageModalLabel">Bukti</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body text-center">
                               <img id="modalImage" src="" alt="Bukti Laporan" class="img-fluid rounded">
                          </div>
+                         </div>
                     </div>
-               </div>
                </div>
                <!-- End Modal untuk zoom bukti -->
                <!-- End Detail Bukti Laporan-->
@@ -125,6 +129,87 @@
                     </div>
                </div>
                <!-- End Detail Lokasi Laporan -->
+
+               @if ($detailLaporan->status->status_id == 8)
+                    <!-- Detail Bukti Realisasi-->
+                    <hr class="border-2">
+                    <div class="row">
+                         <div class="col-md-2 col-sm-3">
+                              <h6 class="d-inline-block mb-0">Bukti Realisasi</h6>
+                         </div>
+                         <div class="col-md-1 col-sm-1">
+                              <span class="d-inline-block">:</span>
+                         </div>
+                         <div class="col-md-9 col-sm-8">
+                              @foreach ($detailLaporan->buktiLaporan as $bukti)
+                              @if ($bukti->type == 'bukti_realisasi')
+                                   <!-- Hanya tampilkan bukti realisasi -->
+                                   <img src="{{ asset('storage/' . $bukti->file_path) }}" alt="Bukti Laporan"
+                                        class="img-fluid rounded mb-2 report-image" data-bs-toggle="modal"
+                                        data-bs-target="#imageModal" data-bs-src="{{ asset('storage/' . $bukti->file_path) }}">
+                              @endif
+                              @endforeach
+                         </div>
+                    </div>
+                    <!-- Modal untuk zoom bukti -->
+                    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel"
+                         aria-hidden="true">
+                         <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                              <div class="modal-header">
+                                   <h5 class="modal-title" id="imageModalLabel">Bukti Realisasi</h5>
+                                   <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body text-center">
+                                   <img id="modalImage" src="" alt="Bukti Laporan" class="img-fluid rounded">
+                              </div>
+                              </div>
+                         </div>
+                    </div>
+                    <!-- End Modal untuk zoom bukti -->
+                    <!-- End Detail Bukti Realisasi-->
+
+               @elseif ($detailLaporan->status->status_id == 9)
+                    <!-- Detail Bukti Selesai-->
+                    <hr class="border-2">
+                    <div class="row">
+                         <div class="col-md-2 col-sm-3">
+                              <h6 class="d-inline-block mb-0">Bukti Selesai</h6>
+                         </div>
+                         <div class="col-md-1 col-sm-1">
+                              <span class="d-inline-block">:</span>
+                         </div>
+                         <div class="col-md-9 col-sm-8">
+                              @foreach ($detailLaporan->buktiLaporan as $bukti)
+                              @if ($bukti->type == 'bukti_selesai')
+                                   <!-- Hanya tampilkan bukti realisasi -->
+                                   <img src="{{ asset('storage/' . $bukti->file_path) }}" alt="Bukti Laporan"
+                                        class="img-fluid rounded mb-2 report-image" data-bs-toggle="modal"
+                                        data-bs-target="#imageModal" data-bs-src="{{ asset('storage/' . $bukti->file_path) }}">
+                              @endif
+                              @endforeach
+                         </div>
+                    </div>
+                    <!-- Modal untuk zoom bukti -->
+                    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel"
+                         aria-hidden="true">
+                         <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                              <div class="modal-header">
+                                   <h5 class="modal-title" id="imageModalLabel">Bukti Selesai</h5>
+                                   <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body text-center">
+                                   <img id="modalImage" src="" alt="Bukti Selesai" class="img-fluid rounded">
+                              </div>
+                              </div>
+                         </div>
+                    </div>
+                    <!-- End Modal untuk zoom bukti -->
+                    <!-- End Detail Bukti Realisasi-->
+               @endif
 
                <!-- Detail Status Laporan -->
                <hr class="border-2">

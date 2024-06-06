@@ -32,6 +32,10 @@ class LaporanController extends Controller
         $totalLaporanTerkirim = LaporanModel::where('user_id', auth()->user()->user_id)
         ->where('status_id', 1)
         ->count();
+        // Hitung total laporan dengan status_id = 4
+        $totalLaporanDiverifikasi = LaporanModel::where('user_id', auth()->user()->user_id)
+        ->where('status_id', 4)
+        ->count();
         // Hitung total laporan dengan status_id = 8 
         $totalLaporanDirealisasikan = LaporanModel::where('user_id', auth()->user()->user_id)
         ->where('status_id', 8)
@@ -56,7 +60,8 @@ class LaporanController extends Controller
             'totalLaporanDitolak' => $totalLaporanDitolak,
             'totalLaporanDirealisasikan' => $totalLaporanDirealisasikan,
             'totalLaporanSelesai' => $totalLaporanSelesai,
-            'totalLaporan' =>  $totalLaporan
+            'totalLaporan' =>  $totalLaporan,
+            'totalLaporanDiverifikasi' => $totalLaporanDiverifikasi
         ]);   
     }
 
@@ -267,14 +272,13 @@ class LaporanController extends Controller
 
 
     // index Admin
-    public function indexAdmin()
-    {
+    public function indexAdmin() {
         // Hitung total laporan dengan status_id = 3 
         $totalLaporanSedangDiverifikasi = LaporanModel::where('status_id', 3)->count();
         // Hitung total laporan dengan status_id = 4
         $totalLaporanDiverifikasi = LaporanModel::where('status_id', 4)->count();
         // Hitung total laporan dengan status_id = 5
-        $totalLaporanDiproses = LaporanModel::where('status_id', 5)->count();
+        $totalLaporanDirealisasikan = LaporanModel::where('status_id', 8)->count();
         // Hitung total laporan dengan status_id = 7
         $totalLaporanDikirimKeRw = LaporanModel::where('status_id', 7)->count();
         // Hitung total laporan dengan status_id = 9
@@ -289,22 +293,19 @@ class LaporanController extends Controller
             'totalLaporan' =>  $totalLaporan,
             'totalLaporanSedangDiverifikasi' => $totalLaporanSedangDiverifikasi,
             'totalLaporanDiverifikasi' => $totalLaporanDiverifikasi,
-            'totalLaporanDiproses' => $totalLaporanDiproses,
+            'totalLaporanDirealisasikan' => $totalLaporanDirealisasikan,
             'totalLaporanDikirimKeRw' => $totalLaporanDikirimKeRw,
             'totalLaporanSelesai' => $totalLaporanSelesai
         ]);
     }
 
     // rekap laporan
-    public function rekapLaporan()
-    {
-
+    public function rekapLaporan() {
         // ambil data laporan
         $dataLaporan = LaporanModel::all();
 
         return view('admin.laporan.rekap_laporan', [
             'title' => 'Rekap Laporan | Sipid',
-            'breadcrumb' => 'Data Infrastruktur',
             'dataLaporan' => $dataLaporan,
         ]);
     }
@@ -322,8 +323,6 @@ class LaporanController extends Controller
         }
 
             return view('admin.laporan.detail_rekap_laporan', [
-
-                'breadcrumb' => 'Detail Laporan',
                 'title' => 'Detail Laporan | Sipid',
                 'detailLaporan' => $detailLaporan
             ]);

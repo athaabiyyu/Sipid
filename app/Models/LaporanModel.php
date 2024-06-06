@@ -36,6 +36,12 @@ class LaporanModel extends Model
     public function buktiLaporan() {
         return $this->hasMany(BuktiLaporan::class, 'laporan_id', 'laporan_id');
     }
+    public function buktiRealisasi(): HasMany {
+        return $this->hasMany(BuktiLaporan::class, 'laporan_id', 'laporan_id')->where('type', 'bukti_realisasi');
+    }
+    public function buktiSelesai(): HasMany {
+        return $this->hasMany(BuktiLaporan::class, 'laporan_id', 'laporan_id')->where('type', 'bukti_selesai');
+    }
 
 
     public static function boot()

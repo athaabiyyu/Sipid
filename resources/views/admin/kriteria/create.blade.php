@@ -3,8 +3,12 @@
 @section('content')
      <div class="row justify-content-center mt-1">
           <div class="col-md-9">
+               <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Halaman Tambah Kriteria</h1>
+               </div>
                <div class="card shadow mb-4">
-                    <div class="card-header py-3 d-flex justify-content-between align-items-center bg-primary">
+
+                    <div class="card-header py-3 d-flex justify-content-between   align-items-center bg-primary">
                          <h6 class="m-0 font-weight-bold text-light">Form Tambah Data Kriteria</h6>
                     </div>
 
@@ -70,8 +74,12 @@
                               </div>
                               <!-- End Input Jumlah Deskripsi -->
 
-                              <a class="btn btn-sm btn-secondary mb-0 mr-1" href="{{ route('admin.kriteria.index') }}">Kembali</a>
-                              <button type="submit" class="btn btn-sm btn-primary">Submit</button> 
+                              <!-- Tombol -->
+                              <div class="d-flex justify-content-between">
+                                   <a class="btn btn-sm btn-secondary mb-0 mr-1" href="{{ route('admin.kriteria.index') }}">Kembali</a>
+                                   <button type="submit" class="btn btn-sm btn-primary ms-auto">Simpan</button>
+                              </div>  
+                              <!-- End Tombol -->
                          </form>
                     </div>          
                </div>

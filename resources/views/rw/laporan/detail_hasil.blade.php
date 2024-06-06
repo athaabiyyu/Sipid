@@ -76,9 +76,11 @@
                </div>
                <div class="col-md-9 col-sm-8">
                     @foreach ($detailLaporan->buktiLaporan as $bukti)
-                    <img src="{{ asset('storage/' . $bukti->file_path) }}" alt="Bukti Laporan"
-                         class="img-fluid rounded mb-2 report-image"
-                         data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-src="{{ asset('storage/' . $bukti->file_path) }}">
+                         @if($bukti->type != 'bukti_realisasi') <!-- Hanya tampilkan bukti realisasi -->
+                              <img src="{{ asset('storage/' . $bukti->file_path) }}" alt="Bukti Laporan"
+                                   class="img-fluid rounded mb-2 report-image"
+                                   data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-src="{{ asset('storage/' . $bukti->file_path) }}">
+                         @endif
                     @endforeach
                </div>
                </div>
@@ -206,33 +208,7 @@
                          </h6>
                     </div>
                </div>
-               <hr class="border-2">
-               <div class="row">
-                    <div class="col-md-2 col-sm-3">
-                         <h6 class="d-inline-block mb-0">Detail Penilaian</h6>
-                    </div>
-                    <div class="col-md-1 col-sm-1">
-                         <span class="d-inline-block">:</span>
-                    </div>
-                    <div class="col-md-9 col-sm-8">
-                         <h6>
-                              <div class="table-responsive">
-                                   <table class="table table-bordered" width="100%" cellspacing="0">
-                                        <thead>
-                                             <tr class="text-center">
-                                                  <th>Kategori</th>
-                                                  <th>Deskripsi</th>
-                                                  <th>Skor</th>
-                                             </tr>
-                                        </thead>
-                                        <tbody class="text-center">
-                                             
-                                        </tbody>
-                                   </table>
-                              </div>
-                         </h6>
-                    </div>
-               </div>
+
                <hr class="border-2">
                <div class="row">
                     <div class="col-md-2 col-sm-3">
@@ -242,45 +218,13 @@
                          <span class="d-inline-block">:</span>
                     </div>
                     <div class="col-md-9 col-sm-8">
-                         <form id="statusForm{{ $detailLaporan->detailLaporan_id }}"
-                         action="{{ route('rw.ubah_status', $detailLaporan->laporan_id) }}" method="POST">
-                         @csrf
-                         <div class="btn-group">
-                              @php
-                              $btnClass = 'btn-primary'; // Default class, you can adjust if needed based on the logic
-                              switch ($detailLaporan->status_id) {
-                                   case 1:
-                                   case 2:
-                                   case 3:
-                                   case 4:
-                                   case 5:
-                                   case 6:
-                                   case 7:
-                                   case 8:
-                                   case 9:
-                                        $btnClass = 'btn-primary';
-                                        break;
-                                   default:
-                                        $btnClass = 'btn-default'; // If there's a default or another class you want to use
-                                        break;
-                              }
-                              @endphp
-
-                              <button type="button"
-                                   class="btn btn-sm dropdown-toggle {{ $btnClass }}"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              {{ $detailLaporan->status->status_nama ?? 'Pilih Status' }}
-                              </button>
-
-                              <div class="dropdown-menu">
-                                   @if(in_array($detailLaporan->status->status_id, [7]))
-                                        <a class="dropdown-item" href="#"
-                                             onclick="event.preventDefault(); document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').status.value = 8; document.getElementById('statusForm{{ $detailLaporan->detailLaporan_id }}').submit();">Direalisasikan
-                                        </a>
-                                   @endif
-                              </div>
-                         </div>
-                         <input type="hidden" name="status" value="{{ $detailLaporan->status_id }}">
+                         <button id="editStatusBtn">Edit Status</button>
+                         <!-- Form hidden untuk pengiriman data -->
+                         <form id="editStatusForm" action="{{ route('rw.edit_status', $detailLaporan->laporan_id) }}" method="POST" enctype="multipart/form-data" style="display:none;">
+                              @csrf
+                              @method('PUT')
+                              <input type="hidden" name="status" id="statusInput">
+                              <input type="file" name="bukti_realisasi[]" id="buktiRealisasiInput" multiple>
                          </form>
                     </div>
                </div>
@@ -310,6 +254,42 @@
                modalImage.src = src;
           });
           });
+          document.getElementById('editStatusBtn').addEventListener('click', function() {
+        Swal.fire({
+            title: 'Edit Status',
+            html: `
+                <select id="statusSelect" class="swal2-input">
+                    <option value="8">Realisasikan</option>
+                    <!-- Tambahkan opsi lainnya sesuai kebutuhan -->
+                </select>
+                <input type="file" id="buktiRealisasiFile" class="swal2-input" multiple>
+            `,
+            showCancelButton: true,
+            confirmButtonText: 'Submit',
+            preConfirm: () => {
+                const status = Swal.getPopup().querySelector('#statusSelect').value;
+                const buktiFiles = Swal.getPopup().querySelector('#buktiRealisasiFile').files;
+                if (!status) {
+                    Swal.showValidationMessage(`Please select a status`);
+                }
+                return { status: status, buktiFiles: buktiFiles };
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const form = document.getElementById('editStatusForm');
+                document.getElementById('statusInput').value = result.value.status;
+
+                // Tambahkan file bukti ke form
+                const buktiInput = document.getElementById('buktiRealisasiInput');
+                buktiInput.files = result.value.buktiFiles;
+
+                // Kirim form
+                form.submit();
+            }
+        });
+    });
+
+
      </script>
 @endsection
 

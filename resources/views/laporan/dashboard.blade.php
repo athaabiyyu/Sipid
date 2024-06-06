@@ -34,6 +34,36 @@
           </div>
           <!-- End Card Jumlah Laporan Terkirim -->
 
+          <!-- Card Jumlah Laporan Terverifikasi -->
+          <div class="col-xl-4 col-md-6 mb-5">
+               <div class="card border-left-info shadow h-100 py-2">
+                    <div class="card-body">
+                         <div class="row no-gutters align-items-center">
+                         <div class="col mr-2">
+                              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Laporan Terverifikasi
+                              </div>
+                              <div class="row no-gutters align-items-center">
+                                   <div class="col-auto">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $totalLaporanDiverifikasi }}</div>
+                                   </div>
+                              </div>
+                              @if ($totalLaporanDiverifikasi > 0)
+                              <div class="row mt-3">
+                                   <div class="col">
+                                        <a href="{{ url('/laporan?status=4') }}" class="btn btn-secondary btn-sm">Detail &rarr;</a>
+                                   </div>
+                              </div>
+                              @endif
+                         </div>
+                         <div class="col-auto">
+                              <i class="fas fa-certificate fa-2x text-info"></i>
+                         </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          <!-- End Card Jumlah Laporan Terverifikasi -->
+
           <!-- Card Jumlah Laporan Ditolak -->
           <div class="col-xl-4 col-md-6 mb-5">
                <div class="card border-left-danger shadow h-100 py-2">
@@ -158,7 +188,6 @@
 
      <!-- Content Row -->
      <div class="row">
-
           <!-- Area Chart -->
           <div class="col">
                <div class="card shadow mb-4">

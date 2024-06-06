@@ -171,11 +171,14 @@
                                                   @endif
                                              </td>
                                              <td class="text-center">
-                                                  <a class="btn btn-info btn-sm mb-2"
-                                                       href="{{ route('rw.detail_realisasi', $laporan->laporan_id) }}">
-                                                       Detail
-                                                  </a>
-                                             </td>
+                                                  @if ($laporan->status->status_id == 8)
+                                                      <a class="btn btn-info btn-sm mb-2" href="{{ route('rw.detail_realisasi', $laporan->laporan_id) }}">Detail</a>
+                                                  @elseif ($laporan->status->status_id == 9)
+                                                      <a class="btn btn-info btn-sm mb-2" href="{{ route('rw.detail_selesai', $laporan->laporan_id) }}">Detail</a>
+                                                  @else
+                                                      <a class="btn btn-info btn-sm mb-2" href="{{ route('rw.detail_default', $laporan->laporan_id) }}">Detail</a>
+                                                  @endif
+                                             </td> 
                                         </tr>
                                    @endforeach
                               </tbody>

@@ -15,8 +15,8 @@ return new class extends Migration
         $table->id('bukti_laporan_id');
         $table->unsignedBigInteger('laporan_id')->index();
         $table->string('file_path');
+        $table->string('type')->nullable();
         $table->timestamps();
-
         $table->foreign('laporan_id')->references('laporan_id')->on('s_laporan');
     });
 }
@@ -28,5 +28,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('bukti_laporans');
+        Schema::table('bukti_laporans', function (Blueprint $table) {
+            $table->dropColumn('type');
+        });
     }
 };

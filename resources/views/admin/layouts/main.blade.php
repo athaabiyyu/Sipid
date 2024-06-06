@@ -23,6 +23,9 @@
     <!-- DataTables CSS -->
     <link href="{{ asset('sbAdmin_Template/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
     @stack('css')
 </head>
 

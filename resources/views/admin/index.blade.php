@@ -4,9 +4,9 @@
      <!-- Page Heading -->
      <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-          
      </div>
 
+     <!-- Card -->
      <div class="row">          
           <!-- Card Jumlah Laporan yang Masuk -->
           <div class="col-xl-4 col-md-6 mb-5">
@@ -40,11 +40,11 @@
 
           <!-- Card Jumlah Laporan yang Sedang Diverifikasi -->
           <div class="col-xl-4 col-md-6 mb-5">
-               <div class="card border-left-info shadow h-100 py-2">
+               <div class="card border-left-dark shadow h-100 py-2">
                     <div class="card-body">
                          <div class="row no-gutters align-items-center">
                          <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Laporan Sedang Diverifikasi
+                              <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Laporan Sedang Diverifikasi
                               </div>
                               <div class="row no-gutters align-items-center">
                                    <div class="col-auto">
@@ -60,7 +60,7 @@
                               @endif
                          </div>
                          <div class="col-auto">
-                              <i class="fas fa-eye fa-2x text-info"></i>
+                              <i class="fas fa-eye fa-2x text-dark"></i>
                          </div>
                          </div>
                     </div>
@@ -90,43 +90,13 @@
                               @endif
                          </div>
                          <div class="col-auto">
-                              <i class="fas fa-check fa-2x text-info"></i>
+                              <i class="fas fa-certificate fa-2x text-info"></i>
                          </div>
                          </div>
                     </div>
                </div>
           </div>
           <!-- End Card Jumlah Laporan yang Diverifikasi -->
-
-          <!-- Card Jumlah Laporan yang Diproses -->
-          <div class="col-xl-4 col-md-6 mb-5">
-               <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body">
-                         <div class="row no-gutters align-items-center">
-                         <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Laporan Diproses
-                              </div>
-                              <div class="row no-gutters align-items-center">
-                                   <div class="col-auto">
-                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $totalLaporanDiproses }}</div>
-                                   </div>
-                              </div>
-                              @if ($totalLaporanDiproses > 0)
-                              <div class="row mt-3">
-                                   <div class="col">
-                                        <a href="{{ route('admin.rekap_laporan', ['status' => 5]) }}" class="btn btn-secondary btn-sm">Detail &rarr;</a>
-                                   </div>
-                              </div>
-                              @endif
-                         </div>
-                         <div class="col-auto">
-                              <i class="fas fa-calculator fa-2x text-warning"></i>
-                         </div>
-                         </div>
-                    </div>
-               </div>
-          </div>
-          <!-- End Card Jumlah Laporan yang Diproses -->
 
           <!-- Card Jumlah Laporan yang Diklirim ke RW -->
           <div class="col-xl-4 col-md-6 mb-5">
@@ -158,6 +128,36 @@
           </div>
           <!-- End Card Jumlah Laporan yang Dikrim ke RW -->
 
+          <!-- Card Jumlah Laporan yang Diproses -->
+          <div class="col-xl-4 col-md-6 mb-5">
+               <div class="card border-left-secondary shadow h-100 py-2">
+                    <div class="card-body">
+                         <div class="row no-gutters align-items-center">
+                         <div class="col mr-2">
+                              <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Laporan Direalisasikan
+                              </div>
+                              <div class="row no-gutters align-items-center">
+                                   <div class="col-auto">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $totalLaporanDirealisasikan }}</div>
+                                   </div>
+                              </div>
+                              @if ($totalLaporanDirealisasikan > 0)
+                              <div class="row mt-3">
+                                   <div class="col">
+                                        <a href="{{ route('admin.rekap_laporan', ['status' => 8]) }}" class="btn btn-secondary btn-sm">Detail &rarr;</a>
+                                   </div>
+                              </div>
+                              @endif
+                         </div>
+                         <div class="col-auto">
+                              <i class="fas fa-hammer fa-2x text-secondary"></i>
+                         </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          <!-- End Card Jumlah Laporan yang Diproses -->
+
           <!-- Card Jumlah Laporan Selesai -->
           <div class="col-xl-4 col-md-6 mb-5">
                <div class="card border-left-success shadow h-100 py-2">
@@ -188,6 +188,7 @@
           </div>
           <!-- End Card Jumlah Laporan Selesai -->
      </div>
+     <!-- End Card -->
 
      <div class="row">
 

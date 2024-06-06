@@ -34,7 +34,7 @@
                     </div>
                </div>
                <!-- End Id Laporan -->
-
+            
                <!-- Nama Pelapor -->
                <hr class="border-2">
                <div class="row">
@@ -48,7 +48,7 @@
                          <h6>{{ $detailLaporan->user->user_nama }}</h6>
                     </div>
                </div>
-               <!-- End Nama Pelapor -->
+               <!-- End Nama Pelapor -->        
 
                <!-- Nama Infrastrukur -->
                <hr class="border-2">
@@ -64,7 +64,7 @@
                     </div>
                </div>
                <!-- End Nama infrastruktur -->
-
+               
                <!-- Tanggal Laporan -->
                <hr class="border-2">
                <div class="row">
@@ -92,7 +92,7 @@
                     <div class="col-md-9 col-sm-8">
 
                          @foreach ($detailLaporan->buktiLaporan as $bukti)
-                         @if ($bukti->type != 'bukti_realisasi')
+                         @if ($bukti->type != 'bukti_realisasi' && $bukti->type != 'bukti_selesai')
                               <!-- Hanya tampilkan bukti realisasi -->
                               <img src="{{ asset('storage/' . $bukti->file_path) }}" alt="Bukti Laporan"
                                    class="img-fluid rounded mb-2 report-image" data-bs-toggle="modal"
@@ -148,20 +148,20 @@
                </div>
                <!-- End Lokasi -->
 
-               <!-- Detail Bukti Realisasi-->
+               <!-- Detail Bukti Selesai-->
                <hr class="border-2">
                <div class="row">
                     <div class="col-md-2 col-sm-3">
-                         <h6 class="d-inline-block mb-0">Bukti Realisasi</h6>
+                         <h6 class="d-inline-block mb-0">Bukti Selesai</h6>
                     </div>
                     <div class="col-md-1 col-sm-1">
                          <span class="d-inline-block">:</span>
                     </div>
                     <div class="col-md-9 col-sm-8">
                          @foreach ($detailLaporan->buktiLaporan as $bukti)
-                         @if ($bukti->type == 'bukti_realisasi')
+                         @if ($bukti->type == 'bukti_selesai')
                               <!-- Hanya tampilkan bukti realisasi -->
-                              <img src="{{ asset('storage/' . $bukti->file_path) }}" alt="Bukti Realisasi"
+                              <img src="{{ asset('storage/' . $bukti->file_path) }}" alt="Bukti Laporan"
                                    class="img-fluid rounded mb-2 report-image" data-bs-toggle="modal"
                                    data-bs-target="#imageModal" data-bs-src="{{ asset('storage/' . $bukti->file_path) }}">
                          @endif
@@ -174,12 +174,12 @@
                     <div class="modal-dialog modal-dialog-centered">
                          <div class="modal-content">
                          <div class="modal-header">
-                              <h5 class="modal-title" id="imageModalLabel">Bukti Realisasi</h5>
+                              <h5 class="modal-title" id="imageModalLabel">Bukti Selesai</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal"
                                    aria-label="Close"></button>
                          </div>
                          <div class="modal-body text-center">
-                              <img id="modalImage" src="" alt="Bukti Laporan" class="img-fluid rounded">
+                              <img id="modalImage" src="" alt="Bukti Selesai" class="img-fluid rounded">
                          </div>
                          </div>
                     </div>
@@ -208,30 +208,7 @@
                     </div>
                </div>
                <!-- End Status Laporan -->
-
-               <!-- Ubah Status -->
-               <hr class="border-2">
-               <div class="row">
-                    <div class="col-md-2 col-sm-3">
-                         <h6 class="d-inline-block mb-0">Ubah Status</h6>
-                    </div>
-                    <div class="col-md-1 col-sm-1">
-                         <span class="d-inline-block">:</span>
-                    </div>
-                    <div class="col-md-9 col-sm-8">
-                         <button id="editStatusBtn">Edit Status</button>
-                         <!-- Form hidden untuk pengiriman data -->
-                         <form id="editStatusForm" action="{{ route('rw.edit_statusSelesai', $detailLaporan->laporan_id) }}"
-                         method="POST" enctype="multipart/form-data" style="display:none;">
-                         @csrf
-                         @method('PUT')
-                         <input type="hidden" name="status" id="statusInput">
-                         <input type="file" name="bukti_selesai[]" id="buktiSelesaiInput" multiple>
-                         </form>
-                    </div>
-               </div>
-               <!-- End Ubah Status -->
-
+               
                <hr class="border-2">
                <a class="btn btn-sm btn-secondary ml-auto" href="{{ url('rw/hasil_laporan') }}">Kembali</a>
           </div>
@@ -256,44 +233,6 @@
                     var button = event.relatedTarget;
                     var src = button.getAttribute('data-bs-src');
                     modalImage.src = src;
-               });
-          });
-
-          document.getElementById('editStatusBtn').addEventListener('click', function() {
-               Swal.fire({
-                    title: 'Edit Status',
-                    html: `
-               <select id="statusSelect" class="swal2-input">
-                    <option value="9">Selesai</option>
-                    <!-- Tambahkan opsi lainnya sesuai kebutuhan -->
-               </select>
-               <input type="file" id="buktiSelesaiFile" class="swal2-input" multiple>
-          `,
-                    showCancelButton: true,
-                    confirmButtonText: 'Submit',
-                    preConfirm: () => {
-                         const status = Swal.getPopup().querySelector('#statusSelect').value;
-                         const buktiFiles = Swal.getPopup().querySelector('#buktiSelesaiFile').files;
-                         if (!status) {
-                         Swal.showValidationMessage(`Please select a status`);
-                         }
-                         return {
-                         status: status,
-                         buktiFiles: buktiFiles
-                         };
-                    }
-               }).then((result) => {
-                    if (result.isConfirmed) {
-                         const form = document.getElementById('editStatusForm');
-                         document.getElementById('statusInput').value = result.value.status;
-
-                         // Tambahkan file bukti ke form
-                         const buktiInput = document.getElementById('buktiSelesaiInput');
-                         buktiInput.files = result.value.buktiFiles;
-
-                         // Kirim form
-                         form.submit();
-                    }
                });
           });
      </script>

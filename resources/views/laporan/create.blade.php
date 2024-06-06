@@ -75,11 +75,14 @@
                                    @enderror
                                    <!-- Pesan Error -->
                               </div>
-                              <!-- Input Bukti Kerusakan -->
-                              <div class="d-flex justify-content-end align-items-right">
-                                   <a class="btn btn-sm btn-secondary mr-2" href="{{ url('laporan/dashboard') }}">Kembali</a>
-                                   <button type="submit" class="btn btn-sm btn-primary">Kirim</button>
-                              </div>
+                              <!-- End Input Bukti Kerusakan -->
+
+                              <!-- Tombol -->
+                              <div class="d-flex justify-content-between align-items-left">
+                                   <a class="btn btn-sm btn-secondary" href="{{ url('laporan/dashboard') }}">Kembali</a>
+                                   <button type="submit" class="btn btn-sm btn-primary ml-auto">Kirim</button>
+                              </div>   
+                              <!-- End Tombol -->   
                          </form>
                     </div>
                </div>
