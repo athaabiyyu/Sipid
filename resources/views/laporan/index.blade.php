@@ -1,6 +1,11 @@
 @extends('laporan.layouts.main')
 
 @section('content')
+     
+     <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Halaman Riwayat Laporan</h1>
+     </div>
+
      <!-- Session Pesan -->
      @if (session('success'))
           <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -61,13 +66,6 @@
                                                   </span>
                                                   <span class="text">{{ $laporan->status->status_nama }}</span>
                                              </a>
-                                             @elseif($laporan->status->status_id == 2)
-                                             <a href="#" class="btn btn-sm btn-warning btn-icon-split">
-                                                  <span class="icon text-white-50">
-                                                       <i class="fas fa-eye"></i>
-                                                  </span>
-                                                  <span class="text">{{ $laporan->status->status_nama }}</span>
-                                             </a>
                                              @elseif($laporan->status->status_id == 3)
                                              <a href="#" class="btn btn-sm btn-info btn-icon-split">
                                                   <span class="icon text-white-50">
@@ -76,16 +74,9 @@
                                                   <span class="text">{{ $laporan->status->status_nama }}</span>
                                              </a>
                                              @elseif($laporan->status->status_id == 4)
-                                             <a href="#" class="btn btn-sm btn-success btn-icon-split">
+                                             <a href="#" class="btn btn-sm btn-info btn-icon-split">
                                                   <span class="icon text-white-50">
-                                                       <i class="fas fa-check"></i>
-                                                  </span>
-                                                  <span class="text">{{ $laporan->status->status_nama }}</span>
-                                             </a>
-                                             @elseif($laporan->status->status_id == 5)
-                                             <a href="#" class="btn btn-sm btn-success btn-icon-split">
-                                                  <span class="icon text-white-50">
-                                                       <i class="fas fa-calculator"></i>
+                                                       <i class="fas fa-certificate"></i>
                                                   </span>
                                                   <span class="text">{{ $laporan->status->status_nama }}</span>
                                              </a>
@@ -104,7 +95,7 @@
                                                   <span class="text">{{ $laporan->status->status_nama }}</span>
                                              </a>
                                              @elseif($laporan->status->status_id == 8)
-                                             <a href="#" class="btn btn-sm btn-success btn-icon-split">
+                                             <a href="#" class="btn btn-sm btn-dark btn-icon-split">
                                                   <span class="icon text-white-50">
                                                        <i class="fas fa-hammer"></i>
                                                   </span>

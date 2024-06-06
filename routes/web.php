@@ -146,13 +146,6 @@ Route::group(['prefix' => 'laporan', 'middleware' => ['auth', 'cekLevel:3']], fu
 });
 // End Route Warga
 
-Route::get('/registration', [RegisterController::class, 'index'])->middleware('guest');
-Route::post('/registration', [RegisterController::class, 'store']);
-
-
-Route::resource('/user', UserController::class);
-
-
 // Route::resource('/infrastruktur', InfrastrukturController::class);
 
 Route::get('/tes', function () {

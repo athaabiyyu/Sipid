@@ -1,19 +1,27 @@
 @extends('laporan.layouts.main')
 
 @section('content')
+     <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Halaman Ubah Sandi</h1>
+     </div>
+
+     <!-- Sesion Sukses -->
      @if (session('success'))
           <div class="alert alert-success alert-dismissible fade show" role="alert">
                <strong>Berhasil!</strong> {{ session('success') }}.
                <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
      @endif
+     <!-- End Sesion Sukses -->
 
+     <!-- Sesion Erorr -->
      @if (session('error'))
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
                <strong>Upss!</strong> {{ session('error') }}.
                <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
      @endif
+     <!-- End Sesion Erorr -->
 
      <div class="card mb-4 py-3 border-left-primary">
           <form action="{{ route('laporan.edit_sandi') }}" method="POST">

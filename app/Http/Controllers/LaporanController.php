@@ -55,7 +55,6 @@ class LaporanController extends Controller
 
             // kirim data ke view laporan->index
             'title' => 'Dashboard | Sipid',
-            'breadcrumb' => 'Halaman Dashboard',
             'totalLaporanTerkirim' => $totalLaporanTerkirim,
             'totalLaporanDitolak' => $totalLaporanDitolak,
             'totalLaporanDirealisasikan' => $totalLaporanDirealisasikan,
@@ -76,7 +75,6 @@ class LaporanController extends Controller
 
             // kirim data ke view laporan->index
             'title' => 'Riwayat Laporan | Sipid',
-            'breadcrumb' => 'Halaman Riwayat Laporan',
             'dataLaporan' => $dataLaporan,
             'totalLaporan' => $totalLaporan
         ]);
@@ -88,53 +86,11 @@ class LaporanController extends Controller
 
         return view('laporan.create', [
             'title' => 'Buat Laporan | Sipid',
-            'breadcrumb' => 'Halaman Membuat Laporan',
             'dataInfrastruktur' => $infrastrukturData,
         ]);
     }
 
     // proses store laporan
-    // public function store(Request $request) {
-
-    //     $validatedData = $request->validate([
-    //         'infrastruktur_id' => 'required',
-    //         'alamat_laporan' => 'required',
-    //         'bukti_laporan' => 'required|image|file|max:1024',
-    //         'deskripsi_laporan' => 'required|max:255',
-    //     ], [
-    //         'infrastruktur_id.required' => 'Kolom nama infrastruktur diperlukan.',
-    //         'alamat_laporan.required' => 'Kolom lokasi laporan diperlukan.',
-    //         'bukti_laporan.required' => 'Kolom bukti laporan diperlukan.',
-    //         'bukti_laporan.image' => 'Kolom bukti laporan harus berupa gambar.',
-    //         'bukti_laporan.file' => 'Kolom bukti laporan harus berupa file.',
-    //         'bukti_laporan.max' => 'Ukuran file bukti laporan tidak boleh lebih dari 1024 kilobit.',
-    //         'deskripsi_laporan.required' => 'Kolom deskripsi laporan diperlukan.',
-    //         'deskripsi_laporan.max' => 'Deskripsi laporan tidak boleh lebih dari 255 karakter.',
-    //     ]);
-
-    //     // simpan bukti laporan di storage lokal
-    //     if ($request->file('bukti_laporan')) {
-    //         $validatedData['bukti_laporan'] = $request->file('bukti_laporan')->store('img-bukti_laporan');
-    //     }
-
-    //     // set nilai default tanggal secara otomatis ketika laporan dibuat
-    //     $validatedData['tgl_laporan'] = Carbon::now();
-    //     // set nilai default status secara otomatis ketika laporan dibuat
-    //     $validatedData['status_id'] = 1;
-    //     // set nilai default id user secara otomatis ektika laporan dibuat
-    //     $validatedData['user_id'] = auth()->user()->user_id;
-
-    //     // Tambahkan data laporan
-    //     $laporan = LaporanModel::create($validatedData);
-
-    //     // Setelah menyimpan laporan, buat entri matrik yang terkait
-    //     $matrik = new MatrikModel();
-    //     $matrik->laporan_id = $laporan->laporan_id; // Gunakan laporan_id yang baru dibuat
-    //     $matrik->kriteria_id = null; // Set kriteria_id to null by default
-    //     $matrik->save(); // Menyimpan matrik dengan laporan_id yang terkait
-
-    //     return redirect('/laporan')->with('success', 'Laporan Berhasil di Kirimkan');
-    // }
     public function store(Request $request) {
         $validatedData = $request->validate([
             'infrastruktur_id' => 'required',
@@ -175,12 +131,10 @@ class LaporanController extends Controller
         $matrik->kriteria_id = null; // Set kriteria_id to null by default
         $matrik->save();
     
-        return redirect('/laporan')->with('success', 'Laporan Berhasil di Kirimkan');
+        return redirect('/laporan?status=1')->with('success', 'Laporan Berhasil di Kirimkan');
     }
     
-
-    // proses hapus laporan 
-    // apabila status masih terkirim
+    // proses hapus laporan apabila status masih terkirim
     public function hapusLaporan($id) {
         // Hapus terlebih dahulu baris-baris yang terkait dari tabel s_matrik
         MatrikModel::where('laporan_id', $id)->delete();
@@ -193,16 +147,12 @@ class LaporanController extends Controller
         
         return redirect()->back()->with('success', 'Laporan berhasil dihapus.');
     }
-    
-    
-    
+       
     // view detail laporan pada warga
-    public function detail($id)
-    {
+    public function detail($id) {
         $detailLaporan = LaporanModel::find($id);
         return view('laporan.detail', [
             'title' => 'Detail Laporan | Sipid',
-            'breadcrumb' => 'Halaman Detail Laporan',
             'detailLaporan' => $detailLaporan
         ]);
     }
@@ -216,7 +166,6 @@ class LaporanController extends Controller
 
             // kirim data ke view laporan->index
             'title' => 'Edit Laporan | Sipid',
-            'breadcrumb' => 'Halaman Edit Laporan',
             'dataLaporan' => $dataLaporan,
             'dataInfrastruktur' => $infrastrukturData,
         ]);
@@ -261,7 +210,6 @@ class LaporanController extends Controller
                 'success' => 'Laporan berhasil diperbarui',
                 'detailLaporan' => $detailLaporan,
                 'title' => 'Detail Laporan | Sipid',
-                'breadcrumb' => 'Halaman Detail Laporan'
             ]);
     }
 
