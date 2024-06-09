@@ -3,6 +3,7 @@
 @section('content')
      <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800">Halaman Hasil Laporan</h1>
+          <a class="btn btn-sm btn-success" href="{{url('/rw') }}">Kembali</a>
      </div>
 
      @if (session('success'))
@@ -177,15 +178,15 @@
                                                   @endif
                                              </td>
                                              <td class="text-center">
-                                                  @if ($laporan->status->status_id == 6 || $laporan->status->status_id == 7 || $laporan->status->status_id == 8 || $laporan->status->status_id == 9)
+                                                  @if ($laporan->status->status_id == 6 || $laporan->status->status_id == 7 || $laporan->status->status_id == 8)
                                                       <a class="btn btn-info btn-sm btn-icon-split mb-2" href="{{ route('rw.detail_realisasi', $laporan->laporan_id) }}">
                                                           <span class="icon text-white-50">
                                                               <i class="fas fa-info-circle"></i>
                                                           </span>
                                                           <span class="text">Detail</span>
                                                       </a>
-                                                  @else
-                                                      <a class="btn btn-info btn-sm btn-icon-split mb-2" href="{{ route('rw.detail_default', $laporan->laporan_id) }}">
+                                                  @elseif($laporan->status->status_id == 9)
+                                                      <a class="btn btn-info btn-sm btn-icon-split mb-2" href="{{ route('rw.detail_selesai', $laporan->laporan_id) }}">
                                                           <span class="icon text-white-50">
                                                               <i class="fas fa-info-circle"></i>
                                                           </span>

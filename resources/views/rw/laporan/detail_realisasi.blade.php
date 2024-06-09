@@ -1,6 +1,11 @@
 @extends('rw.layouts.main')
 
 @section('content')
+     <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Halaman Detail Laporan</h1>
+          <a class="btn btn-sm btn-success" href="{{ route('rw.hasil_laporan') }}">Kembali</a>
+     </div>
+
      <!-- Session Pesan Sukses -->
      @if (session('success'))
           <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -219,7 +224,7 @@
                          <span class="d-inline-block">:</span>
                     </div>
                     <div class="col-md-9 col-sm-8">
-                         <button id="editStatusBtn">Edit Status</button>
+                         <button id="editStatusBtn" class="btn btn-sm btn-primary">Ubah Status</button>
                          <!-- Form hidden untuk pengiriman data -->
                          <form id="editStatusForm" action="{{ route('rw.edit_statusSelesai', $detailLaporan->laporan_id) }}"
                          method="POST" enctype="multipart/form-data" style="display:none;">
@@ -231,9 +236,6 @@
                     </div>
                </div>
                <!-- End Ubah Status -->
-
-               <hr class="border-2">
-               <a class="btn btn-sm btn-secondary ml-auto" href="{{ url('rw/hasil_laporan') }}">Kembali</a>
           </div>
      </div>
 
@@ -261,26 +263,32 @@
 
           document.getElementById('editStatusBtn').addEventListener('click', function() {
                Swal.fire({
-                    title: 'Edit Status',
-                    html: `
-               <select id="statusSelect" class="swal2-input">
-                    <option value="9">Selesai</option>
-                    <!-- Tambahkan opsi lainnya sesuai kebutuhan -->
-               </select>
-               <input type="file" id="buktiSelesaiFile" class="swal2-input" multiple>
-          `,
+                    confirmButtonColor: '#4e73df',
+                    cancelButtonColor: '#858796',
+                    html: 
+                    `
+                         <h2 style="text-align: center;">Ubah Status</h2>
+                         <p style="text-align: center;">Masukkan bukti foto realisasi jika ingin merubah status</p>
+                         <input type="file" id="buktiSelesaiFile" class="swal2-input mb-3" multiple required>
+                         <select id="statusSelect" class="swal2-input mb-3">
+                              <option value="9">Selesai</option>
+                              <!-- Tambahkan opsi lainnya sesuai kebutuhan -->
+                         </select>
+                    `,
+                    icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonText: 'Submit',
+                    confirmButtonText: 'Ubah',
+                    cancelButtonText: 'Batal',
                     preConfirm: () => {
                          const status = Swal.getPopup().querySelector('#statusSelect').value;
                          const buktiFiles = Swal.getPopup().querySelector('#buktiSelesaiFile').files;
                          if (!status) {
-                         Swal.showValidationMessage(`Please select a status`);
+                              Swal.showValidationMessage(`Please select a status`);
                          }
-                         return {
-                         status: status,
-                         buktiFiles: buktiFiles
-                         };
+                         if (!buktiFiles || buktiFiles.length === 0) {
+                              Swal.showValidationMessage(`Harap mengupload bukti foto bahwa laporan selesai terlebih dahulu`);
+                         }
+                         return { status: status, buktiFiles: buktiFiles };
                     }
                }).then((result) => {
                     if (result.isConfirmed) {

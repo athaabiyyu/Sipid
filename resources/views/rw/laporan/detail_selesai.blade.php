@@ -1,6 +1,11 @@
 @extends('rw.layouts.main')
 
 @section('content')
+     <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Halaman Detail Laporan</h1>
+          <a class="btn btn-sm btn-success" href="{{ route('rw.hasil_laporan') }}">Kembali</a>
+     </div>
+
      <!-- Session Pesan Sukses -->
      @if (session('success'))
           <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -209,8 +214,6 @@
                </div>
                <!-- End Status Laporan -->
                
-               <hr class="border-2">
-               <a class="btn btn-sm btn-secondary ml-auto" href="{{ url('rw/hasil_laporan') }}">Kembali</a>
           </div>
      </div>
 

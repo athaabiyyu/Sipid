@@ -2,6 +2,12 @@
 @extends('rw.layouts.main')
 
 @section('content')
+
+     <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Halaman Detail Laporan</h1>
+          <a class="btn btn-sm btn-success" href="{{ route('rw.hasil_laporan') }}">Kembali</a>
+     </div>
+
      @if (session('success'))
           <div class="alert alert-success alert-dismissible fade show" role="alert">
                <strong>Berhasil!</strong> {{ session('success') }}.
@@ -15,6 +21,7 @@
                <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
      @endif
+
      <div class="card mb-4 py-2 border-left-primary">
           <div class="card-body">
                <div class="row">
@@ -184,7 +191,7 @@
                          <span class="d-inline-block">:</span>
                     </div>
                     <div class="col-md-9 col-sm-8">
-                         <button id="editStatusBtn">Edit Status</button>
+                         <button id="editStatusBtn" class="btn btn-sm btn-primary">Ubah Status</button>
                          <!-- Form hidden untuk pengiriman data -->
                          <form id="editStatusForm" action="{{ route('rw.edit_status', $detailLaporan->laporan_id) }}" method="POST" enctype="multipart/form-data" style="display:none;">
                               @csrf
@@ -194,8 +201,6 @@
                          </form>
                     </div>
                </div>
-               <hr class="border-2">
-               <a class="btn btn-sm btn-secondary ml-auto" href="{{ url('rw/hasil_laporan') }}">Kembali</a>
           </div>
      </div>
 
@@ -220,42 +225,88 @@
                modalImage.src = src;
           });
           });
+
+          // document.getElementById('editStatusBtn').addEventListener('click', function() {
+          //      Swal.fire({
+          //           confirmButtonColor: '#4e73df',
+          //           cancelButtonColor: '#858796',
+          //           html: `
+          //                <h2 style="text-align: center;">Edit Status</h2>
+          //                <p style="text-align: center;">Masukkan bukti foto realisasi jika ingin merubah status</p>
+          //                <input type="file" id="buktiRealisasiFile" class="swal2-input mb-3" multiple>
+          //                <select id="statusSelect" class="swal2-input mb-3">
+          //                     <option value="8">Realisasikan</option>
+          //                     <!-- Tambahkan opsi lainnya sesuai kebutuhan -->
+          //                </select>
+          //           `,
+          //           icon: 'warning',
+          //           showCancelButton: true,
+          //           confirmButtonText: 'Ubah',
+          //           cancelButtonText: 'Batal',
+          //           preConfirm: () => {
+          //                const status = Swal.getPopup().querySelector('#statusSelect').value;
+          //                const buktiFiles = Swal.getPopup().querySelector('#buktiRealisasiFile').files;
+          //                if (!status) {
+          //                     Swal.showValidationMessage(`Please select a status`);
+          //                }
+          //                return { status: status, buktiFiles: buktiFiles };
+          //           }
+          //      }).then((result) => {
+          //           if (result.isConfirmed) {
+          //                const form = document.getElementById('editStatusForm');
+          //                document.getElementById('statusInput').value = result.value.status;
+
+          //                // Tambahkan file bukti ke form
+          //                const buktiInput = document.getElementById('buktiRealisasiInput');
+          //                buktiInput.files = result.value.buktiFiles;
+
+          //                // Kirim form
+          //                form.submit();
+          //           }
+          //      });
+          // });
           document.getElementById('editStatusBtn').addEventListener('click', function() {
-        Swal.fire({
-            title: 'Edit Status',
-            html: `
-                <select id="statusSelect" class="swal2-input">
-                    <option value="8">Realisasikan</option>
-                    <!-- Tambahkan opsi lainnya sesuai kebutuhan -->
-                </select>
-                <input type="file" id="buktiRealisasiFile" class="swal2-input" multiple>
-            `,
-            showCancelButton: true,
-            confirmButtonText: 'Submit',
-            preConfirm: () => {
-                const status = Swal.getPopup().querySelector('#statusSelect').value;
-                const buktiFiles = Swal.getPopup().querySelector('#buktiRealisasiFile').files;
-                if (!status) {
-                    Swal.showValidationMessage(`Please select a status`);
-                }
-                return { status: status, buktiFiles: buktiFiles };
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                const form = document.getElementById('editStatusForm');
-                document.getElementById('statusInput').value = result.value.status;
+               Swal.fire({
+                    confirmButtonColor: '#4e73df',
+                    cancelButtonColor: '#858796',
+                    html: `
+                         <h2 style="text-align: center;">Ubah Status</h2>
+                         <p style="text-align: center;">Masukkan bukti foto realisasi jika ingin merubah status</p>
+                         <input type="file" id="buktiRealisasiFile" class="swal2-input mb-3" multiple required>
+                         <select id="statusSelect" class="swal2-input mb-3">
+                              <option value="8">Realisasikan</option>
+                              <!-- Tambahkan opsi lainnya sesuai kebutuhan -->
+                         </select>
+                    `,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ubah',
+                    cancelButtonText: 'Batal',
+                    preConfirm: () => {
+                         const status = Swal.getPopup().querySelector('#statusSelect').value;
+                         const buktiFiles = Swal.getPopup().querySelector('#buktiRealisasiFile').files;
+                         if (!status) {
+                              Swal.showValidationMessage(`Please select a status`);
+                         }
+                         if (!buktiFiles || buktiFiles.length === 0) {
+                              Swal.showValidationMessage(`Harap mengupload bukti foto realisasi terlebih dahulu`);
+                         }
+                         return { status: status, buktiFiles: buktiFiles };
+                    }
+               }).then((result) => {
+                    if (result.isConfirmed) {
+                         const form = document.getElementById('editStatusForm');
+                         document.getElementById('statusInput').value = result.value.status;
 
-                // Tambahkan file bukti ke form
-                const buktiInput = document.getElementById('buktiRealisasiInput');
-                buktiInput.files = result.value.buktiFiles;
+                         // Tambahkan file bukti ke form
+                         const buktiInput = document.getElementById('buktiRealisasiInput');
+                         buktiInput.files = result.value.buktiFiles;
 
-                // Kirim form
-                form.submit();
-            }
-        });
-    });
-
-
+                         // Kirim form
+                         form.submit();
+                    }
+               });
+          });
      </script>
 @endsection
 

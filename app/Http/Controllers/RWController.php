@@ -124,12 +124,55 @@ class RWController extends Controller
         ]);
     }
 
+    // public function editStatus(Request $request, $id) {
+    //     $detailLaporan = LaporanModel::find($id);
+    
+    //     // Validasi input
+    //     $validatedData = $request->validate([
+    //         'status' => 'required|int|in:1,2,3,4,5,6,7,8,9,10',
+    //     ]);
+    
+    //     // Temukan laporan berdasarkan ID
+    //     $laporan = LaporanModel::findOrFail($id);
+    
+    //     // Perbarui status laporan
+    //     $laporan->status_id = $validatedData['status'];
+    //     // Set kolom status_updated_at dengan waktu saat ini
+    //     $laporan->status_updated_at = Carbon::now();
+    //     $laporan->save();
+    
+    //     // Cek dan simpan bukti realisasi jika ada
+    //     if ($request->hasFile('bukti_realisasi')) {
+    //         foreach ($request->file('bukti_realisasi') as $file) {
+    //             // Simpan file dan dapatkan path
+    //             $path = $file->store('bukti_realisasi');
+
+    //             // Buat entri baru di tabel bukti_laporans dengan menyertakan file_path
+    //             BuktiLaporan::create([
+    //                 'laporan_id' => $laporan->laporan_id,
+    //                 'file_path' => $path, // Sertakan nilai file_path yang sudah didapat
+    //                 'type' => 'bukti_realisasi',
+    //             ]);
+    //         }
+    //     }
+    
+    //     // Redirect dengan pesan sukses
+    //     return redirect()->route('rw.hasil_laporan')
+    //         ->with([
+    //             'success' => 'Status berhasil diubah',
+    //             'detailLaporan' => $detailLaporan,
+    //             'title' => 'Hasil Laporan | Sipid',
+    //             'breadcrumb' => 'Halaman Hasil Laporan'
+    //         ]);
+    // }
     public function editStatus(Request $request, $id) {
         $detailLaporan = LaporanModel::find($id);
     
         // Validasi input
         $validatedData = $request->validate([
             'status' => 'required|int|in:1,2,3,4,5,6,7,8,9,10',
+            'bukti_realisasi' => 'required|array|min:1', // Menambahkan validasi untuk file bukti realisasi
+            'bukti_realisasi.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048' // Menambahkan validasi untuk tipe dan ukuran file
         ]);
     
         // Temukan laporan berdasarkan ID
@@ -142,18 +185,16 @@ class RWController extends Controller
         $laporan->save();
     
         // Cek dan simpan bukti realisasi jika ada
-        if ($request->hasFile('bukti_realisasi')) {
-            foreach ($request->file('bukti_realisasi') as $file) {
-                // Simpan file dan dapatkan path
-                $path = $file->store('bukti_realisasi');
-
-                // Buat entri baru di tabel bukti_laporans dengan menyertakan file_path
-                BuktiLaporan::create([
-                    'laporan_id' => $laporan->laporan_id,
-                    'file_path' => $path, // Sertakan nilai file_path yang sudah didapat
-                    'type' => 'bukti_realisasi',
-                ]);
-            }
+        foreach ($request->file('bukti_realisasi') as $file) {
+            // Simpan file dan dapatkan path
+            $path = $file->store('bukti_realisasi');
+    
+            // Buat entri baru di tabel bukti_laporans dengan menyertakan file_path
+            BuktiLaporan::create([
+                'laporan_id' => $laporan->laporan_id,
+                'file_path' => $path, // Sertakan nilai file_path yang sudah didapat
+                'type' => 'bukti_realisasi',
+            ]);
         }
     
         // Redirect dengan pesan sukses
@@ -165,6 +206,7 @@ class RWController extends Controller
                 'breadcrumb' => 'Halaman Hasil Laporan'
             ]);
     }
+    
     
     // detail realisasi
     public function detailRealisasi($id) {
