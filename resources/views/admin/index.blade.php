@@ -231,9 +231,108 @@
           <!-- End Card Jumlah Laporan Selesai -->
      </div>
      <!-- End Card -->
+   <!-- Content Row -->
+<div class="row">
+     <!-- Area Chart -->
+     <div class="col">
+          <div class="card shadow mb-4">
+               <!-- Card Header - Dropdown -->
+               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-primary" data-toggle="collapse" data-target="#collapseCard1">
+                    <h6 class="m-0 font-weight-bold text-light">Hasil Keputusan</h6>
+                    <div class="dropdown no-arrow"></div>
+               </div>
+               <!-- Card Body -->
+               <div class="card-body collapse" id="collapseCard1">
+                    <ul class="list-unstyled">
+                         <li class="mb-3">
+                              <i class="fas fa-arrow-right mr-2"></i>
+                              <strong>Klik "Rekap Laporan"</strong> pada sidebar untuk masuk ke halaman Rekap Laporan.
+                         </li>
+                         <li class="mb-3">
+                              <i class="fas fa-arrow-right mr-2"></i>
+                              <strong>Klik " Detail"</strong> untuk melihat Laporan terpilih untuk dilihat.
+                         </li>
+                         <li class="mb-3">
+                              <i class="fas fa-arrow-right mr-2"></i>
+                              <strong>Ubah Status"Diverifikasi atau Ditolak"</strong> untuk merubah laporan yang ingin dirubah statusnya setelah meninjau laporan.
+                         <li class="mb-3">
+                              <i class="fas fa-arrow-right mr-2"></i>
+                              <strong>Klik "Ubah atau Batal"</strong> untuk mengubah status dan membatalkan status
+                         </li>
+                    </ul>
+               </div>
+          </div>
+     </div>
+</div>
+<!-- End Content Row -->
+
+<!-- Content Row -->
+<div class="row">
+     <!-- Area Chart -->
+     <div class="col">
+          <div class="card shadow mb-4">
+               <!-- Card Header - Dropdown -->
+               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-primary" data-toggle="collapse" data-target="#collapseCard2">
+                    <h6 class="m-0 font-weight-bold text-light">Pemberian Nilai untuk menentukan keputusan</h6>
+                    <div class="dropdown no-arrow"></div>
+               </div>
+               <!-- Card Body -->
+               <div class="card-body collapse" id="collapseCard2">
+                    <ul class="list-unstyled">
+                         <li class="mb-3">
+                              <i class="fas fa-arrow-right mr-2"></i>
+                              <strong>Klik "Pengambilan Keputusan"</strong> pada sidebar untuk masuk ke halaman Perhitungan SPK.
+                         </li>
+                         <li class="mb-3">
+                              <i class="fas fa-arrow-right mr-2"></i>
+                              <strong>Lalu Klik " Selanjutnya"</strong> pada pojok kanan bawah untuk masuk ke Halaman Alternatif dan Hasil Perhitungan
+                         </li>
+                         <li class="mb-3">
+                              <i class="fas fa-arrow-right mr-2"></i>
+                              <strong>Klik "Isi Nilai"</strong> untuk mengisi nilai alternatif pada laporan terpilih untuk dihitung SPK nya.
+                         <li class="mb-3">
+                              <i class="fas fa-arrow-right mr-2"></i>
+                              <strong>Klik "Tutup atau Simpan"</strong>simpan untuk menyimpan nilai yang telah diberikan dan tutup untuk membatalakan pemberian nilai
+                         </li>
+                         <li class="mb-3">
+                              <i class="fas fa-arrow-right mr-2"></i>
+                              <strong>Scroll kebawah dan Klik "Kirim ke RW"</strong>untuk memberikan hasil dari perhitungan SPK nya dan akan ditindaklanjuti oleh RW.
+                         </li>
+                    </ul>
+               </div>
+          </div>
+     </div>
+</div>
+<!-- End Content Row -->
 
 
      <style>
+          .card {
+          transition: transform 0.2s ease-in-out;
+          }
+
+          .card:hover {
+          transform: scale(1.02);
+          }
+
+          .card-header {
+          position: relative;
+          }
+
+          .card-header::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 50px;
+          height: 3px;
+          background-color: #fff; /* Sesuaikan warna dengan tema Anda */
+          }
+          ul.list-unstyled li strong {
+          color: #4e73df; /* Sesuaikan warna dengan tema Anda */
+          }
+
           .card-footer a:hover {
               color: white !important;
               text-decoration: none;

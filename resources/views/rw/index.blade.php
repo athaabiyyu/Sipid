@@ -122,51 +122,114 @@
      </div>
      <!-- End Card Components -->
 
-     <!-- Content Row -->
-     <div class="row">
-          <!-- Area Chart -->
-          <div class="col">
-               <div class="card shadow mb-4">
-                    <!-- Card Header - Dropdown -->
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-primary">
-                         <h6 class="m-0 font-weight-bold text-light">Cara Pelaporan</h6>
-                         <div class="dropdown no-arrow"></div>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                         <ul class="list-unstyled">
-                              <li class="mb-3">
-                                   <i class="fas fa-arrow-right mr-2"></i>
-                                   <strong>Klik "Buat Laporan"</strong> pada sidebar untuk masuk ke halaman pembuatan laporan.
-                              </li>
-                              <li class="mb-3">
-                                   <i class="fas fa-arrow-right mr-2"></i>
-                                   <strong>Pilih "Infrastruktur"</strong> yang ingin dilaporkan (jaringan listrik, jalan, saluran air, dll).
-                              </li>
-                              <li class="mb-3">
-                                   <i class="fas fa-arrow-right mr-2"></i>
-                                   <strong>Upload "Bukti Laporan"</strong> berupa foto infrastruktur yang rusak.
-                              </li>
-                              <li class="mb-3">
-                                   <i class="fas fa-arrow-right mr-2"></i>
-                                   <strong>Isi "Isi Laporan"</strong> dengan detail kerusakan dan informasi terkait lainnya.
-                              </li>
-                              <li class="mb-3">
-                                   <i class="fas fa-arrow-right mr-2"></i>
-                                   <strong>Isi "Lokasi Kerusakan"</strong> untuk menyebutkan lokasi infrastruktur yang rusak.
-                              </li>
-                              <li class="mb-3">
-                                   <i class="fas fa-arrow-right mr-2"></i>
-                                   <strong>Klik "Submit"</strong> untuk mengirim laporan Anda.
-                              </li>
-                         </ul>
-                    </div>
+    <!-- Content Row -->
+<div class="row">
+     <!-- Area Chart -->
+     <div class="col">
+          <div class="card shadow mb-4">
+               <!-- Card Header - Dropdown -->
+               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-primary" data-toggle="collapse" data-target="#collapseCard1">
+                    <h6 class="m-0 font-weight-bold text-light">Tata Cara Ubah Hasil Keputusan</h6>
+                    <div class="dropdown no-arrow"></div>
+               </div>
+               <!-- Card Body -->
+               <div class="card-body collapse" id="collapseCard1">
+                    <ul class="list-unstyled">
+                         <li class="mb-3">
+                              <i class="fas fa-arrow-right mr-2"></i>
+                              <strong>Klik "Hasil Laporan"</strong> pada sidebar untuk masuk ke halaman Hasil laporan untuk menindaklanjuti laporan.
+                         </li>
+                         <li class="mb-3">
+                              <i class="fas fa-arrow-right mr-2"></i>
+                              <strong>Klik " Detail"</strong> untuk melihat laporan yang perlu disetujui, pastikan Anda telah benar-benar memeriksa hasil laporan tersebut sebelum diselesaikan.
+                         </li>
+                         <li class="mb-3">
+                              <i class="fas fa-arrow-right mr-2"></i>
+                              <strong>Ubah "Status Laporan"</strong> untuk merubah laporan yang ingin diselesaikan.
+                         </li>
+                         <li class="mb-3">
+                              <i class="fas fa-arrow-right mr-2"></i>
+                              <strong>Isi "Masukkan Foto"</strong> sebagai bukti telah selesainya laporan tersebut.
+                         </li>
+                         <li class="mb-3">
+                              <i class="fas fa-arrow-right mr-2"></i>
+                              <strong>Klik "Ubah atau Batal"</strong> untuk mengubah status dan membatalkan status.
+                         </li>
+                    </ul>
                </div>
           </div>
      </div>
-     <!-- End Content Row -->
+</div>
+<!-- End Content Row -->
+
+<!-- Content Row -->
+<div class="row">
+     <!-- Area Chart -->
+     <div class="col">
+          <div class="card shadow mb-4">
+               <!-- Card Header - Dropdown -->
+               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-primary" data-toggle="collapse" data-target="#collapseCard2">
+                    <h6 class="m-0 font-weight-bold text-light">Tata Cara Ubah Status Laporan Yang Sedang Direalisasikan</h6>
+                    <div class="dropdown no-arrow"></div>
+               </div>
+               <!-- Card Body -->
+               <div class="card-body collapse" id="collapseCard2">
+                    <ul class="list-unstyled">
+                         <li class="mb-3">
+                              <i class="fas fa-arrow-right mr-2"></i>
+                              <strong>Klik "Hasil Laporan"</strong> pada sidebar untuk masuk ke halaman Hasil laporan untuk menindaklanjuti laporan.
+                         </li>
+                         <li class="mb-3">
+                              <i class="fas fa-arrow-right mr-2"></i>
+                              <strong>Klik " Detail"</strong> untuk melihat laporan yang perlu disetujui, pastikan Anda telah benar-benar memeriksa hasil laporan tersebut sebelum direalisasikan.
+                         </li>
+                         <li class="mb-3">
+                              <i class="fas fa-arrow-right mr-2"></i>
+                              <strong>Ubah "Status Laporan"</strong> untuk merubah laporan yang ingin direalisasikan.
+                         </li>
+                         <li class="mb-3">
+                              <i class="fas fa-arrow-right mr-2"></i>
+                              <strong>Isi "Masukkan Foto"</strong> sebagai bukti telah merealisasikan laporan tersebut.
+                         </li>
+                         <li class="mb-3">
+                              <i class="fas fa-arrow-right mr-2"></i>
+                              <strong>Klik "Ubah atau Batal"</strong> untuk mengubah status dan membatalkan status.
+                         </li>
+                    </ul>
+               </div>
+          </div>
+     </div>
+</div>
+<!-- End Content Row -->
+
+ 
 
      <style>
+          .card {
+          transition: transform 0.2s ease-in-out;
+          }
+
+          .card:hover {
+          transform: scale(1.02);
+          }
+
+          .card-header {
+          position: relative;
+          }
+
+          .card-header::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 50px;
+          height: 3px;
+          background-color: #fff; /* Sesuaikan warna dengan tema Anda */
+          }
+          ul.list-unstyled li strong {
+          color: #4e73df; /* Sesuaikan warna dengan tema Anda */
+          }
           .card-footer a:hover {
               color: white !important;
               text-decoration: none;

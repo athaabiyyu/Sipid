@@ -234,13 +234,13 @@
 </div>
 <!-- End Card -->
 
-<!-- Content Row -->
+<<!-- Content Row -->
 <div class="row">
      <!-- Area Chart -->
      <div class="col">
           <div class="card shadow mb-4">
                <!-- Card Header - Dropdown -->
-               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-primary">
+               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-primary" data-toggle="collapse" data-target="#collapseCard">
                     <h6 class="m-0 font-weight-bold text-light">Tata Cara Membuat Laporan</h6>
                     <div class="dropdown no-arrow">
                   
@@ -248,7 +248,7 @@
                     </div>
                </div>
                <!-- Card Body -->
-               <div class="card-body">
+               <div class="card-body collapse" id="collapseCard">
                     <ul class="list-unstyled">
                          <li class="mb-4">
                               <div class="d-flex flex-column">
@@ -300,7 +300,34 @@
      </div>
 </div>
 
+
+
 <style>
+     .card {
+          transition: transform 0.2s ease-in-out;
+          }
+
+          .card:hover {
+          transform: scale(1.02);
+          }
+
+          .card-header {
+          position: relative;
+          }
+
+          .card-header::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 50px;
+          height: 3px;
+          background-color: #fff; /* Sesuaikan warna dengan tema Anda */
+          }
+          ul.list-unstyled li strong {
+          color: #4e73df; /* Sesuaikan warna dengan tema Anda */
+          }
      .card-footer a:hover {
          color: white !important;
          text-decoration: none;
