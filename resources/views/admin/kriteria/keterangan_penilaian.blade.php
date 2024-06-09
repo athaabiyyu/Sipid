@@ -5,6 +5,7 @@
           <div class="col-md-9">
                <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Halaman Keterangan Penilaian Kriteria</h1>
+                    <a href="{{ route('admin.kriteria.index') }}" class="btn btn-success btn-sm">Kembali</a>
                </div>
                <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex justify-content-between align-items-center bg-primary">
@@ -65,7 +66,6 @@
                          @endfor
 
                          <div class="d-flex justify-content-between">
-                              <a href="{{ route('admin.kriteria.index') }}" class="btn btn-secondary btn-sm">Kembali</a>
                               <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
                          </div>
                           

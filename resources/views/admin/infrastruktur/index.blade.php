@@ -1,7 +1,12 @@
 @extends('admin.layouts.main')
 
 @section('content')
-@if (session('success'))
+     <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Halaman Data Infrastruktur</h1>
+          <a class="btn btn-sm btn-success" href="{{ route('admin') }}">Kembali</a>
+     </div>
+
+     @if (session('success'))
           <div class="alert alert-success alert-dismissible fade show" role="alert">
                <strong>Berhasil!</strong> {{ session('success') }}.
                <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -41,12 +46,22 @@
                                    <td>{{ $infrastruktur->infrastruktur_nama }}</td>
                                    <td>
                                         <form action="{{ url('admin/infrastruktur/hapus', $infrastruktur->infrastruktur_id) }}" method="POST">
-                                             <a class="btn btn-warning btn-sm" href="{{ url('admin/infrastruktur/edit', $infrastruktur->infrastruktur_id) }}">Edit</a>
+                                             <a class="btn btn-warning btn-sm btn-icon-split" href="{{ url('admin/infrastruktur/edit', $infrastruktur->infrastruktur_id) }}">
+                                                 <span class="icon text-white-50">
+                                                     <i class="fas fa-pencil-alt"></i>
+                                                 </span>
+                                                 <span class="text">Edit</span>
+                                             </a>
                                              @csrf
                                              @method('DELETE')
-                                             <button type="submit" class="btn btn-danger btn-sm"
-                                             onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
-                                        </form>
+                                             <button type="submit" class="btn btn-danger btn-sm btn-icon-split">
+                                                 <span class="icon text-white-50">
+                                                     <i class="fas fa-times"></i>
+                                                 </span>
+                                                 <span class="text">Hapus</span>
+                                             </button>
+                                         </form>
+                                         
                                    </td>
                               </tr>
                          @endforeach

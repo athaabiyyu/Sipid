@@ -4,6 +4,7 @@
 
      <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800">Halaman Detail Laporan</h1>
+          <a class="btn btn-sm btn-success" href="{{ url('admin/rekap_laporan') }}">Kembali</a>
      </div>
 
      <!--Session Sukses-->
@@ -378,10 +379,6 @@
                @endif
                <!-- End Ubah Status -->
                
-               <!--Tombol-->
-               <hr class="border-2">
-               <a class="btn btn-sm btn-secondary ml-auto" href="{{ url('admin/rekap_laporan') }}">Kembali</a>
-               <!--End Tombol-->
           </div>
      </div>
 

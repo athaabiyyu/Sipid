@@ -4,6 +4,7 @@
 
      <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800">Halaman Profile</h1>
+          <a class="btn btn-sm btn-success" href="{{ url('/admin') }}">Kembali</a>
      </div>
      
      @if (session('success'))
@@ -144,8 +145,7 @@
                          </div>
                          <div class="mt-5 mb-2">
                               <div class="d-flex justify-content-between">
-                                  <a class="btn btn-sm btn-secondary" href="{{ url('/admin') }}">Kembali</a>
-                                  <button class="btn btn-sm btn-primary profile-button" type="submit">Simpan</button>
+                                  <button class="btn btn-sm btn-primary profile-button ml-auto" type="submit">Simpan</button>
                               </div>
                          </div> 
                          </form>

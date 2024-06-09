@@ -3,6 +3,7 @@
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Halaman Alternatif dan Hasil Perhitungan</h1>
+        <a class="btn btn-sm btn-success ml-auto" href="{{ route('admin.kriteria.index') }}">Kembali</a>
     </div>
 
     @if (session('success'))
@@ -92,7 +93,6 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between align-items-center bg-primary">
             <h6 class="m-0 font-weight-bold text-white">Tabel Alternatif</h6>
-            <a class="btn btn-sm btn-success ml-auto" href="{{ route('admin.kriteria.index') }}">Kembali</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BuktiLaporan;
 use App\Models\InfrastrukturModel;
+use App\Models\LaporanModel;
+use App\Models\MatrikModel;
 use Illuminate\Http\Request;
 
 class InfrastrukturController extends Controller
@@ -69,8 +72,27 @@ class InfrastrukturController extends Controller
 
     /*** Remove the specified resource from storage.*/
     public function destroy(string $id)
-    {
-        InfrastrukturModel::find($id)->delete();
+{
+    try {
+        // Hapus semua entri terkait dari tabel s_matrik
+        MatrikModel::whereIn('laporan_id', function($query) use ($id) {
+            $query->select('laporan_id')->from('s_laporan')->where('infrastruktur_id', $id);
+        })->delete();
+
+        // Hapus semua entri terkait dari tabel bukti_laporans
+        BuktiLaporan::whereIn('laporan_id', function($query) use ($id) {
+            $query->select('laporan_id')->from('s_laporan')->where('infrastruktur_id', $id);
+        })->delete();
+
+        // Hapus entri dari tabel s_laporan
+        LaporanModel::where('infrastruktur_id', $id)->delete();
+
         return redirect('admin/infrastruktur')->with('success', 'Data Berhasil Dihapus');
+    } catch (\Exception $e) {
+        return redirect('admin/infrastruktur')->with('error', 'Gagal menghapus data: ' . $e->getMessage());
     }
+}
+
+
+
 }

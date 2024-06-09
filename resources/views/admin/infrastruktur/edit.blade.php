@@ -3,10 +3,13 @@
 @section('content')
      <div class="row justify-content-center mb-5">
           <div class="col-md-9">
+               <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Halaman Edit Data Infrastruktur</h1>
+                    <a class="btn btn-sm btn-success" href="{{ url('admin/infrastruktur') }}">Kembali</a>
+               </div>
                <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex justify-content-between align-items-center bg-primary">
-                         <h6 class="m-0 font-weight-bold text-light">+ Form Edit Infrastruktur</h6>
-                         <a class="btn btn-sm btn-success ml-auto" href="{{ url('admin/infrastruktur') }}">Kembali</a>
+                         <h6 class="m-0 font-weight-bold text-light">Form Edit Infrastruktur</h6>
                     </div>
                     <div class="card-body">
                          <form method="POST" action="{{ url('admin/infrastruktur', $dataInfrastruktur->infrastruktur_id) }}">
@@ -34,7 +37,7 @@
                                    @enderror
                                    <!-- Pesan Error -->
                               </div>
-                              <button type="submit" class="btn btn-primary">Kirim</button>
+                              <button type="submit" class="btn btn-primary btn-sm">Kirim</button>
                          </div>
                          </form>
                     </div>

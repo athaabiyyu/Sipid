@@ -56,8 +56,6 @@
                <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data Laporan:</h6>
                     <a class="collapse-item" href="{{ url('admin/infrastruktur') }}">Data Infrastruktur</a>
-                    <a class="collapse-item" href="{{ route('admin.level.index') }}">Data Level User</a>
-                    <a class="collapse-item" href="{{ route('admin.status_laporan.index') }}">Data Status Laporan</a>
                </div>
           </div>
      </li>

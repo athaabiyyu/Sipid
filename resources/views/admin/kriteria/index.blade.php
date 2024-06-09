@@ -3,6 +3,7 @@
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Halaman Kriteria</h1>
+        <a href="{{ route('admin.rekap_laporan') }}" class="btn btn-success btn-sm">Kembali</a>
     </div>
 
     @if (session('success'))
@@ -28,30 +29,24 @@
         </a>
 
         <div class="collapse" id="collapseCardExample">
-            {{-- <div class="card-body">
+            <div class="card-body">
                 <div>
-                    <strong class="text-info">- {{ $dataKriteria[0]->kriteria_nama }}</strong>
-                    <p>Seberapa parah masalah infrastruktur tersebut, misalnya, kerusakan fisik atau dampaknya terhadap
-                        layanan publik.</p>
+                    <strong class="text-info">Kode Kriteria</strong>
+                    <p>Kode kriteria merupakan representasi pengkodean untuk setiap kriteria, yang digunakan sebagai identifikasi unik.</p>
                 </div>
                 <div>
-                    <strong class="text-info">- {{ $dataKriteria[1]->kriteria_nama }}</strong>
-                    <p>Biaya yang diperlukan untuk memperbaiki atau memperbarui infrastruktur yang rusak.</p>
+                    <strong class="text-info">Nama Kriteria</strong>
+                    <p>Nama Kriteria merupakan deskripsi atau nama dari kriteria yang dinilai, misalnya, biaya perbaikan atau dampak terhadap layanan publik.</p>
                 </div>
                 <div>
-                    <strong class="text-info">- {{ $dataKriteria[2]->kriteria_nama }}</strong>
-                    <p>Seberapa banyak laporan yang dilaporkan.</p>
+                    <strong class="text-info">Bobot Kriteria</strong>
+                    <p>Bobot kriteria merupakan nilai yang menunjukkan tingkat kepentingan kriteria tersebut dalam evaluasi keseluruhan yang menggunakan interval 0-100%</p>
                 </div>
                 <div>
-                    <strong class="text-info">- {{ $dataKriteria[3]->kriteria_nama }} </strong>
-                    <p>Lama waktu yang diperlukan untuk menyelesaikan perbaikan atau pemeliharaan infrastruktur.</p>
+                    <strong class="text-info">Attribut Kriteria</strong>
+                    <p>Attribut kritei merupakan aspek atau sifat spesifik dari kriteria. Disini jenis kriteria dibedakan berdasarkan sifatnya, apakah memberikan keuntungan (benefit) atau biaya (cost). Yang dimana kriteria benefit adalah kriteria dimana pengambil keputusan menginginkan nilai maksimum diantara seluruh nilai alternatif. Kriteria cost adalah kriteria dimana pengambil keputusan menginginkan nilai minimum diantara seluruh nilai alternatif.</p>
                 </div>
-                <div>
-                    <strong class="text-info">- {{ $dataKriteria[4]->kriteria_nama }} </strong>
-                    <p>Dampak infrastruktur rusak terhadap masyarakat sekitar, seperti gangguan dalam rutinitas sehari-hari
-                        atau keamanan.</p>
-                </div>
-            </div> --}}
+            </div>
         </div>
     </div>
     <!-- Keterangan Kriteria -->
@@ -107,8 +102,7 @@
                 </table>
             </div>
 
-            <div class="d-flex justify-content-between mt-4">
-                <a href="{{ route('admin') }}" class="btn btn-secondary btn-sm">Kembali</a>
+            <div class="d-flex justify-content-end mt-4">
                 <a href="#" class="btn btn-primary btn-sm" onclick="cekTotalBobot()">Selanjutnya</a>
             </div>            
         </div>
