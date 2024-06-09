@@ -1,6 +1,11 @@
 @extends('rw.layouts.main')
 
 @section('content')
+
+     <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+     </div>
+
      @if (session('success'))
           <div class="alert alert-success alert-dismissible fade show" role="alert">
                <strong>Berhasil!</strong> {{ session('success') }}.
@@ -20,24 +25,31 @@
 
           <!-- Card Jumlah Laporan yang Dikirim ke RW -->
           <div class="col-xl-4 col-md-6 mb-4">
-               <div class="card border-left-warning shadow h-100 py-2">
+               <div class="card border-left-warning shadow h-100">
                     <div class="card-body">
                          <div class="row no-gutters align-items-center">
                               <div class="col mr-2">
-                                   <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Laporan Menunggu Keputusan RW</div>
+                                   <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Laporan Masuk dari Admin</div>
                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalLaporanDikirimKeRw }}</div>
-                                   @if ($totalLaporanDikirimKeRw > 0)
-                                        <div class="row mt-3">
-                                             <div class="col">
-                                                  <a href="{{ route('rw.hasil_laporan', ['status' => 7]) }}" class="btn btn-secondary btn-sm">Detail &rarr;</a>
-                                             </div>
-                                        </div>
-                                   @endif
                               </div>
                               <div class="col-auto">
                                    <i class="fas fa-paper-plane fa-2x text-warning"></i>
                               </div>
                          </div>
+                    </div>
+                    <div id="dikirimRW-footer" class="card-footer p-0">
+                         @if ($totalLaporanDikirimKeRw > 0)
+                              <div class="card-footer bg-white p-0 ">
+                                   <div class="row">
+                                        <div class="col">
+                                        <a href="{{ route('rw.hasil_laporan', ['status' => 6]) }}" class="text-warning d-flex justify-content-between align-items-center p-2" style="text-decoration: none;">
+                                             <h6 class="mb-0 ml-2 font-weight-bold">Detail</h6>
+                                             <i class="fas fa-arrow-right mr-2"></i>
+                                        </a>
+                                        </div>
+                                   </div>
+                              </div>
+                         @endif
                     </div>
                </div>
           </div>
@@ -45,24 +57,31 @@
 
           <!-- Card Jumlah Laporan Direalisasikan -->
           <div class="col-xl-4 col-md-6 mb-4">
-               <div class="card border-left-secondary shadow h-100 py-2">
+               <div class="card border-left-dark shadow h-100">
                     <div class="card-body">
                          <div class="row no-gutters align-items-center">
                               <div class="col mr-2">
-                                   <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Laporan Direalisasikan</div>
+                                   <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Laporan Direalisasikan</div>
                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalLaporanDirealisasikan }}</div>
-                                   @if ($totalLaporanDirealisasikan > 0)
-                                        <div class="row mt-3">
-                                             <div class="col">
-                                                  <a href="{{ route('rw.hasil_laporan', ['status' => 8]) }}" class="btn btn-secondary btn-sm">Detail &rarr;</a>
-                                             </div>
-                                        </div>
-                                   @endif
                               </div>
                               <div class="col-auto">
-                                   <i class="fas fa-hammer fa-2x text-secondary"></i>
+                                   <i class="fas fa-hammer fa-2x text-dark"></i>
                               </div>
                          </div>
+                    </div>
+                    <div id="direalisasikan-footer" class="card-footer p-0">
+                         @if ($totalLaporanDirealisasikan > 0)
+                              <div class="card-footer bg-white p-0 ">
+                                   <div class="row">
+                                        <div class="col">
+                                        <a href="{{ route('rw.hasil_laporan', ['status' => 8]) }}" class="text-dark d-flex justify-content-between align-items-center p-2" style="text-decoration: none;">
+                                             <h6 class="mb-0 ml-2 font-weight-bold">Detail</h6>
+                                             <i class="fas fa-arrow-right mr-2"></i>
+                                        </a>
+                                        </div>
+                                   </div>
+                              </div>
+                         @endif
                     </div>
                </div>
           </div>
@@ -70,24 +89,31 @@
           
           <!-- Card Jumlah Laporan Selesai -->
           <div class="col-xl-4 col-md-6 mb-4">
-               <div class="card border-left-success shadow h-100 py-2">
+               <div class="card border-left-success shadow h-100 ">
                     <div class="card-body">
                          <div class="row no-gutters align-items-center">
                               <div class="col mr-2">
                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Laporan Selesai</div>
                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalLaporanSelesai }}</div>
-                                   @if ($totalLaporanSelesai > 0)
-                                        <div class="row mt-3">
-                                             <div class="col">
-                                                  <a href="{{ route('rw.hasil_laporan', ['status' => 9]) }}" class="btn btn-secondary btn-sm">Detail &rarr;</a>
-                                             </div>
-                                        </div>
-                                   @endif
                               </div>
                               <div class="col-auto">
                                    <i class="fas fa-check-circle fa-2x text-success"></i>
                               </div>
                          </div>
+                    </div>
+                    <div id="selesai-footer" class="card-footer p-0">
+                         @if ($totalLaporanSelesai > 0)
+                              <div class="card-footer bg-white p-0 ">
+                                   <div class="row">
+                                        <div class="col">
+                                        <a href="{{ route('rw.hasil_laporan', ['status' => 9]) }}" class="text-success d-flex justify-content-between align-items-center p-2" style="text-decoration: none;">
+                                             <h6 class="mb-0 ml-2 font-weight-bold">Detail</h6>
+                                             <i class="fas fa-arrow-right mr-2"></i>
+                                        </a>
+                                        </div>
+                                   </div>
+                              </div>
+                         @endif
                     </div>
                </div>
           </div>
@@ -139,4 +165,21 @@
           </div>
      </div>
      <!-- End Content Row -->
+
+     <style>
+          .card-footer a:hover {
+              color: white !important;
+              text-decoration: none;
+              border-radius: 0.25rem; /* Optional: Add border-radius to match design */
+          }
+          #dikirimRW-footer a:hover {
+              background-color: #f6c23e; /* Bootstrap info color */
+          }
+          #direalisasikan-footer a:hover {
+              background-color: #5a5c69; /* Custom dark color */
+          }
+          #selesai-footer a:hover {
+              background-color: #1cc88a; /* Bootstrap success color */
+          }
+     </style>
 @endsection

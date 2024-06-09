@@ -1,6 +1,10 @@
 @extends('rw.layouts.main')
 
 @section('content')
+     <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Halaman Hasil Laporan</h1>
+     </div>
+
      @if (session('success'))
           <div class="alert alert-success alert-dismissible fade show" role="alert">
                <strong>Berhasil!</strong> {{ session('success') }}.
@@ -95,10 +99,12 @@
                                    <td>{{ number_format($data['totalUtility'] / 100, 3, ',', '.') }}</td>
                                    <td>{{ $ranking }}</td>
                                    <td class="text-center">
-                                        <a class="btn btn-info btn-sm mb-2"
-                                             href="{{ url('rw/detail_hasil', $data['laporan_id']) }}">
-                                             Detail
-                                        </a>
+                                        <a class="btn btn-info btn-sm btn-icon-split mb-2" href="{{ route('rw.detail_hasil',  $data['laporan_id']) }}">
+                                             <span class="icon text-white-50">
+                                                 <i class="fas fa-info-circle"></i>
+                                             </span>
+                                             <span class="text">Detail</span>
+                                         </a>
                                    </td>
                                    </tr>
                                    @php
@@ -148,7 +154,7 @@
                                              <td>{{ $laporan->alamat_laporan }}</td>
                                              <td>
                                                   @if ($laporan->status->status_id == 8)
-                                                  <a href="#" class="btn btn-sm btn-success btn-icon-split">
+                                                  <a href="#" class="btn btn-sm btn-dark btn-icon-split">
                                                        <span class="icon text-white-50">
                                                             <i class="fas fa-hammer"></i>
                                                        </span>
@@ -171,14 +177,23 @@
                                                   @endif
                                              </td>
                                              <td class="text-center">
-                                                  @if ($laporan->status->status_id == 8)
-                                                      <a class="btn btn-info btn-sm mb-2" href="{{ route('rw.detail_realisasi', $laporan->laporan_id) }}">Detail</a>
-                                                  @elseif ($laporan->status->status_id == 9)
-                                                      <a class="btn btn-info btn-sm mb-2" href="{{ route('rw.detail_selesai', $laporan->laporan_id) }}">Detail</a>
+                                                  @if ($laporan->status->status_id == 6 || $laporan->status->status_id == 7 || $laporan->status->status_id == 8 || $laporan->status->status_id == 9)
+                                                      <a class="btn btn-info btn-sm btn-icon-split mb-2" href="{{ route('rw.detail_realisasi', $laporan->laporan_id) }}">
+                                                          <span class="icon text-white-50">
+                                                              <i class="fas fa-info-circle"></i>
+                                                          </span>
+                                                          <span class="text">Detail</span>
+                                                      </a>
                                                   @else
-                                                      <a class="btn btn-info btn-sm mb-2" href="{{ route('rw.detail_default', $laporan->laporan_id) }}">Detail</a>
+                                                      <a class="btn btn-info btn-sm btn-icon-split mb-2" href="{{ route('rw.detail_default', $laporan->laporan_id) }}">
+                                                          <span class="icon text-white-50">
+                                                              <i class="fas fa-info-circle"></i>
+                                                          </span>
+                                                          <span class="text">Detail</span>
+                                                      </a>
                                                   @endif
-                                             </td> 
+                                              </td>
+                                              
                                         </tr>
                                    @endforeach
                               </tbody>
@@ -188,4 +203,5 @@
           </div>
           <!-- End Rekap Laporan - Dengan Status Direalisasikan  -->
      @endforeach
+     
 @endsection

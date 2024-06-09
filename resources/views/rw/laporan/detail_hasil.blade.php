@@ -135,76 +135,42 @@
                     <div class="col-md-9 col-sm-8">
                          <h6>
                               @if ($detailLaporan->status->status_id == 1)
-                                   <a href="#" class="btn btn-sm btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                             <i class="fas fa-paper-plane"></i>
-                                        </span>
-                                        <span class="text">{{ $detailLaporan->status->status_nama }}</span>
-                                   </a>
-                              @elseif($detailLaporan->status->status_id == 2)
-                                   <a href="#" class="btn btn-sm btn-warning btn-icon-split">
-                                        <span class="icon text-white-50">
-                                             <i class="fas fa-eye"></i>
-                                        </span>
-                                        <span class="text">{{ $detailLaporan->status->status_nama }}</span>
-                                   </a>
-                              @elseif($detailLaporan->status->status_id == 3)
-                                   <a href="#" class="btn btn-sm btn-info btn-icon-split">
-                                        <span class="icon text-white-50">
-                                             <i class="fas fa-eye"></i>
-                                        </span>
-                                        <span class="text">{{ $detailLaporan->status->status_nama }}</span>
-                                   </a>
-                              @elseif($detailLaporan->status->status_id == 4)
-                                   <a href="#" class="btn btn-sm btn-success btn-icon-split">
-                                        <span class="icon text-white-50">
-                                             <i class="fas fa-check"></i>
-                                        </span>
-                                        <span class="text">{{ $detailLaporan->status->status_nama }}</span>
-                                   </a>
-                              @elseif($detailLaporan->status->status_id == 5)
-                                   <a href="#" class="btn btn-sm btn-success btn-icon-split">
-                                        <span class="icon text-white-50">
-                                             <i class="fas fa-calculator"></i>
-                                        </span>
-                                        <span class="text">{{ $detailLaporan->status->status_nama }}</span>
-                                   </a>
-                              @elseif($detailLaporan->status->status_id == 6)
-                                   <a href="#" class="btn btn-sm btn-warning btn-icon-split">
-                                        <span class="icon text-white-50">
-                                             <i class="fas fa-paper-plane"></i>
-                                        </span>
-                                        <span class="text">{{ $detailLaporan->status->status_nama }}</span>
-                                   </a>
-                              @elseif($detailLaporan->status->status_id == 7)
-                                   <a href="#" class="btn btn-sm btn-success btn-icon-split">
-                                        <span class="icon text-white-50">
-                                             <i class="fas fa-eye"></i>
-                                        </span>
-                                        <span class="text">{{ $detailLaporan->status->status_nama }}</span>
-                                   </a>
-                              @elseif($detailLaporan->status->status_id == 8)
-                                   <a href="#" class="btn btn-sm btn-success btn-icon-split">
-                                        <span class="icon text-white-50">
-                                             <i class="fas fa-hammer"></i>
-                                        </span>
-                                        <span class="text">{{ $detailLaporan->status->status_nama }}</span>
-                                   </a>
-                              @elseif($detailLaporan->status->status_id == 9)
-                                   <a href="#" class="btn btn-sm btn-success btn-icon-split">
-                                        <span class="icon text-white-50">
-                                             <i class="fas fa-check"></i>
-                                        </span>
-                                        <span class="text">{{ $detailLaporan->status->status_nama }}</span>
-                                   </a>
-                              @else
-                                   <a href="#" class="btn btn-sm btn-danger btn-icon-split">
-                                        <span class="icon text-white-50">
-                                             <i class="fas fa-times"></i>
-                                        </span>
-                                        <span class="text">{{ $detailLaporan->status->status_nama }}</span>
-                                   </a>
-                              @endif
+                         @elseif($detailLaporan->status->status_id == 6)
+                         <a href="#" class="btn btn-sm btn-warning btn-icon-split">
+                              <span class="icon text-white-50">
+                                   <i class="fas fa-paper-plane"></i>
+                              </span>
+                              <span class="text">{{ $detailLaporan->status->status_nama }}</span>
+                         </a>
+                         @elseif($detailLaporan->status->status_id == 7)
+                         <a href="#" class="btn btn-sm btn-success btn-icon-split">
+                              <span class="icon text-white-50">
+                                   <i class="fas fa-eye"></i>
+                              </span>
+                              <span class="text">{{ $detailLaporan->status->status_nama }}</span>
+                         </a>
+                         @elseif($detailLaporan->status->status_id == 8)
+                         <a href="#" class="btn btn-sm btn-dark btn-icon-split">
+                              <span class="icon text-white-50">
+                                   <i class="fas fa-hammer"></i>
+                              </span>
+                              <span class="text">{{ $detailLaporan->status->status_nama }}</span>
+                         </a>
+                         @elseif($detailLaporan->status->status_id == 9)
+                         <a href="#" class="btn btn-sm btn-success btn-icon-split">
+                              <span class="icon text-white-50">
+                                   <i class="fas fa-check"></i>
+                              </span>
+                              <span class="text">{{ $detailLaporan->status->status_nama }}</span>
+                         </a>
+                         @else
+                         <a href="#" class="btn btn-sm btn-danger btn-icon-split">
+                              <span class="icon text-white-50">
+                                   <i class="fas fa-times"></i>
+                              </span>
+                              <span class="text">{{ $detailLaporan->status->status_nama }}</span>
+                         </a>
+                         @endif
                          </h6>
                     </div>
                </div>

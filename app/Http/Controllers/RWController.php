@@ -15,7 +15,7 @@ class RWController extends Controller
 {
     public function index(){
         // Hitung total laporan dengan status_id = 7
-        $totalLaporanDikirimKeRw = LaporanModel::where('status_id', 7)->count();
+        $totalLaporanDikirimKeRw = LaporanModel::where('status_id', 6)->count();
         // Hitung total laporan dengan status_id = 8 
         $totalLaporanDirealisasikan = LaporanModel::where('status_id', 8)->count();
         // Hitung total laporan dengan status_id = 9
