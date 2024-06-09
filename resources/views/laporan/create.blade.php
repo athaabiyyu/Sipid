@@ -5,6 +5,7 @@
           <div class="col-md-9">
                <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Halaman Buat Laporan</h1>
+                    <a class="btn btn-sm btn-success" href="{{ route('laporan.dashboard') }}">Kembali</a>
                </div>
                <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex justify-content-between align-items-center bg-primary">
@@ -82,7 +83,6 @@
 
                               <!-- Tombol -->
                               <div class="d-flex justify-content-between align-items-left">
-                                   <a class="btn btn-sm btn-secondary" href="{{ url('laporan/dashboard') }}">Kembali</a>
                                    <button type="submit" class="btn btn-sm btn-primary ml-auto">Kirim</button>
                               </div>   
                               <!-- End Tombol -->   

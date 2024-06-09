@@ -96,7 +96,7 @@ class LaporanController extends Controller
             'infrastruktur_id' => 'required',
             'alamat_laporan' => 'required',
             'bukti_laporan.*' => 'required|image|file|max:1024',
-            'deskripsi_laporan' => 'required|max:255',
+            'deskripsi_laporan' => 'required',
         ], [
             'infrastruktur_id.required' => 'Kolom nama infrastruktur diperlukan.',
             'alamat_laporan.required' => 'Kolom lokasi laporan diperlukan.',
@@ -105,7 +105,6 @@ class LaporanController extends Controller
             'bukti_laporan.file' => 'Kolom bukti laporan harus berupa file.',
             'bukti_laporan.max' => 'Ukuran file bukti laporan tidak boleh lebih dari 1024 kilobit.',
             'deskripsi_laporan.required' => 'Kolom deskripsi laporan diperlukan.',
-            'deskripsi_laporan.max' => 'Deskripsi laporan tidak boleh lebih dari 255 karakter.',
         ]);
     
         $laporan = new LaporanModel();
@@ -176,9 +175,9 @@ class LaporanController extends Controller
         $detailLaporan = LaporanModel::findOrFail($id);
 
         $request->validate([
-            'deskripsi_laporan' => 'required|max:255',
+            'deskripsi_laporan' => 'required',
             'infrastruktur_id' => 'required',
-            'alamat_laporan' => 'required|max:100',
+            'alamat_laporan' => 'required',
             'bukti_laporan' => 'nullable|image|file|max:1024',
         ], [
             'infrastruktur_id.required' => 'Kolom nama infrastruktur diperlukan.',
@@ -187,7 +186,6 @@ class LaporanController extends Controller
             'bukti_laporan.file' => 'Kolom bukti laporan harus berupa file.',
             'bukti_laporan.max' => 'Ukuran file bukti laporan tidak boleh lebih dari 1024 kilobit.',
             'deskripsi_laporan.required' => 'Kolom deskripsi laporan diperlukan.',
-            'deskripsi_laporan.max' => 'Deskripsi laporan tidak boleh lebih dari 255 karakter.',
         ]);
 
         $detailLaporan->deskripsi_laporan = $request->deskripsi_laporan;

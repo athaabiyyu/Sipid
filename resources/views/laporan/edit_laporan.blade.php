@@ -1,8 +1,13 @@
 @extends('laporan.layouts.main')
 
 @section('content')
+     
      <div class="row justify-content-center mb-5">
           <div class="col-md-9">
+               <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Halaman Edit Laporan</h1>
+                    <a class="btn btn-sm btn-success mb-0" href="{{ route('laporan.detailLaporan', $dataLaporan->laporan_id) }}">Kembali</a>
+               </div>
                <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex justify-content-between align-items-center bg-primary">
                          <h6 class="m-0 font-weight-bold text-light">Form Edit Laporan</h6>
@@ -75,11 +80,9 @@
                               <!-- End Alamat -->
 
                               <!-- Tombol -->
-                              <div class="d-flex justify-content-between align-items-center">
-                                   <a class="btn btn-sm btn-secondary mb-0"
-                                        href="{{ route('laporan.detailLaporan', $dataLaporan->laporan_id) }}">Kembali</a>
+                              <div class="d-flex justify-content-end align-items-right">
                                    <button type="submit" class="btn btn-sm btn-primary mb-0">Kirim</button>
-                              </div>
+                              </div> 
                               <!-- End Tombol -->
                          </div>
                          </form>

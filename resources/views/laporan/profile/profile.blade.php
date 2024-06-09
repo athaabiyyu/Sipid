@@ -4,6 +4,7 @@
 
      <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800">Halaman Profile</h1>
+          <a class="btn btn-sm btn-success" href="{{ route('laporan.dashboard') }}">Kembali</a>
      </div>
 
      <!-- Sesion Sukses -->
@@ -146,7 +147,6 @@
                          </div>
                          <div class="mt-5">
                               <div class="d-flex justify-content-between">
-                                  <a class="btn btn-sm btn-secondary me-2" href="{{ route('laporan.dashboard') }}">Kembali</a>
                                   <button class="btn btn-sm btn-primary profile-button ms-auto" type="submit">Simpan</button>
                               </div>
                          </div> 

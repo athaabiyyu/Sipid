@@ -43,7 +43,7 @@ class LoginController extends Controller
             } elseif(auth()->user()->level_id == 2) {
                 return redirect()->intended('/rw');
             } else {
-                return redirect()->intended('/laporan');
+                return redirect()->intended('/laporan/dashboard');
             }
             
         }

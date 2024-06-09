@@ -2,6 +2,7 @@
 @section('content')
      <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800">Halaman Detail Laporan</h1>
+          <a class="btn btn-sm btn-success" href="{{ url('laporan') }}">Kembali</a>
      </div>
 
      <!-- Session Pesan -->
@@ -288,9 +289,8 @@
                <!--Tombol-->
                <hr class="border-2">
                <div class="d-flex justify-content-start mb-3 ">
-                    <a class="btn btn-sm btn-secondary me-2" href="{{ url('laporan') }}">Kembali</a>
                     @if ($detailLaporan->status->status_id == 1)
-                         <a class="btn btn-sm btn-warning"
+                         <a class="btn btn-sm btn-warning px-3"
                          href="{{ route('laporan.editLaporan', $detailLaporan->laporan_id) }}">Edit</a>
                     @endif
                </div>

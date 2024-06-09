@@ -3,6 +3,7 @@
 @section('content')
      <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800">Halaman Ubah Sandi</h1>
+          <a class="btn btn-sm btn-success " href="{{ route('laporan.dashboard') }}">Kembali</a>
      </div>
 
      <!-- Sesion Sukses -->
@@ -49,7 +50,6 @@
                     </div>
                     <div class="row mt-3">
                          <div class="col">
-                              <a class="btn btn-sm btn-secondary me-2" href="{{ route('laporan.dashboard') }}">Kembali</a>
                               <button class="btn btn-sm btn-primary profile-button" type="submit">Simpan</button>
                          </div>        
                     </div>
