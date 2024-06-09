@@ -3,7 +3,10 @@
 @section('content')
      <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800">Halaman Detail Laporan</h1>
-          <a class="btn btn-sm btn-success" href="{{ route('rw.hasil_laporan') }}">Kembali</a>
+          <div>
+               <a class="btn btn-sm btn-success mr-2" href="{{ route('rw.hasil_laporan') }}">Kembali</a>
+               <a class="btn btn-sm btn-primary" href="{{ route('rw.cetak_pdf', $detailLaporan->laporan_id) }}">Cetak PDF</a>
+           </div>
      </div>
 
      <!-- Session Pesan Sukses -->

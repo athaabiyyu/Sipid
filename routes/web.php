@@ -104,7 +104,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'cekLevel:1']], func
 Route::group(['prefix' => 'rw', 'middleware' => ['auth', 'cekLevel:2']], function () {
      Route::get('/', [RWController::class, 'index']);
      Route::get('/hasil_laporan', [RWController::class, 'hasilLaporan'])->name('rw.hasil_laporan');
-     Route::get('/cetak_pdf', [RWController::class, 'cetakPDF'])->name('rw.cetak_pdf');
+
+     Route::get('/cetak_pdf/{id}', [RWController::class, 'cetakPDF'])->name('rw.cetak_pdf');
+
      Route::get('/detail_hasil/{id}', [RWController::class, 'detailHasil'])->name('rw.detail_hasil');
      Route::post('/ubah_status/{id}', [RWController::class, 'editStatus'])->name('rw.ubah_status');
 

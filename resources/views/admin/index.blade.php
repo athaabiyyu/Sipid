@@ -32,7 +32,7 @@
                               <div class="card-footer bg-white p-0 ">
                                    <div class="row">
                                         <div class="col">
-                                        <a href="{{ url('/laporan?status=1') }}" class="text-primary d-flex justify-content-between align-items-center p-2" style="text-decoration: none;">
+                                        <a href="{{ route('admin.rekap_laporan', ['status' => 1]) }}" class="text-primary d-flex justify-content-between align-items-center p-2" style="text-decoration: none;">
                                              <h6 class="mb-0 ml-2 font-weight-bold">Detail</h6>
                                              <i class="fas fa-arrow-right mr-2"></i>
                                         </a>
