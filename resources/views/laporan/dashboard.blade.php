@@ -241,7 +241,7 @@
           <div class="card shadow mb-4">
                <!-- Card Header - Dropdown -->
                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-primary">
-                    <h6 class="m-0 font-weight-bold text-light">Cara Pelaporan</h6>
+                    <h6 class="m-0 font-weight-bold text-light">Tata Cara Membuat Laporan</h6>
                     <div class="dropdown no-arrow">
                   
                    
@@ -250,32 +250,51 @@
                <!-- Card Body -->
                <div class="card-body">
                     <ul class="list-unstyled">
-                         <li class="mb-3">
-                              <i class="fas fa-arrow-right mr-2"></i>
-                              <strong>Klik "Buat Laporan"</strong> pada sidebar untuk masuk ke halaman pembuatan laporan.
+                         <li class="mb-4">
+                              <div class="d-flex flex-column">
+                                   <div class="mb-2">
+                                        <strong>1. Klik "Buat Laporan"</strong> pada sidebar untuk masuk ke halaman pembuatan laporan.
+                                   </div>
+                                   <img src="{{ url(asset('img/buat_laporan.jpeg')) }}" alt="" width="600" height="200" class="mb-2">
+                              </div>
                          </li>
-                         <li class="mb-3">
-                              <i class="fas fa-arrow-right mr-2"></i>
-                              <strong>Pilih "Infrastruktur"</strong> yang ingin dilaporkan (jaringan listrik, jalan, saluran air, dll).
+                         <li class="mb-4">
+                              <div class="d-flex flex-column">
+                                   <div>
+                                        <strong>2. Pilih "Infrastruktur"</strong> yang ingin dilaporkan (jaringan listrik, jalan, saluran air, dll)
+                                   </div>
+                              </div>
                          </li>
-                         <li class="mb-3">
-                              <i class="fas fa-arrow-right mr-2"></i>
-                              <strong>Upload "Bukti Laporan"</strong> berupa foto infrastruktur yang rusak.
+                         <li class="mb-4">
+                              <div class="d-flex flex-column">
+                                   <div>
+                                        <strong>3. Upload "Bukti Laporan"</strong> berupa foto infrastruktur yang rusak.
+                                   </div>
+                              </div>
                          </li>
-                         <li class="mb-3">
-                              <i class="fas fa-arrow-right mr-2"></i>
-                              <strong>Isi "Isi Laporan"</strong> dengan detail kerusakan dan informasi terkait lainnya.
+                         <li class="mb-4">
+                              <div class="d-flex flex-column">
+                                   <div>
+                                        <strong>4. Isi "Isi Laporan"</strong> dengan detail kerusakan dan informasi terkait lainnya.
+                                   </div>
+                              </div>
                          </li>
-                         <li class="mb-3">
-                              <i class="fas fa-arrow-right mr-2"></i>
-                              <strong>Isi "Lokasi Kerusakan"</strong> untuk menyebutkan lokasi infrastruktur yang rusak.
+                         <li class="mb-4">
+                              <div class="d-flex flex-column">
+                                   <div>
+                                        <strong>5. Isi "Lokasi Kerusakan"</strong> untuk menyebutkan lokasi infrastruktur yang rusak.
+                                   </div>
+                              </div>
                          </li>
-                         <li class="mb-3">
-                              <i class="fas fa-arrow-right mr-2"></i>
-                              <strong>Klik "Kirim"</strong> untuk mengirim laporan yang telah kita tulis
+                         <li class="mb-4">
+                              <div class="d-flex flex-column">
+                                   <div class="mb-2">
+                                        <strong>6. Klik "Kirim"</strong> untuk mengirim laporan yang telah kita tulis
+                                   </div>
+                                   <img src="{{ url(asset('img/tambah_laporan.png')) }}" alt="" width="600" height="400" class="mb-2">
+                              </div>
                          </li>
                     </ul>
-                   
                </div>
           </div>
      </div>
