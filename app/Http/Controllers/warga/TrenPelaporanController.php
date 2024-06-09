@@ -10,12 +10,10 @@ use App\Models\LaporanModel;
 
 class TrenPelaporanController extends Controller
 {
-    public function testes(TrenChart $chart, DonutChart $donutChart){
+    public function testes(){
         return view('tren_pelaporan.index', [
             'breadcrumb' => 'Halaman Trend Laporan',
             'title' => 'Dashboard | Sipid',
-            'chart' => $chart->build(),
-            'donut' => $donutChart->build()
         ]);
     }
 }
