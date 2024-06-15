@@ -1,15 +1,20 @@
-@extends('laporan.layouts.main')
+@extends(auth()->user()->level_id == 3 ? 'laporan.layouts.main' : 'admin.layouts.main')
 
 @section('content')
     <div class="container mx-auto mt-10 flex flex-col items-center">
         <div class="mb-6">
-            <h2 class="text-lg font-semibold mb-2">Bar Chart</h2>
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">Halaman Trend Pelaporan</h1>
+                <a class="btn btn-sm btn-success" href="{{ auth()->user()->level_id == 3 ? route('laporan.dashboard') : route('admin') }}">Kembali</a>
+            </div>
             <div class="p-6 bg-white rounded shadow mx-4 mb-4">
-                {!! $bar->container() !!}
+                {!! $trenChart->container() !!}
             </div>
         </div>
         <div class="mb-6">
-            <h2 class="text-lg font-semibold mb-2">Google Data Studio Report</h2>
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">Google Data Studio Report</h1>
+            </div>
             <iframe 
                 width="1000" 
                 height="750" 
@@ -22,6 +27,6 @@
         </div>
     </div>
 
-    <script src="{{ $bar->cdn() }}"></script>
-    {{ $bar->script() }}
+    <script src="{{ $trenChart->cdn() }}"></script>
+    {!! $trenChart->script() !!}
 @endsection

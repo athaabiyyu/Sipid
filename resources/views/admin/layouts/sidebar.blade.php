@@ -28,6 +28,14 @@
      </li>
      <!-- End Manage Laporan -->
 
+     <!-- Trend laporan -->
+     <li class="nav-item">
+          <a class="nav-link" href="{{ url('admin/tren') }}">
+               <i class="fas fa-fw fa-chart-line"></i>
+               <span>Trend Laporan</span></a>
+     </li>
+     <!-- End Trend laporan -->
+
      <!-- Pengambilan Keputusan -->
      <hr class="sidebar-divider">
      <div class="sidebar-heading">

@@ -81,6 +81,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'cekLevel:1']], func
 
      // End Kriteria
 
+     Route::get('/tren', [TrenPelaporanController::class, 'testes']);
+
      Route::post('/alternatif/updateNilai/{id}', [AlternatifController::class, 'updateNilai'])->name('admin.alternatif.updateNilai');
 
 
