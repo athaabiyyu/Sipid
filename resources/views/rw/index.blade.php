@@ -143,6 +143,7 @@
                               <i class="fas fa-arrow-right mr-2"></i>
                               <strong>Klik " Detail"</strong> untuk melihat laporan yang perlu disetujui, pastikan Anda telah benar-benar memeriksa hasil laporan tersebut sebelum diselesaikan.
                          </li>
+                         <img src="{{ asset('img/detailrw.png') }}" alt="Detail RW" width="600" height="400" class="mb-2">
                          <li class="mb-3">
                               <i class="fas fa-arrow-right mr-2"></i>
                               <strong>Ubah "Status Laporan"</strong> untuk merubah laporan yang ingin diselesaikan.
@@ -153,8 +154,9 @@
                          </li>
                          <li class="mb-3">
                               <i class="fas fa-arrow-right mr-2"></i>
-                              <strong>Klik "Ubah atau Batal"</strong> untuk mengubah status dan membatalkan status.
+                              <strong>Klik "Ubah atau Batal"</strong> untuk mengubah status dan membatalkan status,Contohnya seperti dibawah ini.
                          </li>
+                         <img src="{{ asset('img/statushasil.png') }}" alt="Detail RW" width="600" height="400" class="mb-2">
                     </ul>
                </div>
           </div>
@@ -169,7 +171,7 @@
           <div class="card shadow mb-4">
                <!-- Card Header - Dropdown -->
                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-primary" data-toggle="collapse" data-target="#collapseCard2">
-                    <h6 class="m-0 font-weight-bold text-light">Tata Cara Ubah Status Laporan Yang Sedang Direalisasikan</h6>
+                    <h6 class="m-0 font-weight-bold text-light">Tata Cara Ubah Status Laporan Yang Sedang Direalisasikan Menjadi Selesai</h6>
                     <div class="dropdown no-arrow"></div>
                </div>
                <!-- Card Body -->
@@ -183,6 +185,7 @@
                               <i class="fas fa-arrow-right mr-2"></i>
                               <strong>Klik " Detail"</strong> untuk melihat laporan yang perlu disetujui, pastikan Anda telah benar-benar memeriksa hasil laporan tersebut sebelum direalisasikan.
                          </li>
+                         <img src="{{ asset('img/detailreali.png') }}" alt="Detail RW" width="600" height="400" class="mb-2">
                          <li class="mb-3">
                               <i class="fas fa-arrow-right mr-2"></i>
                               <strong>Ubah "Status Laporan"</strong> untuk merubah laporan yang ingin direalisasikan.
@@ -193,16 +196,15 @@
                          </li>
                          <li class="mb-3">
                               <i class="fas fa-arrow-right mr-2"></i>
-                              <strong>Klik "Ubah atau Batal"</strong> untuk mengubah status dan membatalkan status.
+                              <strong>Klik "Ubah atau Batal"</strong> untuk mengubah status dan membatalkan status,Contohnya seperti dibawah ini.
                          </li>
+                         <img src="{{ asset('img/statusreali.png') }}" alt="Detail RW" width="600" height="400" class="mb-2">
                     </ul>
                </div>
           </div>
      </div>
 </div>
 <!-- End Content Row -->
-
- 
 
      <style>
           .card {
@@ -217,7 +219,6 @@
           position: relative;
           }
 
-          
           ul.list-unstyled li strong {
           color: #4e73df; /* Sesuaikan warna dengan tema Anda */
           }
@@ -237,8 +238,3 @@
           }
      </style>
 @endsection
-
-
-
-
-
