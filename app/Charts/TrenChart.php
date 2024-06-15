@@ -16,31 +16,30 @@ class TrenChart
 
     public function build(): \ArielMejiaDev\LarapexCharts\BarChart
     {
-         $laporan = LaporanModel::selectRaw('MONTH(tgl_laporan) as bulan, COUNT(*) as jumlah')
-            ->whereYear('tgl_laporan', date('Y'))
-            ->groupBy('bulan')
-            ->get();
+        $laporan_listrik = LaporanModel::where('infrastruktur_id', 1)->count();
+        $laporan_jalan = LaporanModel::where('infrastruktur_id', 2)->count();
+        $laporan_tps = LaporanModel::where('infrastruktur_id', 3)->count();
+        $laporan_air = LaporanModel::where('infrastruktur_id', 4)->count();
+        $laporan_lapangan = LaporanModel::where('infrastruktur_id', 5)->count();
+        $laporan_ibadah = LaporanModel::where('infrastruktur_id', 6)->count();
+        $laporan_posyandu = LaporanModel::where('infrastruktur_id', 7)->count();
 
-         $label = [
-            'Januari',
-            'Februari',
-            'Maret',
-            'April',
-            'Mei',
-            'Juni',
-            'Juli',
-            'Agustus',
-            'September',
-            'Oktober',
-            'November',
-            'Desember'
+
+        $label = [
+            'Jaringan Listrik',
+            'Jalan',
+            'TPS',
+            'Saluran Air',
+            'Lapangan',
+            'Tempat Ibadah',
+            'Posyandu',
         ];
-            
-        $data = $laporan->pluck("jumlah")->toArray();
+
+        $data = [$laporan_listrik, $laporan_jalan, $laporan_tps, $laporan_air, $laporan_lapangan, $laporan_ibadah, $laporan_posyandu];
 
         return $this->chart->barChart()
-            ->setTitle('Jumlah Laporan Masuk Per Bulan')
-            ->addData('ppp',$data)
+            ->setTitle('Jumlah Laporan Masuk Per Infrastruktur')
+            ->addData('ppp', $data)
             ->setXAxis($label);
     }
 }

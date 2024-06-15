@@ -292,7 +292,7 @@
                               <strong>Klik "Isi Nilai"</strong> untuk mengisi nilai alternatif pada laporan terpilih untuk dihitung SPK nya.
                          <li class="mb-3">
                               <i class="fas fa-arrow-right mr-2"></i>
-                              <strong>Klik "Tutup atau Simpan"</strong>simpan untuk menyimpan nilai yang telah diberikan dan tutup untuk membatalakan pemberian nilai
+                              <strong>Klik "Tutup atau Simpan"</strong>simpan untuk menyimpan nilai yang telah diberikan dan tutup untuk membatalkan pemberian nilai
                          </li>
                          <li class="mb-3">
                               <i class="fas fa-arrow-right mr-2"></i>
@@ -319,16 +319,7 @@
           position: relative;
           }
 
-          .card-header::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 50px;
-          height: 3px;
-          background-color: #fff; /* Sesuaikan warna dengan tema Anda */
-          }
+          
           ul.list-unstyled li strong {
           color: #4e73df; /* Sesuaikan warna dengan tema Anda */
           }

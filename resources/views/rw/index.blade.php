@@ -217,16 +217,7 @@
           position: relative;
           }
 
-          .card-header::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 50px;
-          height: 3px;
-          background-color: #fff; /* Sesuaikan warna dengan tema Anda */
-          }
+          
           ul.list-unstyled li strong {
           color: #4e73df; /* Sesuaikan warna dengan tema Anda */
           }
