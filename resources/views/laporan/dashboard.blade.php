@@ -234,7 +234,7 @@
 </div>
 <!-- End Card -->
 
-<<!-- Content Row -->
+<!-- Content Row -->
 <div class="row">
      <!-- Area Chart -->
      <div class="col">
@@ -242,10 +242,7 @@
                <!-- Card Header - Dropdown -->
                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-primary" data-toggle="collapse" data-target="#collapseCard">
                     <h6 class="m-0 font-weight-bold text-light">Tata Cara Membuat Laporan</h6>
-                    <div class="dropdown no-arrow">
-                  
-                   
-                    </div>
+                    <div class="dropdown no-arrow"></div>
                </div>
                <!-- Card Body -->
                <div class="card-body collapse" id="collapseCard">

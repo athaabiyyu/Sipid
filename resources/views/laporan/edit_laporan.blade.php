@@ -38,15 +38,15 @@
                               <!-- Bukti Laporan -->
                               <div class="mb-3 mt-3">
                                    <label for="bukti_laporan" class="form-label">Bukti Laporan</label>
-                                   <input type="file" id="bukti_laporan" name="bukti_laporan"
-                                        class="form-control @error('bukti_laporan') is-invalid @enderror">
-
+                                   <input type="file" id="bukti_laporan" name="bukti_laporan[]"
+                                          class="form-control @error('bukti_laporan') is-invalid @enderror" multiple>
+                               
                                    <!-- Pesan Erorr -->
                                    @error('bukti_laporan')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                   <div class="invalid-feedback">{{ $message }}</div>
                                    @enderror
                                    <!-- Pesan Erorr -->
-                              </div>
+                              </div> 
                               <!-- End Bukti Laporan -->
 
                               <!-- Isi Laporan -->

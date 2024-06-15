@@ -18,8 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('status_id')->index();
             $table->date('tgl_laporan')->nullable();
             $table->string('bukti_laporan')->nullable();
-            $table->string('deskripsi_laporan', 100)->nullable();
-            $table->string('alamat_laporan', 100)->nullable();
+            $table->string('deskripsi_laporan')->nullable();
+            $table->string('alamat_laporan')->nullable();
             $table->timestamp('status_updated_at')->nullable();
             $table->string('bukti_realisasi')->nullable();
             $table->string('bukti_selesai')->nullable();

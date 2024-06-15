@@ -171,14 +171,53 @@ class LaporanController extends Controller
     }
 
     // proses update laporan yang di edit
+    // public function updateLaporan(Request $request, $id) {
+    //     $detailLaporan = LaporanModel::findOrFail($id);
+
+    //     $request->validate([
+    //         'deskripsi_laporan' => 'required',
+    //         'infrastruktur_id' => 'required',
+    //         'alamat_laporan' => 'required',
+    //         'bukti_laporan' => 'nullable|image|file|max:1024',
+    //     ], [
+    //         'infrastruktur_id.required' => 'Kolom nama infrastruktur diperlukan.',
+    //         'alamat_laporan.required' => 'Kolom lokasi laporan diperlukan.',
+    //         'bukti_laporan.image' => 'Kolom bukti laporan harus berupa gambar.',
+    //         'bukti_laporan.file' => 'Kolom bukti laporan harus berupa file.',
+    //         'bukti_laporan.max' => 'Ukuran file bukti laporan tidak boleh lebih dari 1024 kilobit.',
+    //         'deskripsi_laporan.required' => 'Kolom deskripsi laporan diperlukan.',
+    //     ]);
+
+    //     $detailLaporan->deskripsi_laporan = $request->deskripsi_laporan;
+    //     $detailLaporan->infrastruktur_id = $request->infrastruktur_id;
+
+    //     if ($request->hasFile('bukti_laporan')) {
+    //         // Delete the old file if exists
+    //         if ($detailLaporan->bukti_laporan && Storage::exists($detailLaporan->bukti_laporan)) {
+    //             Storage::delete($detailLaporan->bukti_laporan);
+    //         }
+
+    //         // Store the new file
+    //         $detailLaporan->bukti_laporan = $request->file('bukti_laporan')->store('bukti_laporan', 'public');
+    //     }
+
+    //     $detailLaporan->save();
+
+    //     return redirect()->route('laporan.detailLaporan', ['id' => $detailLaporan->laporan_id])
+    //         ->with([
+    //             'success' => 'Laporan berhasil diperbarui',
+    //             'detailLaporan' => $detailLaporan,
+    //             'title' => 'Detail Laporan | Sipid',
+    //         ]);
+    // }
     public function updateLaporan(Request $request, $id) {
         $detailLaporan = LaporanModel::findOrFail($id);
-
+    
         $request->validate([
             'deskripsi_laporan' => 'required',
             'infrastruktur_id' => 'required',
             'alamat_laporan' => 'required',
-            'bukti_laporan' => 'nullable|image|file|max:1024',
+            'bukti_laporan.*' => 'nullable|image|file|max:1024',
         ], [
             'infrastruktur_id.required' => 'Kolom nama infrastruktur diperlukan.',
             'alamat_laporan.required' => 'Kolom lokasi laporan diperlukan.',
@@ -187,22 +226,30 @@ class LaporanController extends Controller
             'bukti_laporan.max' => 'Ukuran file bukti laporan tidak boleh lebih dari 1024 kilobit.',
             'deskripsi_laporan.required' => 'Kolom deskripsi laporan diperlukan.',
         ]);
-
+    
         $detailLaporan->deskripsi_laporan = $request->deskripsi_laporan;
         $detailLaporan->infrastruktur_id = $request->infrastruktur_id;
-
+    
+        // Handle multiple file uploads
         if ($request->hasFile('bukti_laporan')) {
-            // Delete the old file if exists
-            if ($detailLaporan->bukti_laporan && Storage::exists($detailLaporan->bukti_laporan)) {
-                Storage::delete($detailLaporan->bukti_laporan);
+            // Delete old files if exists
+            $oldFiles = $detailLaporan->buktiLaporan;
+            foreach ($oldFiles as $file) {
+                if (Storage::exists($file->file_path)) {
+                    Storage::delete($file->file_path);
+                }
+                $file->delete();
             }
-
-            // Store the new file
-            $detailLaporan->bukti_laporan = $request->file('bukti_laporan')->store('bukti_laporan', 'public');
+    
+            // Store new files
+            foreach ($request->file('bukti_laporan') as $file) {
+                $path = $file->store('bukti_laporan', 'public');
+                $detailLaporan->buktiLaporan()->create(['file_path' => $path]);
+            }
         }
-
+    
         $detailLaporan->save();
-
+    
         return redirect()->route('laporan.detailLaporan', ['id' => $detailLaporan->laporan_id])
             ->with([
                 'success' => 'Laporan berhasil diperbarui',
@@ -210,6 +257,7 @@ class LaporanController extends Controller
                 'title' => 'Detail Laporan | Sipid',
             ]);
     }
+    
 
 
 

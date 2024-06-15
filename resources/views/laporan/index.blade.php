@@ -57,7 +57,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $laporan->infrastruktur->infrastruktur_nama }}</td>
                                         <td>{{ \Carbon\Carbon::parse($laporan->tgl_laporan)->format('d-m-Y') }}</td>
-                                        <td>{{ substr($laporan->deskripsi_laporan, 0, 30) }}...</td>
+                                        <td>{{ substr($laporan->deskripsi_laporan, 0, 10) }}...</td>
                                         <td class="text-center">
                                              @if ($laporan->status->status_id == 1)
                                              <a href="#" class="btn btn-sm btn-primary btn-icon-split">
