@@ -252,13 +252,16 @@
                               <i class="fas fa-arrow-right mr-2"></i>
                               <strong>Klik " Detail"</strong> untuk melihat Laporan terpilih untuk dilihat.
                          </li>
+                         <img src="{{ asset('img/hasiladmin.png') }}" alt="Detail RW" width="600" height="400" class="mb-2">
                          <li class="mb-3">
                               <i class="fas fa-arrow-right mr-2"></i>
                               <strong>Ubah Status"Diverifikasi atau Ditolak"</strong> untuk merubah laporan yang ingin dirubah statusnya setelah meninjau laporan.
-                         <li class="mb-3">
+                              <img src="{{ asset('img/ubahadmin.png') }}" alt="Detail RW" width="600" height="400" class="mb-2">
+                              <li class="mb-3">
                               <i class="fas fa-arrow-right mr-2"></i>
                               <strong>Klik "Ubah atau Batal"</strong> untuk mengubah status dan membatalkan status
                          </li>
+                         <img src="{{ asset('img/statusadmin.png') }}" alt="Detail RW" width="600" height="400" class="mb-2">
                     </ul>
                </div>
           </div>
@@ -290,6 +293,7 @@
                          <li class="mb-3">
                               <i class="fas fa-arrow-right mr-2"></i>
                               <strong>Klik "Isi Nilai"</strong> untuk mengisi nilai alternatif pada laporan terpilih untuk dihitung SPK nya.
+                              <img src="{{ asset('img/isinilai.png') }}" alt="Detail RW" width="400" height="400" class="mb-2">
                          <li class="mb-3">
                               <i class="fas fa-arrow-right mr-2"></i>
                               <strong>Klik "Tutup atau Simpan"</strong>simpan untuk menyimpan nilai yang telah diberikan dan tutup untuk membatalkan pemberian nilai
@@ -298,6 +302,7 @@
                               <i class="fas fa-arrow-right mr-2"></i>
                               <strong>Scroll kebawah dan Klik "Kirim ke RW"</strong>untuk memberikan hasil dari perhitungan SPK nya dan akan ditindaklanjuti oleh RW.
                          </li>
+                         <img src="{{ asset('img/kirimrw.png') }}" alt="Detail RW" width="800" height="400" class="mb-2">
                     </ul>
                </div>
           </div>
